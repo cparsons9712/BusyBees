@@ -70,7 +70,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-When I had a medical issue I wasn't able to stay on top of all the things I needed to do as an adult. Things piled up and every time I thought about one thing I needed to do a whole slew of others came to mind. It felt overwhelming and scary. I would get started on one thing and then get distracted by another ... rinse and repeat until I was too tired to finish all the task I had started.
+I had an unexpected medical issue that caused me to get very behind on basically everything. Things piled up and every time I thought about one thing I needed to do a whole slew of others came to mind. It felt overwhelming and scary. I would get started on one thing and then get distracted by another and start on that only to get distracted... rinse and repeat until I was too tired to finish all the task I had started.
 <br>
 And then I started time blocking. I set out and made a general schedule and for each section I had my own todo list. Anytime I thought of something unrelated I could tell myself it wasnt time for that. It changed my life.
 <br>

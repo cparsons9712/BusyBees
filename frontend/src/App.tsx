@@ -6,7 +6,9 @@ import axios from 'axios';
 
 function App() {
   const callBackend = async() =>{
-    const response = await axios.get('http://localhost:8000/')
+    const response = await axios.post('http://localhost:8000/name',{
+      name: "Christine"
+    })
     console.log("RESPONSE:::: ", response)
   }
 
