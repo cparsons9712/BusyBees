@@ -115,6 +115,7 @@ To get a local copy up and running follow these simple example steps.
 * Nest.js
   ```sh
   npm i -g @nestjs/cli
+  npm i --save @nestjs/config
   ```
 * Chakra UI
   ```sh
@@ -124,6 +125,11 @@ To get a local copy up and running follow these simple example steps.
   ```sh
   npm i axios
   ```
+* TypeORM, nestjs, and pg (helps communicate with postgres database)
+  ```sh
+  npm install @nestjs/typeorm typeorm pg
+  ```
+
 
 
 ### Installation
@@ -133,14 +139,29 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://github.com/cparsons9712/busyBees.git
    ```
-2. Open two terminals
-3. In one terminal navigate to frontend folder, install npm & start server. *Frontend runs on port 3000
+2. Create a .env file and copy the keys from .env.copy. Make sure the .env file is in the root of backend. Enter the information based your local postgres information
+
+2. Start up postgres database server by using this command in ubuntu/ terminal
+    ```sh
+    sudo service postgresql start
+    ```
+
+  > NOTE: <br>
+    Error: connect ECONNREFUSED 127.0.0.1:5432
+    <br>
+    If you get this error, check the credentials in the .env file match your local postgres credentials and that postgres is running in the same virtual machine as your backend server. (if using wsl/ubuntu on windows the postgres server should also run from wsl/ubuntu) Check postgres status with <br>
+      ```
+        sudo service postgresql status
+      ```
+
+3. Open two terminals
+4. In one terminal navigate to frontend folder, install npm & start server. *Frontend runs on port 3000
    ```sh
    cd frontend
    npm install
    npm start
    ```
-4. In second terminal navigate to backend, install npm & start server in development mode. *Backend runs on port 8000
+5. In second terminal navigate to backend, install npm & start server in development mode. *Backend runs on port 8000
    ```sh
    cd backend
    npm install
