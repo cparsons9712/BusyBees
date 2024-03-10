@@ -6,5 +6,8 @@ export class Name {
   id: number;
 
   @Column()
-  name: string;
+  first_name: string;
+
+  @Column()
+  middle_name: string;
 }
