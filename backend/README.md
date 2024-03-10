@@ -1,38 +1,18 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+<h1 align="center">
+
+  Busy Bee's API
+</h1>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center"> Guide to the API side of Busy Bees and running a local version of the PostgreSQL database</p>
     <p align="center">
 
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
 
 ## Test
 
@@ -84,12 +64,46 @@ $ SELECT * FROM tableName
 $ DROP TABLE tableName
 ```
 
-## Stay in touch
+## Migration Commands
+```bash
+# Makes files of sql commands from code changes that will alter database when run
+$ npm run migration:generate
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# Run commands in new migration files to alter the database
+$ npm run migration:run
+```
 
-## License
+### If you want to reset a table
 
-Nest is [MIT licensed](LICENSE).
+```bash
+- In terminal dedicated to database -
+
+# open command line tool
+$ sudo -u postgres psql
+
+# Check names of databases you can move into
+$ \l
+
+# move into database for busyBees
+$ \c busybees
+
+# check names of existing tables
+$ \dt
+
+# delete the table
+$ DROP TABLE changedTableName
+
+# Makes file that reflects the changes you made to the table
+$ npm run migration:generate
+
+# Run commands to recreate the table with the changes
+$ npm run migration:run
+```
+
+
+## Helpful Resources
+
+- [TypeORM Migrations in NestJS & Postgres](https://dev.to/amirfakour/using-typeorm-migration-in-nestjs-with-postgres-database-3c75)
+- [Nest.js Docs](https://nestjs.com/)
+- [TypeORM docs](https://typeorm.io/)
+- [PostgreSQL docs](https://www.postgresql.org/docs/current/)
