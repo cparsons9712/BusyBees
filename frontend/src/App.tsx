@@ -5,27 +5,30 @@ import { Box,Button,ChakraProvider, Input } from '@chakra-ui/react'
 import axios from 'axios';
 
 function App() {
-  const [name, setName] = useState("jo kangaroo");
+  const [firstName, setFirstName] = useState("Marty");
+  const [lastName, setLastName] = useState("McFly");
 
-  const onChange = (event:any) => {
-    setName(event.target.value)
-  }
+
+
 
   const callBackend = async() =>{
     const response = await axios.post('http://localhost:8000/name',{
-      name
+      firstName,
+      lastName
     })
-    console.log("RESPONSE:::: ", response)
+    console.log("RESPONSE:::: ", response.data)
   }
 
   return (
     <ChakraProvider>
       <Box m={10} display="flex" gap={4} >
-        <Input onChange={onChange} placeholder='Type in a name ...' />
+        <Input onChange={(event:any) => setFirstName(event.target.value)} placeholder='Type in a first name ...' />
+        <Input onChange={(event:any) => setLastName(event.target.value)} placeholder='Type in a last name ...' />
         <Button colorScheme='blue' onClick={callBackend}>
           Add Name
         </Button>
       </Box>
+
     </ChakraProvider>
   );
 }
