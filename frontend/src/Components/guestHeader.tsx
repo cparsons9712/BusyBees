@@ -1,22 +1,28 @@
 
 import { NavLink} from 'react-router-dom'
-import '../Styling/Header.css'
+
+import SignUp from './signUp'
+import { useState } from 'react'
 
 const GuestHeader = () => {
+    const [openModal, setOpenModal] = useState(false)
+
+
     return (
     <div className="headerBackground">
 
-        <NavLink to='/'className="headerOption">
+        <div  className="headerOption">
             Sign In
-        </NavLink>
+        </div>
 
-        <NavLink to='/'className="headerLogo">
+        <div  className="headerLogo">
             <img src ='./logo.png' alt="logo"/>
-        </NavLink>
+        </div>
 
-        <NavLink to='/'className="headerOption">
+        <div onClick={()=>{setOpenModal(true)}} className="headerOption">
             Sign Up
-        </NavLink>
+        </div>
+        { openModal && <SignUp closeModal ={setOpenModal} />}
 
 
     </div>
