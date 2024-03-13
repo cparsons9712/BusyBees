@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import { Box,Button,ChakraProvider, Input } from '@chakra-ui/react'
 import axios from 'axios';
