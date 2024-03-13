@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a {
+  /* This is to remove the default style of NavLinks */
+  color:white;
+  text-decoration: none;
+}

@@ -1,0 +1,40 @@
+.headerBackground{
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    justify-content: space-between;
+
+}
+
+.headerLogo {
+    margin: 15px;
+    background-color: white;
+    border-radius: 50%;
+    height: 75px;
+}
+.headerLogo img{
+    height: 75px;
+
+}
+
+.headerOption{
+    margin: auto;
+    padding: 10px;
+    border-top: solid 1px white;
+    border-bottom: solid 1px white;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.headerOption:hover {
+    cursor: pointer;
+    color: #F6B90E;
+    border-top: solid 1px #F6B90E;
+    border-bottom: solid 1px #F6B90E;
+}
+a:active{
+    font-weight: bolder;
+    color:blueviolet
+}
