@@ -2,16 +2,19 @@
 import { NavLink} from 'react-router-dom'
 
 import SignUp from './signUp'
+import SignIn from './signIn'
 import { useState } from 'react'
+import Modal from './Modal'
 
 const GuestHeader = () => {
-    const [openModal, setOpenModal] = useState(false)
+    const [openSignUp, setOpenSignUp] = useState(false)
+    const [openSignIn, setOpenSignIn] = useState(false)
 
 
     return (
     <div className="headerBackground">
 
-        <div  className="headerOption">
+        <div onClick={()=>setOpenSignIn(!openSignIn)} className="headerOption">
             Sign In
         </div>
 
@@ -19,10 +22,17 @@ const GuestHeader = () => {
             <img src ='./logo.png' alt="logo"/>
         </div>
 
-        <div onClick={()=>{setOpenModal(true)}} className="headerOption">
+        <div onClick={()=>setOpenSignUp(!openSignUp)} className="headerOption">
             Sign Up
         </div>
-        { openModal && <SignUp closeModal ={setOpenModal} />}
+
+        
+        <Modal isOpen={openSignUp} onClose={()=>setOpenSignUp(false)}>
+            <SignUp />
+        </Modal>
+        <Modal isOpen={openSignIn} onClose={()=>setOpenSignIn(false)}>
+            <SignIn />
+        </Modal>
 
 
     </div>

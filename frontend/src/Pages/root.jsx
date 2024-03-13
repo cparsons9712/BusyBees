@@ -1,11 +1,9 @@
-
-
+import { useState } from "react"
 
 export default function Root() {
 
+
     return (
-      <div>
-        THIS IS ROOT
-      </div>
+        <div>ROOT</div>
     );
   }

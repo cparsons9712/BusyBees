@@ -9,13 +9,14 @@
 }
 
 .modalContainer {
-    width: 500px;
-    height: 500px;
-    border-radius: 12px;
-    background-color: aliceblue;
-    box-shadow: (0, 0, 0, .35) 0px 5px 15px;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-    color: black;
+  min-width: 300px;
+  min-height: 300px;
+
+  box-shadow: (0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  border: thick double black;
+  background-color: white;
+  color: black;
 }
