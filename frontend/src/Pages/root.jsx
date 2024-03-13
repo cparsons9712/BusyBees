@@ -4,6 +4,8 @@ export default function Root() {
 
 
     return (
-        <div>ROOT</div>
+        <div className="form-group">
+            I am ROOT
+        </div>
     );
   }

@@ -24,39 +24,60 @@ const SignUp= () => {
                 <h1>Nice to meet you!</h1>
             </div>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="signUpForm">
 
-                <label> Name:</label>
-                <input
-                type="text"
-                required
-                value = {name}
-                onChange ={(e)=>{setName(e.target.value)}}
-                />
+                <div className="form-group">
+                    <input
+                    className="input"
+                    placeholder="name"
+                    id="name"
+                    type="text"
+                    required
+                    value = {name}
+                    onChange ={(e)=>{setName(e.target.value)}}
+                    />
+                    <label htmlFor="name" className="form-label">First Name</label>
+                </div>
 
-                <label> Username:</label>
-                <input
-                type="text"
-                required
-                value = {username}
-                onChange ={(e)=>{setUsername(e.target.value)}}
-                />
+                <div className="form-group">
+                    <input
+                    placeholder="username"
+                    className="input"
+                    id="username"
+                    type="text"
+                    required
+                    value = {username}
+                    onChange ={(e)=>{setUsername(e.target.value)}}
+                    />
+                    <label htmlFor="username" className="form-label">Username</label>
+                </div>
 
-                <label>Email:</label>
-                <input
-                type="text"
-                required
-                value = {email}
-                onChange ={(e)=>{setEmail(e.target.value)}}
-                />
+                <div className="form-group">
+                    <input
+                    placeholder="email"
+                    className="input"
+                    id="email"
+                    type="text"
+                    required
+                    value = {email}
+                    onChange ={(e)=>{setEmail(e.target.value)}}
+                    />
+                    <label htmlFor="email" className="form-label">Email</label>
+                </div>
 
-                <label>Password:</label>
-                <input
+                <div className="form-group">
+                    <input
+                    placeholder="password"
+                    className="input"
+                    id="password"
                     type="text"
                     required
                     value = {password}
                     onChange ={(e)=>{setPassword(e.target.value)}}
-                />
+                    />
+                    <label htmlFor="password" className="form-label ">Password</label>
+                </div>
+
 
                 <button type="submit">Submit</button>
 

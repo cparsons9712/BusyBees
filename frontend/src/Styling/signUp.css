@@ -1,6 +1,71 @@
-.beeCentered{
-    display: block;
-    height: 100px;
-    margin-left: auto;
-    margin-right: auto;
+.beeCentered {
+  display: block;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.signUpContainter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Input animation Section */
+
+.form-group {
+  position: relative;
+  margin: 12px 0;
+}
+
+.form-group input {
+  padding: 8px 10px;
+  font-size: 18px;
+  border: none;
+  border-top: black solid 1px;
+  border-bottom: black solid 1px;
+  background-color: transparent;
+  color: black;
+  transition: 0.4s all ease;
+}
+
+.form-group input::placeholder {
+  color: transparent;
+
+
+}
+
+.form-group .form-label {
+  position: absolute;
+  top: 9px;
+  left: 30%;
+  font-size: 18px;
+  padding: 0 10px;
+  color: black;
+  pointer-events: none;
+  transition: 0.4s all ease;
+}
+.form-group input:focus{
+    outline: none; /* Removes any default outlines */
+    border-left: none; /* Ensures no border is applied on the left */
+    border-right: none; /* Ensures no border is applied on the right */
+    border-top: black solid 1px; /* Keeps the top border */
+    border-bottom: black solid 1px; /* Keeps the bottom border */
+}
+
+.form-group input:focus + .form-label,
+.form-group input:not(:placeholder-shown) + .form-label {
+  transform: translate(5px, -22px);
+  font-size: 14px;
+  background-color: white;
+
+
+}
+/* END OF input animation section */
