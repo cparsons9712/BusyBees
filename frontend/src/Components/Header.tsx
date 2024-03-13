@@ -1,32 +1,14 @@
 
-import { NavLink} from 'react-router-dom'
-import '../Styling/Header.css'
+import UserHeader from "./userHeader"
+import GuestHeader from "./guestHeader";
+
 const Header = () => {
-    return (
-    <div className="headerBackground">
+    let user = false;
 
-        <NavLink to='/blocks'className="headerOption">
-            Blocks
-        </NavLink>
+    return (<>
+        {user ? <UserHeader /> : <GuestHeader />}
+    </>)
 
-        <NavLink to='/task'className="headerOption" >
-            Task
-        </NavLink>
-
-        <NavLink to='/'className="headerLogo">
-            <img src ='./logo.png' alt="logo"/>
-        </NavLink>
-
-        <NavLink to='/dump'className="headerOption">
-            Dump
-        </NavLink>
-
-        <NavLink to='/profile'className="headerOption">
-            Selfie
-        </NavLink>
-
-
-    </div>
-)}
+}
 
 export default Header
