@@ -1,5 +1,6 @@
 import {useEffect} from "react"
 import {useSpring, animated, useTransition} from '@react-spring/web'
+
 import '../Styling/modal.css'
 
 const Modal = ({children, isOpen, onClose}) => {
@@ -33,11 +34,14 @@ const Modal = ({children, isOpen, onClose}) => {
     return modalTransition((styles, isOpen)=> isOpen && (
         <animated.div style={styles} className='modalBackground'>
             <animated.div style={springs} className='modalContainer'>
+
                 <div className='modalContent'>
-                <button onClick={onClose} type='button'>X</button>
-                {children}
+                    <button onClick={onClose} type='button' className="closeButton">X</button>
+                    {children}
+
 
                 </div>
+
             </animated.div>
         </animated.div>
 ))}
