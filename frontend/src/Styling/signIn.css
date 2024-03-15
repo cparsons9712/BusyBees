@@ -1,0 +1,56 @@
+.demoLink{
+    text-align: center;
+    cursor: pointer;
+    margin: 5px;
+    box-shadow: inset 0 0 0 0 #ae720b;
+    color: #ae720b;
+    padding: 0 .25rem;
+    margin: 0 -.25rem;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+
+}
+.demoLink:hover{
+    color: #fff;
+    box-shadow: inset 200px 0 0 0 #ae720b;;;
+}
+.footerRedirect{
+    color: blue;
+}
+
+a {
+    text-decoration: none;
+    position: relative;
+    color: rgb(192, 175, 15);
+  }
+a::before {
+    content: '';
+
+    position: absolute;
+    left: 0;
+    bottom: 3px;
+    width: 100%;
+    height: 8px;
+    z-index: -1;
+}
+a:hover::before {
+    bottom: 0;
+    height: 100%;
+}
+a::before {
+    content: '';
+    background-color: rgb(232, 179, 18);
+    color:#fff;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 4px;
+    z-index: -1;
+    transition: all .3s ease-in-out;
+  }
+
+/* This keeps the input field from turning pale blue when autofill happens */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px palegoldenrod inset;
+    transition: background-color 5000s ease-in-out 0s;
+}

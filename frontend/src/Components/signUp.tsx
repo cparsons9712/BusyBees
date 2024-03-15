@@ -1,20 +1,20 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import '../Styling/modal.css'
 import '../Styling/signUp.css'
-import { NavLink } from "react-router-dom";
+
 
 
 
 const SignUp= () => {
     const [name, setName] = useState('')
-    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [verifyPassword, setVerifyPassword] = useState('')
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault();
-        const payload = {name, username, email, password}
+        const payload = {name, email, password}
         console.log(payload)
     }
 
@@ -25,7 +25,7 @@ const SignUp= () => {
                 <h1>Nice to meet you!</h1>
             </div>
 
-            <form onSubmit={handleSubmit} className="signUpForm">
+            <form onSubmit={handleSubmit} className="signUpForm" autoComplete="off">
 
                 <div className="formRow">
                     <div className="form-group">
@@ -43,23 +43,6 @@ const SignUp= () => {
 
                     <div className="form-group">
                         <input
-                        placeholder="username"
-                        className="input"
-                        id="username"
-                        type="text"
-                        required
-                        value = {username}
-                        onChange ={(e)=>{setUsername(e.target.value)}}
-                        />
-                        <label htmlFor="username" className="form-label">Username</label>
-                    </div>
-
-                </div>
-
-
-                <div className="formRow">
-                    <div className="form-group">
-                        <input
                         placeholder="email"
                         className="input"
                         id="email"
@@ -67,9 +50,32 @@ const SignUp= () => {
                         required
                         value = {email}
                         onChange ={(e)=>{setEmail(e.target.value)}}
+                       
                         />
                         <label htmlFor="email" className="form-label">Email</label>
                     </div>
+
+
+
+                </div>
+
+
+                <div className="formRow">
+
+                <div className="form-group">
+                        <input
+                        placeholder="verifyPassword"
+                        className="input"
+                        id="verifyPassword"
+                        type="text"
+                        required
+                        value = {verifyPassword}
+                        onChange ={(e)=>{setVerifyPassword(e.target.value)}}
+                        />
+                        <label htmlFor="verifyPassword" className="form-label">Password</label>
+                    </div>
+
+
 
                     <div className="form-group">
                         <input
@@ -81,7 +87,7 @@ const SignUp= () => {
                         value = {password}
                         onChange ={(e)=>{setPassword(e.target.value)}}
                         />
-                        <label htmlFor="password" className="form-label ">Password</label>
+                        <label htmlFor="password" className="form-label ">Verify Password</label>
                     </div>
                 </div>
 
@@ -89,7 +95,7 @@ const SignUp= () => {
 
             </form>
             <footer className="modalFooter">
-                Already a member?  <span className="footerRedirect"> Log In</span>
+                Already a member?  <a className="footerRedirect" href="/Login"> Log In</a>
             </footer>
 
 
