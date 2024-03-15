@@ -1,109 +1,122 @@
+import React from 'react';
+import { useFormik } from 'formik';
+import { userSchema } from "../Validations/UserValidation";
+import "../Styling/modal.css";
+import "../Styling/signUp.css";
 
-import React, { useState } from "react";
-import '../Styling/modal.css'
-import '../Styling/signUp.css'
+const SignUp = () => {
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+      verifyPassword: ''
+    },
+    validationSchema: userSchema,
+    onSubmit: values => {
+      console.log(values);
+      // Submit your form values to the server or handle them as needed
+    },
+  });
 
+  return (
+    <div className="signUpContainter">
+      <div className="modalHeader signUp">
+        <img src="./BeeCenterDeco.png" alt="bee" className="beeCentered"></img>
+        <h1>Nice to meet you!</h1>
+      </div>
 
+      <form onSubmit={formik.handleSubmit} className="signUpForm" autoComplete="off">
+        <div className="formRow">
+          <div className="form-group">
+            <input
+              className="input"
+              id="name"
+              name="name"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.name}
+              placeholder="Name"
+            />
+            <label htmlFor="name" className="form-label">
+              First Name
+            </label>
+            {formik.touched.name && formik.errors.name ? (
+              <div>{formik.errors.name}</div>
+            ) : null}
+          </div>
 
-
-const SignUp= () => {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [verifyPassword, setVerifyPassword] = useState('')
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) =>{
-        e.preventDefault();
-        const payload = {name, email, password}
-        console.log(payload)
-    }
-
-    return (
-        <div className='signUpContainter'>
-            <div className='modalHeader signUp'>
-                <img src="./BeeCenterDeco.png" alt="bee" className='beeCentered'></img>
-                <h1>Nice to meet you!</h1>
-            </div>
-
-            <form onSubmit={handleSubmit} className="signUpForm" autoComplete="off">
-
-                <div className="formRow">
-                    <div className="form-group">
-                        <input
-                        className="input"
-                        placeholder="name"
-                        id="name"
-                        type="text"
-                        required
-                        value = {name}
-                        onChange ={(e)=>{setName(e.target.value)}}
-                        />
-                        <label htmlFor="name" className="form-label">First Name</label>
-                    </div>
-
-                    <div className="form-group">
-                        <input
-                        placeholder="email"
-                        className="input"
-                        id="email"
-                        type="text"
-                        required
-                        value = {email}
-                        onChange ={(e)=>{setEmail(e.target.value)}}
-                       
-                        />
-                        <label htmlFor="email" className="form-label">Email</label>
-                    </div>
-
-
-
-                </div>
-
-
-                <div className="formRow">
-
-                <div className="form-group">
-                        <input
-                        placeholder="verifyPassword"
-                        className="input"
-                        id="verifyPassword"
-                        type="text"
-                        required
-                        value = {verifyPassword}
-                        onChange ={(e)=>{setVerifyPassword(e.target.value)}}
-                        />
-                        <label htmlFor="verifyPassword" className="form-label">Password</label>
-                    </div>
-
-
-
-                    <div className="form-group">
-                        <input
-                        placeholder="password"
-                        className="input"
-                        id="password"
-                        type="text"
-                        required
-                        value = {password}
-                        onChange ={(e)=>{setPassword(e.target.value)}}
-                        />
-                        <label htmlFor="password" className="form-label ">Verify Password</label>
-                    </div>
-                </div>
-
-                <button type="submit" className="hexagonSubmitBtn">Submit</button>
-
-            </form>
-            <footer className="modalFooter">
-                Already a member?  <a className="footerRedirect" href="/Login"> Log In</a>
-            </footer>
-
-
-
-
-
+          <div className="form-group">
+            <input
+              className="input"
+              id="email"
+              name="email"
+              type="email"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+              placeholder="Email"
+            />
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            {formik.touched.email && formik.errors.email ? (
+              <div>{formik.errors.email}</div>
+            ) : null}
+          </div>
         </div>
-    );
-}
+
+        <div className="formRow">
+          <div className="form-group">
+            <input
+              className="input"
+              id="password"
+              name="password"
+              type="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.password}
+              placeholder="Password"
+            />
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            {formik.touched.password && formik.errors.password ? (
+              <div>{formik.errors.password}</div>
+            ) : null}
+          </div>
+
+          <div className="form-group">
+            <input
+              className="input"
+              id="verifyPassword"
+              name="verifyPassword"
+              type="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.verifyPassword}
+              placeholder="Confirm Password"
+            />
+            <label htmlFor="verifyPassword" className="form-label">
+              Confirm Password
+            </label>
+            {formik.touched.verifyPassword && formik.errors.verifyPassword ? (
+              <div>{formik.errors.verifyPassword}</div>
+            ) : null}
+          </div>
+        </div>
+
+        <button type="submit" className="hexagonSubmitBtn">
+          Submit
+        </button>
+      </form>
+
+      <footer className="modalFooter">
+        Already a member? <a className="footerRedirect" href="/Login">Log In</a>
+      </footer>
+    </div>
+  );
+};
 
 export default SignUp;
