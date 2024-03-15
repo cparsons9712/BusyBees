@@ -42,9 +42,11 @@ const SignUp = () => {
             <label htmlFor="name" className="form-label">
               First Name
             </label>
-            {formik.touched.name && formik.errors.name ? (
-              <div>{formik.errors.name}</div>
-            ) : null}
+            <div className= "errorMsg">
+                {formik.touched.name && formik.errors.name ? (
+                <div  >{formik.errors.name}</div>
+                ) : null}
+            </div>
           </div>
 
           <div className="form-group">
@@ -61,9 +63,11 @@ const SignUp = () => {
             <label htmlFor="email" className="form-label">
               Email
             </label>
-            {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
-            ) : null}
+            <div className= "errorMsg">
+                {formik.touched.email && formik.errors.email ? (
+                <div >{formik.errors.email}</div>
+                ) : null}
+            </div>
           </div>
         </div>
 
@@ -82,9 +86,11 @@ const SignUp = () => {
             <label htmlFor="password" className="form-label">
               Password
             </label>
-            {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
-            ) : null}
+            <div className= "errorMsg">
+                {formik.touched.password && formik.errors.password ? (
+                <div >{formik.errors.password}</div>
+                ) : null}
+            </div>
           </div>
 
           <div className="form-group">
@@ -101,9 +107,11 @@ const SignUp = () => {
             <label htmlFor="verifyPassword" className="form-label">
               Confirm Password
             </label>
-            {formik.touched.verifyPassword && formik.errors.verifyPassword ? (
-              <div>{formik.errors.verifyPassword}</div>
-            ) : null}
+            <div className= "errorMsg">
+                {formik.touched.verifyPassword && formik.errors.verifyPassword ? (
+                <div >{formik.errors.verifyPassword}</div>
+                ) : null}
+            </div>
           </div>
         </div>
 

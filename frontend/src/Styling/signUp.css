@@ -1,6 +1,7 @@
 .beeCentered {
   display: block;
   height: 100px;
+  margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -15,17 +16,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+
   width: 450px;
 }
 
-.form-group{
-  margin: 10px;
-}
-
-.formRow{
+.formRow {
   display: flex;
   flex-direction: row;
   gap: 30px;
+}
+.errorMsg {
+  height: 25px;
+  color: rgb(201, 14, 14)
 
 }
