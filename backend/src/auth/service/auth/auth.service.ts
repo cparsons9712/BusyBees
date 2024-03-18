@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { UsersService } from 'src/users/services/users/users.service';
+import { comparePasswords } from 'src/utils/bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -14,8 +15,9 @@ export class AuthService {
     if (userDB) {
     }
 
-    if (userDB && userDB.password === password) {
+    if (comparePasswords(password, userDB.password)) {
       console.log(userDB.password);
+      console.log('Compare hash password success');
       return userDB;
     } else {
       return null;
