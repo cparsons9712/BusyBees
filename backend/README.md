@@ -12,7 +12,24 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## Routes
+### Users
 
+####  Return all users
+##### Req
+- method: 'GET'
+- endpoint: '/api/users'
+##### RES
+```
+[
+    {
+        "id": INT,
+        "name": STRING,
+        "email": STRING,
+        "password": STRING
+    },
+]
+```
 
 ## Test
 
@@ -94,7 +111,7 @@ $ \dt
 $ DROP TABLE changedTableName
 
 # Makes file that reflects the changes you made to the table
-$ npm run migration:generate
+$ npm run migration:generate --name=fileNameHere
 
 # Run commands to recreate the table with the changes
 $ npm run migration:run
