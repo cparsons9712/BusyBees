@@ -15,6 +15,7 @@ export class AuthService {
     }
 
     if (userDB && userDB.password === password) {
+      console.log(userDB.password);
       return userDB;
     } else {
       return null;

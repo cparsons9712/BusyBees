@@ -83,8 +83,13 @@ $ DROP TABLE tableName
 
 ## Migration Commands
 ```bash
+
+
 # Makes files of sql commands from code changes that will alter database when run
 $ npm run migration:generate
+
+# Make sure the dist folder is up to date
+$ npm run build
 
 # Run commands in new migration files to alter the database
 $ npm run migration:run

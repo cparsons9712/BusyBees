@@ -17,8 +17,8 @@ export class CreateUserDto {
   name: string;
 
   @IsNotEmpty({ message: 'Password cannot be empty' })
-  @Length(5, 25, {
-    message: 'Password must be between 5 and 25 characters long',
+  @Length(5, 255, {
+    message: 'Password must be at least 5 characters long',
   })
   @Matches(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,})/, {
     message:

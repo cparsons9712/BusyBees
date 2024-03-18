@@ -10,5 +10,6 @@ export class AuthController {
   @Post('login')
   async login(@Request() req) {
     console.log(req.body);
+    return { message: 'Login Successfull' };
   }
 }
