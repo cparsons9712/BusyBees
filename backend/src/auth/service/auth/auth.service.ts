@@ -12,23 +12,10 @@ export class AuthService {
   async validateUser(email: string, password: string) {
     const userDB = await this.usersService.findLogIn(email);
 
-    if (userDB) {
-    }
-
     if (comparePasswords(password, userDB.password)) {
       return userDB;
     } else {
       return null;
     }
   }
-
-  // async signIn(email: string, pass: string): Promise<any> {
-  //   const user = await this.usersService.findOne(email);
-  //   if (user?.password !== pass) {
-  //     throw new UnauthorizedException();
-  //   }
-  //   const { password, ...result } = user;
-  //   // JWT will be returned here instead of user object
-  //   return result;
-  // }
 }

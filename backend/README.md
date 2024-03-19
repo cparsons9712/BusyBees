@@ -15,7 +15,7 @@
 ## Routes
 ### Users
 
-####  Return all users
+####  Return All Users
 ##### Req
 - method: 'GET'
 - endpoint: '/api/users'
@@ -26,9 +26,54 @@
         "id": INT,
         "name": STRING,
         "email": STRING,
-        "password": STRING
     },
 ]
+```
+####  Find user by email
+##### Req
+- method: 'GET'
+- endpoint: '/api/users/:email'
+##### RES
+```
+{
+  "id": INT,
+  "name": STRING,
+  "email": STRING,
+},
+```
+####  Create new User
+##### Req
+- method: 'Post'
+- endpoint: '/api/users'
+- Constraints:
+  - Name:
+    - Required
+  - Email:
+    - Required
+    - Must be valid email
+  - Password:
+    - One uppercase letter
+    - One lower case letter
+    - one number
+    - one symbol
+    - at least 5 characters long
+    - required
+- Body:
+```
+{
+  "name": STRING,
+  "email": STRING,
+  "password": STRING
+},
+```
+
+##### RES
+```
+{
+  "id": INT,
+  "name": STRING,
+  "email": STRING,
+},
 ```
 
 ## Test

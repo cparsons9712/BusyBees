@@ -10,9 +10,6 @@ export class CreateUserDto {
   @IsEmail({}, { message: 'Invalid email address' })
   email: string;
 
-  @IsNumberString()
-  id: number;
-
   @IsNotEmpty({ message: 'Name is required' })
   name: string;
 

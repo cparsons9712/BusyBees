@@ -11,10 +11,12 @@ import {
   Inject,
   ClassSerializerInterceptor,
   UseInterceptors,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from 'src/users/services/users/users.service';
 import { CreateUserDto } from 'src/users/dto/CreateUser.dto';
 import { SerializedUser } from 'src/users/types';
+import { AuthenticatedGuard } from 'src/auth/utils/LocalGuard';
 
 @Controller('users')
 export class UsersController {
@@ -37,12 +39,14 @@ export class UsersController {
     }
   }
 
+  @UseGuards(AuthenticatedGuard)
   @Get('')
   getAllUsers() {
     const userArray = this.UserService.getAll();
     return userArray;
   }
 
+  @UseGuards(AuthenticatedGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   @Get(':email')
   async getUserByEmail(@Param('email') email: string) {
