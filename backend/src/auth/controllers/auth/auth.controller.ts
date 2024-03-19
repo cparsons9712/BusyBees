@@ -15,19 +15,13 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login() {
-    return { message: 'Login Successfull' };
-  }
-
-  @Get('')
-  async getAuthSession(@Session() session: Record<string, any>) {
-    session.authenticated = true;
-    return session;
+    return { msg: 'Login Successful' };
   }
 
   @UseGuards(AuthenticatedGuard)
   @Get('status')
   async getAuthStatus(@Req() req: Request) {
-    return req.user;
+    return { user: req.user };
   }
 
   @Get('/logout')

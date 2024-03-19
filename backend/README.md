@@ -43,7 +43,7 @@
 ```
 ####  Create new User
 ##### Req
-- method: 'Post'
+- method: 'POST'
 - endpoint: '/api/users'
 - Constraints:
   - Name:
@@ -51,6 +51,7 @@
   - Email:
     - Required
     - Must be valid email
+    - Must be unique
   - Password:
     - One uppercase letter
     - One lower case letter
@@ -67,6 +68,7 @@
 },
 ```
 
+
 ##### RES
 ```
 {
@@ -75,6 +77,61 @@
   "email": STRING,
 },
 ```
+### Authentication
+####  Login
+##### Req
+- method: 'POST'
+- endpoint: '/api/auth/login'
+- Constraints:
+  - Email:
+    - Required
+  - Password:
+    - Required
+- Body:
+```
+{
+  "email": STRING,
+  "password": STRING
+},
+```
+
+##### RES
+```
+{
+  msg: 'Login Successful
+},
+```
+####  Check current auth status
+##### Req
+- method: 'GET'
+- endpoint: '/api/auth/status'
+
+
+##### RES
+```
+{
+  user: {
+    id: INT,
+    email: STRING,
+    name: STRING
+  }
+},
+```
+
+####  LogOut
+
+##### Req
+- method: 'GET'
+- endpoint: '/api/auth/logout'
+
+
+##### RES
+```
+{
+  msg: 'The user has been logged out'
+},
+```
+
 
 ## Test
 
