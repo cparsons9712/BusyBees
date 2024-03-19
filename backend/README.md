@@ -12,8 +12,12 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+<hr/>
+<hr/>
+
 ## Routes
 ### Users
+<hr/>
 
 ####  Return All Users
 ##### Req
@@ -41,6 +45,8 @@
   "email": STRING,
 },
 ```
+<hr/>
+
 ####  Create new User
 
 > [!IMPORTANT]
@@ -80,8 +86,13 @@
   "email": STRING,
 },
 ```
+<hr/>
+
 ### Authentication
+<hr/>
+
 ####  Sign up
+
 ##### Req
 - method: 'POST'
 - endpoint: '/api/auth/signup'
@@ -117,6 +128,8 @@
   "email": STRING,
 },
 ```
+<hr/>
+
 ####  Login
 ##### Req
 - method: 'POST'
@@ -140,6 +153,8 @@
   msg: 'Login Successful
 },
 ```
+<hr/>
+
 ####  Check current auth status
 ##### Req
 - method: 'GET'
@@ -156,6 +171,7 @@
   }
 },
 ```
+<hr/>
 
 ####  LogOut
 
@@ -170,7 +186,8 @@
   msg: 'The user has been logged out'
 },
 ```
-
+<hr/>
+<hr/>
 
 ## Test
 
