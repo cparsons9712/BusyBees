@@ -12,6 +12,7 @@ import {
   ClassSerializerInterceptor,
   UseInterceptors,
   UseGuards,
+  BadRequestException,
 } from '@nestjs/common';
 import { UsersService } from 'src/users/services/users/users.service';
 import { CreateUserDto } from 'src/users/dto/CreateUser.dto';
@@ -28,14 +29,15 @@ export class UsersController {
   @UsePipes(ValidationPipe)
   @UseInterceptors(ClassSerializerInterceptor)
   async createUser(@Body() createUserDto: CreateUserDto) {
+    const isNewEmail = await this.UserService.isEmailUnique(
+      createUserDto.email,
+    );
+    if (!isNewEmail) throw new BadRequestException('Email is already in use.');
     const newUser = await this.UserService.createUser(createUserDto);
     if (newUser) {
       return new SerializedUser(newUser);
     } else {
-      throw new HttpException(
-        'There was an error creating user',
-        HttpStatus.BAD_REQUEST,
-      );
+      throw new BadRequestException('There was an issue creating user.');
     }
   }
 

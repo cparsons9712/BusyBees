@@ -39,4 +39,9 @@ export class UsersService {
   async findOne(email: string) {
     return await this.userRepository.findOneBy({ email });
   }
+
+  async isEmailUnique(email: string): Promise<boolean> {
+    const user = await this.userRepository.findOne({ where: { email } });
+    return !user;
+  }
 }
