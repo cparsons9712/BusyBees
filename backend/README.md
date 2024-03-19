@@ -42,6 +42,9 @@
 },
 ```
 ####  Create new User
+
+> [!IMPORTANT]
+> This endpoint does not start a session, it only creates a new instance in the table
 ##### Req
 - method: 'POST'
 - endpoint: '/api/users'
@@ -78,6 +81,42 @@
 },
 ```
 ### Authentication
+####  Sign up
+##### Req
+- method: 'POST'
+- endpoint: '/api/auth/signup'
+- Constraints:
+  - Name:
+    - Required
+  - Email:
+    - Required
+    - Must be valid email
+    - Must be unique
+  - Password:
+    - One uppercase letter
+    - One lower case letter
+    - one number
+    - one symbol
+    - at least 5 characters long
+    - required
+- Body:
+```
+{
+  "name": STRING,
+  "email": STRING,
+  "password": STRING
+},
+```
+
+
+##### RES
+```
+{
+  "id": INT,
+  "name": STRING,
+  "email": STRING,
+},
+```
 ####  Login
 ##### Req
 - method: 'POST'
