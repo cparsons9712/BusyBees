@@ -18,7 +18,6 @@ export class UsersService {
     const password = await encodePassword(userDto.password);
     const newUser = this.userRepository.create({ ...userDto, password });
     if (newUser) {
-      console.log(newUser);
       return this.userRepository.save(newUser);
     } else {
       throw new BadRequestException();

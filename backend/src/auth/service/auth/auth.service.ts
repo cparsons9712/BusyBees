@@ -16,8 +16,6 @@ export class AuthService {
     }
 
     if (comparePasswords(password, userDB.password)) {
-      console.log(userDB.password);
-      console.log('Compare hash password success');
       return userDB;
     } else {
       return null;
