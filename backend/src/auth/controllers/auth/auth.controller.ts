@@ -10,6 +10,17 @@ export class AuthController {
     return { msg: 'Login Successful' };
   }
 
+  @UseGuards(LocalAuthGuard)
+  @Post('signup')
+  async signUp(@Req() req: Request) {
+    const user = req.user;
+
+    if (!user) {
+      throw new Error('User creation failed'); // Or handle more gracefully
+    }
+    return user;
+  }
+
   @UseGuards(AuthenticatedGuard)
   @Get('status')
   async getAuthStatus(@Req() req: Request) {
