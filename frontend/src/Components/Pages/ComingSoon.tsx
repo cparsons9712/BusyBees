@@ -1,4 +1,4 @@
-import '../Styling/errorPage.css'
+import '../../Styling/errorPage.css'
 
 export default function ComingSoonPage() {
 

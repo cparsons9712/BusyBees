@@ -1,19 +1,18 @@
-import React from 'react';
-import { useFormik } from 'formik';
-import { userSchema } from "../Validations/UserValidation";
-import "../Styling/modal.css";
-import "../Styling/signUp.css";
+import React from "react";
+import { useFormik } from "formik";
+import { userSchema } from "../../Validations/UserValidation";
+import '../../Styling/signUp.css'
 
 const SignUp = () => {
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      verifyPassword: ''
+      name: "",
+      email: "",
+      password: "",
+      verifyPassword: "",
     },
     validationSchema: userSchema,
-    onSubmit: values => {
+    onSubmit: (values) => {
       console.log(values);
       // Submit your form values to the server or handle them as needed
     },
@@ -26,7 +25,11 @@ const SignUp = () => {
         <h1>Nice to meet you!</h1>
       </div>
 
-      <form onSubmit={formik.handleSubmit} className="signUpForm" autoComplete="off">
+      <form
+        onSubmit={formik.handleSubmit}
+        className="signUpForm"
+        autoComplete="off"
+      >
         <div className="formRow">
           <div className="form-group">
             <input
@@ -42,10 +45,10 @@ const SignUp = () => {
             <label htmlFor="name" className="form-label">
               First Name
             </label>
-            <div className= "errorMsg">
-                {formik.touched.name && formik.errors.name ? (
-                <div  >{formik.errors.name}</div>
-                ) : null}
+            <div className="errorMsg">
+              {formik.touched.name && formik.errors.name ? (
+                <div>{formik.errors.name}</div>
+              ) : null}
             </div>
           </div>
 
@@ -63,10 +66,10 @@ const SignUp = () => {
             <label htmlFor="email" className="form-label">
               Email
             </label>
-            <div className= "errorMsg">
-                {formik.touched.email && formik.errors.email ? (
-                <div >{formik.errors.email}</div>
-                ) : null}
+            <div className="errorMsg">
+              {formik.touched.email && formik.errors.email ? (
+                <div>{formik.errors.email}</div>
+              ) : null}
             </div>
           </div>
         </div>
@@ -86,10 +89,10 @@ const SignUp = () => {
             <label htmlFor="password" className="form-label">
               Password
             </label>
-            <div className= "errorMsg">
-                {formik.touched.password && formik.errors.password ? (
-                <div >{formik.errors.password}</div>
-                ) : null}
+            <div className="errorMsg">
+              {formik.touched.password && formik.errors.password ? (
+                <div>{formik.errors.password}</div>
+              ) : null}
             </div>
           </div>
 
@@ -107,10 +110,10 @@ const SignUp = () => {
             <label htmlFor="verifyPassword" className="form-label">
               Confirm Password
             </label>
-            <div className= "errorMsg">
-                {formik.touched.verifyPassword && formik.errors.verifyPassword ? (
-                <div >{formik.errors.verifyPassword}</div>
-                ) : null}
+            <div className="errorMsg">
+              {formik.touched.verifyPassword && formik.errors.verifyPassword ? (
+                <div>{formik.errors.verifyPassword}</div>
+              ) : null}
             </div>
           </div>
         </div>
@@ -121,7 +124,10 @@ const SignUp = () => {
       </form>
 
       <footer className="modalFooter">
-        Already a member? <a className="footerRedirect" href="/Login">Log In</a>
+        Already a member?{" "}
+        <a className="footerRedirect" href="/Login">
+          Log In
+        </a>
       </footer>
     </div>
   );

@@ -1,6 +1,6 @@
 
 import { NavLink} from 'react-router-dom'
-import '../Styling/Header.css'
+import '../../Styling/Header.css'
 
 const UserHeader = () => {
     return (

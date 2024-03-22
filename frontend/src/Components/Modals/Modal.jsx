@@ -1,7 +1,7 @@
 import {useEffect} from "react"
 import {useSpring, animated, useTransition} from '@react-spring/web'
 
-import '../Styling/modal.css'
+import '../../Styling/modal.css'
 
 const Modal = ({children, isOpen, onClose}) => {
     const handleEscape = e => {

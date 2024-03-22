@@ -1,65 +1,59 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet
-} from "react-router-dom";
-import './Styling/index.css';
-import App from './App';
-import Root from './Pages/root';
-import ErrorPage from './Pages/ErrorPage';
-import Header from './Components/Header';
-import { ChakraProvider } from '@chakra-ui/react';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import "../src/Styling/index.css";
+import App from "./App";
+import Root from "./Components/Pages/TestPage";
+import ErrorPage from "./Components/Pages/ErrorPage";
+import Header from "./Components/Structure/HeaderWrapper";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function Layout() {
   return (
-      <>
-        <Header />
-        <Outlet />
-        {/* <Footer /> */}
-      </>
+    <>
+      <Header />
+      <Outlet />
+      {/* <Footer /> */}
+    </>
   );
 }
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: < Layout />,
+    element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/',
-        element: <Root />
+        path: "/",
+        element: <Root />,
       },
       {
-        path: '/blocks',
-        element: <h1>BLOCKS</h1>
+        path: "/blocks",
+        element: <h1>BLOCKS</h1>,
       },
       {
-        path: '/task',
-        element: <h1>TASK</h1>
+        path: "/task",
+        element: <h1>TASK</h1>,
       },
       {
-        path: '/dump',
-        element: <h1>BRAIN DUMP</h1>
+        path: "/dump",
+        element: <h1>BRAIN DUMP</h1>,
       },
       {
-        path: '/profile',
-        element: <h1>USER PROFILE</h1>
-      }
-    ]
+        path: "/profile",
+        element: <h1>USER PROFILE</h1>,
+      },
+    ],
   },
-])
-
+]);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
