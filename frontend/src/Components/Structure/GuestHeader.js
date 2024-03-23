@@ -11,9 +11,13 @@ const GuestHeader = () => {
 
   return (
     <div className="headerBackground">
+
+
       <div onClick={() => setOpenSignIn(!openSignIn)} className="headerOption">
         Sign In
       </div>
+
+
 
       <div className="headerLogo">
         <img src="./logo.png" alt="logo" />

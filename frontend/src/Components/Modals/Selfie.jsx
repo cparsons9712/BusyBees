@@ -1,4 +1,4 @@
-import ComingSoonPage from "./ComingSoon";
+import ComingSoonPage from "../Pages/ComingSoon";
 
 
 

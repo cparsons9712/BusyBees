@@ -1,9 +1,8 @@
 import { createContext, useContext, useState } from "react"
 import Header from "../Components/Structure/HeaderWrapper"; // the header is imported here
-import { Routes } from "react-router-dom";
 import { RenderRoutes } from "../Components/Structure/navigationContents";
 
-const AuthContext = createContext(); // allows you to spread data around without prop drilling
+export const AuthContext = createContext(undefined); // allows you to spread data around without prop drilling
 export const AuthData = () => useContext(AuthContext); // exported so this can be accessed elsewhere
 
 
@@ -40,8 +39,6 @@ export const AuthWrapper = () => {
                     reject("Incorrect password")
                }
           })
-
-
      }
      const logout = () => {
 
@@ -52,12 +49,9 @@ export const AuthWrapper = () => {
      return (
 
                <AuthContext.Provider value={{user, login, logout, signup}}>
-                    <>
+
                          <Header />
                          <RenderRoutes />
-
-
-                    </>
 
                </AuthContext.Provider>
 
