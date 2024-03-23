@@ -8,7 +8,7 @@ export const AuthData = () => useContext(AuthContext); // exported so this can b
 
 export const AuthWrapper = () => {
 
-     const [ user, setUser ] = useState({name: "", isAuthenticated: false})
+     const [ user, setUser ] = useState({name: "", isAuthenticated: true})
 
      const login = (userName, password) => {
 

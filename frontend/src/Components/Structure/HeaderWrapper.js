@@ -8,17 +8,18 @@ import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../Auth/AuthWrapper";
 import { useModal } from "../../Context/Modal";
-
+import { useNavigate } from "react-router-dom";
 
 
 
 const Header = () => {
+  const goTo = useNavigate()
   const { showModal } = useModal();
   const { user } = useContext(AuthContext)
 
   const MenuItem = ({r}) => {
     return (
-            <div className="headerOption"><Link to={r.path}>{r.name}</Link></div> // this is the template
+            <div className="headerOption" onClick={()=>goTo(r.path)}>{r.name}</div> // this is the template
        )
   }
 
