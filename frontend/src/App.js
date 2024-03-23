@@ -1,20 +1,15 @@
-import { BrowserRouter } from 'react-router-dom';
+import Header from "./Components/Structure/HeaderWrapper";
+import DynamicRouter from "./Navigation/Routes";
+import Modal from "./Components/Modals/Modal";
 import './Styling/App.css'
-import { AuthWrapper } from './Auth/AuthWrapper';
-import { ModalProvider } from './Context/Modal';
 
-
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <ModalProvider>
-          <AuthWrapper />
-
-        </ModalProvider>
-      </BrowserRouter>
-    </div>
-  );
+    <>
+      <Header />
+      <DynamicRouter />
+      <Modal />
+    </>
+  )
 }
-
-export default App;
+export default App

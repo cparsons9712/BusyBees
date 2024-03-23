@@ -1,15 +1,10 @@
-
-import UserHeader from "./UserHeader";
-import GuestHeader from "./GuestHeader";
-import { AuthData } from "../../Auth/AuthWrapper";
-import { nav } from "./navigationContents";
+import { nav } from "../../Navigation/Routes";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../Auth/AuthWrapper";
 import { useModal } from "../../Context/Modal";
 import { useNavigate } from "react-router-dom";
-
+import '../../Styling/Header.css'
 
 
 const Header = () => {

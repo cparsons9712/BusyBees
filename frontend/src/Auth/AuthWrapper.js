@@ -1,61 +1,41 @@
-import { createContext, useContext, useState } from "react"
-import Header from "../Components/Structure/HeaderWrapper"; // the header is imported here
-import { RenderRoutes } from "../Components/Structure/navigationContents";
-import Modal from "../Components/Modals/Modal";
-export const AuthContext = createContext(undefined); // allows you to spread data around without prop drilling
-export const AuthData = () => useContext(AuthContext); // exported so this can be accessed elsewhere
+import React, { createContext, useContext, useState } from "react";
+import axios from "../APIs/auth";
 
+export const AuthContext = createContext(); // It's better to initialize context with null or a more descriptive initial value
 
-export const AuthWrapper = () => {
+export const AuthData = () => useContext(AuthContext);
 
-     const [ user, setUser ] = useState({name: "", isAuthenticated: true})
+export const AuthWrapper = ({ children }) => {
+  const [user, setUser] = useState({ name: "", isAuthenticated: false });
 
-     const login = (userName, password) => {
+  const login = async (email, password) => {
+    try {
+      const response = await axios.post(
+        "/login",
+        { email, password },
+        { withCredentials: true }
+      );
+      // Assuming the response includes the user's name or other identifier
+      setUser({ name: response.data.name, isAuthenticated: true });
+      return "success"; // Or you could return something more useful here, like user data
+    } catch (error) {
+      console.error("Login error:", error);
+      throw error; // Propagate the error to be handled where login is called
+    }
+  };
 
-          // Make a call to the authentication API to check the username
+  const signup = async (email, password, name) => {
+    // Implement signup logic here, similar to login
+  };
 
-          return new Promise((resolve, reject) => {
-                // this is where the login from backend should be called
-               if (password === "password") {
-                    setUser({name: userName, isAuthenticated: true})
-                    resolve("success")
-               } else {
-                    reject("Incorrect password")
-               }
-          })
+  const logout = () => {
+    setUser({ ...user, isAuthenticated: false });
+    // You might also want to call a backend endpoint to invalidate the session
+  };
 
-
-     }
-     const signup = (email, password, name) => {
-
-          // Make a call to the authentication API to check the username
-
-          return new Promise((resolve, reject) => {
-
-               if (password === "password") {
-                    setUser({name: email, isAuthenticated: true})
-                    resolve("success")
-               } else {
-                    reject("Incorrect password")
-               }
-          })
-     }
-     const logout = () => {
-
-          setUser({...user, isAuthenticated: false})
-     }
-
-
-     return (
-
-               <AuthContext.Provider value={{user, login, logout, signup}}>
-
-                         <Header />
-                         <RenderRoutes />
-                         <Modal />
-
-               </AuthContext.Provider>
-
-     )
-
-}
+  return (
+    <AuthContext.Provider value={{ user, login, logout, signup }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};

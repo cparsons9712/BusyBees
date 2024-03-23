@@ -7,6 +7,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login() {
+    console.log('IN LOGIN CONTROLLER');
     return { msg: 'Login Successful' };
   }
 

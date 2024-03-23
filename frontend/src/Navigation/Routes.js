@@ -1,14 +1,14 @@
-import Landing from "../Pages/Landing"
-import Dashboard from "../Pages/Dashboard"
-import Blocks from "../Pages/Blocks"
-import Task from "../Pages/Task"
-import Dump from "../Pages/Dump"
-import SignIn from "../Modals/SignIn"
-import SignUp from "../Modals/SignUp"
-import Selfie from "../Modals/Selfie"
-import { AuthData } from "../../Auth/AuthWrapper"
+import Landing from "../Components/Pages/Landing"
+import Dashboard from "../Components/Pages/Dashboard"
+import Blocks from "../Components/Pages/Blocks"
+import Task from "../Components/Pages/Task"
+import Dump from "../Components/Pages/Dump"
+import SignIn from "../Components/Modals/SignIn"
+import SignUp from "../Components/Modals/SignUp"
+import Selfie from "../Components/Modals/Selfie"
+import { AuthData } from "../Auth/AuthWrapper"
 import { Routes, Route } from "react-router-dom"
-import ErrorPage from "../Pages/ErrorPage"
+import ErrorPage from "../Components/Pages/ErrorPage"
 
 // Placing the elements that need routes in an array like this makes it easy to change on the fly
 const logoImage = <img className="headerLogo" src="./logo.png" alt="logo" />
@@ -24,7 +24,7 @@ export const nav = [
     { path:  null,         name: "Selfie",   element: <Selfie />,    isModal: true,     isPrivate: true},
 ]
 
-export const RenderRoutes = () => {
+const DynamicRouter = () => {
     // This is to dynamically generate routes for pages that need them. It only happens when a user is logged in to make the site more secure. NonUsers cant accidently make it to a route that doesnt exist
     const { user } = AuthData();
 
@@ -41,3 +41,4 @@ export const RenderRoutes = () => {
 
     )
 }
+export default DynamicRouter

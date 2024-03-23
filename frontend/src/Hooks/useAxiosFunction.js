@@ -8,6 +8,8 @@ const useAxiosFunction = () => {
 
   const axiosFetch = async (configObj) => {
     const { axiosInstance, method, url, requestConfig = {} } = configObj;
+    console.log('in axios Fetch')
+    console.log(requestConfig)
 
     try {
       setLoading(true);
@@ -18,7 +20,7 @@ const useAxiosFunction = () => {
         signal: ctrl.signal,
         withCredentials: true, // essential for session based authentication
       });
-      console.log(res);
+      console.log('IN TRY AXIOS HOOK RES:::::', res)
       setResponse(res.data);
     } catch (err) {
       console.log(err.message);
