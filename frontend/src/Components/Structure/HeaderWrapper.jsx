@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
+
 import UserHeader from "./UserHeader";
 import GuestHeader from "./GuestHeader";
+import { AuthData } from "../../Auth/AuthWrapper";
 
 const Header = () => {
-  const [user, setUser] = useState(false);
-  const [auth, setAuth] = useState(false);
+  const { user, logout } = AuthData()
 
-  useEffect(() => {
-    if (user) setAuth(true);
-    if (!user) setAuth(false);
-  }, [user]);
 
-  return <>{auth ? <UserHeader /> : <GuestHeader />}</>;
+  return <>{user.isAuthenticated ? <UserHeader /> : <GuestHeader />}</>;
 };
 
 export default Header;
