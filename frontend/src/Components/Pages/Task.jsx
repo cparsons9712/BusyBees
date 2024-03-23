@@ -5,7 +5,7 @@ export default function Task() {
 
 
     return (
-        <div className="root">
+        <div >
             <h2>Task Management</h2>
             <ComingSoonPage />
         </div>

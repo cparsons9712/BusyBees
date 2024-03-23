@@ -8,7 +8,7 @@ export default function Selfie() {
 
 
     return (
-        <div className="root">
+        <div >
             <h2>Selfie</h2>
             <ComingSoonPage />
         </div>

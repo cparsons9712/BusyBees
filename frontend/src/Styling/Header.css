@@ -12,6 +12,7 @@
     background-color: white;
     border-radius: 50%;
     height: 75px;
+    border:none;
 }
 .headerLogo img{
     height: 75px;

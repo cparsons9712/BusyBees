@@ -5,7 +5,7 @@ export default function Blocks() {
 
 
     return (
-        <div className="root">
+        <div >
             <h2>Blocks of Time</h2>
             <ComingSoonPage />
         </div>

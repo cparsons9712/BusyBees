@@ -8,7 +8,7 @@ export default function Root() {
 
 
     return (
-        <div className="root">
+        <div>
             <ComingSoonPage />
         </div>
     );

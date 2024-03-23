@@ -8,7 +8,7 @@ export default function Landing() {
 
 
     return (
-        <div className="root">
+        <div >
             <h2>Landing Page</h2>
             <ComingSoonPage />
         </div>

@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import './Styling/App.css'
 import { AuthWrapper } from './Auth/AuthWrapper';
-import { ModalProvider } from './Components/Modals/ModalContext';
+import { ModalProvider } from './Context/Modal';
 
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
       <BrowserRouter>
         <ModalProvider>
           <AuthWrapper />
+
         </ModalProvider>
       </BrowserRouter>
     </div>

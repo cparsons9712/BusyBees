@@ -8,7 +8,8 @@ export default function Dashboard() {
 
 
     return (
-        <div className="root">
+        <div >
+            <h2>Dashboard</h2>
             <ComingSoonPage />
         </div>
     );

@@ -3,6 +3,11 @@
   height: 100vh;
   background-color: rgba(52, 52, 51, 0.334);
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;

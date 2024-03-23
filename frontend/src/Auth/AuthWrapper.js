@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react"
 import Header from "../Components/Structure/HeaderWrapper"; // the header is imported here
 import { RenderRoutes } from "../Components/Structure/navigationContents";
-
+import Modal from "../Components/Modals/Modal";
 export const AuthContext = createContext(undefined); // allows you to spread data around without prop drilling
 export const AuthData = () => useContext(AuthContext); // exported so this can be accessed elsewhere
 
@@ -52,6 +52,7 @@ export const AuthWrapper = () => {
 
                          <Header />
                          <RenderRoutes />
+                         <Modal />
 
                </AuthContext.Provider>
 
