@@ -10,6 +10,12 @@ async function bootstrap() {
   await connectionSource.initialize(); // Ensure your DataSource is initialized
 
   const app = await NestFactory.create(AppModule);
+
+  app.enableCors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  });
+
   const sessionRepository = connectionSource.getRepository(SessionEntity);
 
   app.setGlobalPrefix('api');
@@ -19,7 +25,10 @@ async function bootstrap() {
       secret: process.env.SECRET_KEY,
       resave: false,
       saveUninitialized: false,
-      cookie: { maxAge: 2 * 60 * 60 * 1000 }, //session should persist for 2 hours
+      cookie: {
+        maxAge: 2 * 60 * 60 * 1000,
+        sameSite: 'lax',
+      }, //session should persist for 2 hours
       store: new TypeormStore().connect(sessionRepository),
     }),
   );
