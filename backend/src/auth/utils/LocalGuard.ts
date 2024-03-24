@@ -8,11 +8,9 @@ import { Request } from 'express';
 @Injectable()
 export class LocalAuthGuard extends AuthGuard('local') {
   async canActivate(context: ExecutionContext) {
-    console.log('in can activate');
     // this triggers execution of local stragety
     const result = (await super.canActivate(context)) as boolean;
     const request = context.switchToHttp().getRequest();
-    console.log(request);
     await super.logIn(request); // adds user info to the session
     return result;
   }

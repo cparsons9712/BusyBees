@@ -53,7 +53,6 @@ export class UsersController {
   @Put('/test/update/:id')
   updateTestItem(@Param('id') id: number, @Body() payload: any) {
     const index = this.testArr.findIndex((item) => item.id === Number(id));
-    console.log('index: ', index);
     if (index !== -1) {
       this.testArr[index] = { ...this.testArr[index], ...payload.data };
       return this.testArr;
