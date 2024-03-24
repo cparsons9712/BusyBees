@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { useFormik } from "formik";
 import { userSchema } from "../../Validations/UserValidation";
-import '../../Styling/signUp.css'
+import "../../Styling/signUp.css";
+import { AuthData } from "../../Auth/AuthWrapper";
 
 const SignUp = () => {
+  const [err, setErr] = useState()
+  const { signup } = AuthData();
+
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -12,8 +17,15 @@ const SignUp = () => {
       verifyPassword: "",
     },
     validationSchema: userSchema,
-    onSubmit: (values) => {
-      // Submit your form values to the server or handle them as needed
+    onSubmit: async (values) => {
+      try{
+        console.log('SIGNUP VALUES:::')
+        console.log(values)
+        await signup(values)
+      } catch (error){
+          console.error("Sign up error: ")
+          setErr(error.message)
+      }
     },
   });
 
@@ -22,6 +34,7 @@ const SignUp = () => {
       <div className="modalHeader signUp">
         <img src="./BeeCenterDeco.png" alt="bee" className="beeCentered"></img>
         <h1>Nice to meet you!</h1>
+        {err && <div className="errorMsg">{err} </div>}
       </div>
 
       <form

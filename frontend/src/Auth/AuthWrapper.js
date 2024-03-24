@@ -53,15 +53,17 @@ export const AuthWrapper = ({ children }) => {
       return "success"; // Or you could return something more useful here, like user data
     } catch (error) {
       console.error("Login error:", error);
-      throw error; // Propagate the error to be handled where login is called
+      throw error;
     }
   };
 
-  const signup = async (email, password, name) => {
+  const signup = async (payload) => {
+    console.log('IN AUTHWRAP SIGNUP:::')
+    console.log(payload)
     try {
       const response = await axios.post(
         "/signup",
-        { email, password, name },
+        payload,
         { withCredentials: true }
       );
       // Assuming the response includes the user's name or other identifier
@@ -70,17 +72,15 @@ export const AuthWrapper = ({ children }) => {
       goTo("/dash");
       return "success"; // Or you could return something more useful here, like user data
     } catch (error) {
-      goTo('/')
-      console.error("Login error:", error);
-
-      throw error; // Propagate the error to be handled where login is called
+      console.error("SignUp error:", error);
+      throw error;
     }
   };
 
   const logout = async () => {
 
     try {
-      const response = await axios.get(
+      await axios.get(
         "/logout",
         { withCredentials: true }
       );

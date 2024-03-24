@@ -15,16 +15,6 @@ const SignIn = () => {
   const { hideModal } = useModal();
   const [loginError, setLoginError] = useState("");
 
-//   useEffect(() => {
-//     if (error) {
-//       setLoginError(
-//         "Failed to log in. Please check your credentials and try again."
-//       );
-//       console.error("Log in Error: ", error);
-//     }
-//   }, [error]);
-
-
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,9 +22,8 @@ const handleSubmit = async (e) => {
       await login(email, password);
  // Redirect on success
     } catch (error) {
-      // Handle login failure, e.g., showing an error message
       console.error("Login failed:", error);
-      setLoginError(error)
+      setLoginError(error.message || "An error occurred during login.") // Adjust this line
     }
   };
 
