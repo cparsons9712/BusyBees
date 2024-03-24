@@ -30,8 +30,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await login(email, password);
-      hideModal();
-      goTo("/dash"); // Redirect on success
+ // Redirect on success
     } catch (error) {
       // Handle login failure, e.g., showing an error message
       console.error("Login failed:", error);

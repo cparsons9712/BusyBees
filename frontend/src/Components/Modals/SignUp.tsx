@@ -13,7 +13,6 @@ const SignUp = () => {
     },
     validationSchema: userSchema,
     onSubmit: (values) => {
-      console.log(values);
       // Submit your form values to the server or handle them as needed
     },
   });

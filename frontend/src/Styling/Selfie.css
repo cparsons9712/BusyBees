@@ -1,0 +1,17 @@
+.selfieHeader{
+    margin: 10px;
+}
+
+.selfieTitle{
+    font-size: 25px;
+}
+
+.selfieBtn{
+    border: 2px ridge rgb(31, 29, 29);
+    background-color: rgb(18, 16, 16);
+    color: whitesmoke;
+    margin: 10px;
+    width: 60%;
+    padding: 10px;
+    text-align: center;
+}

@@ -19,10 +19,8 @@ const useAxios = (configObj) => {
           signal: controller.signal,
           withCredentials: true, // essential for session based authentication
         });
-        console.log(res);
         setResponse(res.data);
       } catch (err) {
-        console.log(err.message);
         setError(err.message);
       } finally {
         setLoading(false);

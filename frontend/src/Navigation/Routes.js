@@ -9,6 +9,7 @@ import Selfie from "../Components/Modals/Selfie"
 import { AuthData } from "../Auth/AuthWrapper"
 import { Routes, Route } from "react-router-dom"
 import ErrorPage from "../Components/Pages/ErrorPage"
+import { Redirect } from "../Components/Structure/Redirect"
 
 // Placing the elements that need routes in an array like this makes it easy to change on the fly
 const logoImage = <img className="headerLogo" src="./logo.png" alt="logo" />
@@ -36,7 +37,7 @@ const DynamicRouter = () => {
           }
           return null; // Don't render a route if it shouldn't be displayed
         })}
-        <Route path="*" element={<ErrorPage />} /> {/* Catch-all route */}
+        <Route path="*" element={<Redirect />} /> {/* Catch-all route */}
       </Routes>
 
     )
