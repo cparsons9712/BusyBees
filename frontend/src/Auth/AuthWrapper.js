@@ -105,7 +105,8 @@ export const AuthWrapper = ({ children }) => {
 
 // Replace your loading condition
 if(loading) return (
-  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  <div className="loading" >
+    <h2>Loading ...</h2>
     <Lottie options={defaultOptions} height={400} width={400} />
   </div>
 );

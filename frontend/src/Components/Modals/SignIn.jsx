@@ -23,7 +23,7 @@ const handleSubmit = async (e) => {
  // Redirect on success
     } catch (error) {
       console.error("Login failed:", error);
-      setLoginError(error.message || "An error occurred during login.") // Adjust this line
+      setLoginError("Invalid username or password") // Adjust this line
     }
   };
 
@@ -77,8 +77,10 @@ const handleSubmit = async (e) => {
           Submit
         </button>
       </form>
+      <div className="forgotCont"><img className="forgotPW" src='questionMark.png' alt="Forgot Password block"/>  Forgot Password?</div>
 
       <footer className="modalFooter">
+
         <div className="demoLink">Click here for Demo</div>
         <div>
           Not a member?{" "}

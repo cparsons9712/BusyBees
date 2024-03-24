@@ -43,21 +43,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(192, 175, 15);
+  color: gold;
+}
+
+.closeButton:hover{
+  font-weight: bold;
 }
 
 .hexagonSubmitBtn{
 
   width: 50px; /* Adjust based on your needs */
   height: 50px; /* Adjust based on your needs */
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   background-color: black;
   cursor: pointer;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(192, 175, 15);
+  color: gold;
+}
+
+.hexagonSubmitBtn:hover{
+  font-weight: bold;
+
 }
 
 .modalFooter{
@@ -80,12 +89,17 @@
 }
 
 .form-group input {
-  padding: 8px 10px;
+
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   font-size: 14px;
   border: none;
   width: 150px;
-  border-top: black solid 1px;
-  border-bottom: black solid 1px;
+  border: black solid 1px;
+  border-bottom: black solid 2px;
+  border-right: black solid 2px;
   background-color: palegoldenrod;
   color: black;
   transition: 0.4s all ease;
@@ -98,10 +112,10 @@
 
 .form-group .form-label {
   position: absolute;
-  top: 6px;
-  left: 20px;
+  top: 8px;
+  left: 50px;
   font-size: 14px;
-  padding: 0 10px;
+  padding: 0px 10px;
   color: rgba(103, 101, 101, 0.836);
   pointer-events: none;
   transition: 0.4s all ease;
@@ -109,17 +123,21 @@
 }
 .form-group input:focus {
   outline: none; /* Removes any default outlines */
-  border-left: none; /* Ensures no border is applied on the left */
-  border-right: none; /* Ensures no border is applied on the right */
-  border-top: black solid 1px; /* Keeps the top border */
-  border-bottom: black solid 1px; /* Keeps the bottom border */
+  border-left: black solid 1px; /* Ensures no border is applied on the left */
+  border-right: black solid 2px; /* Ensures no border is applied on the right */
+  border-top: black solid 1px;
+  border-bottom: black solid 2px; /* Keeps the bottom border */
 }
 
 .form-group input:focus + .form-label,
 .form-group input:not(:placeholder-shown) + .form-label {
-  transform: translate(5px, -22px);
+  transform: translate(-26px, -25px);
   font-size: 14px;
-  color: black;
-  background: rgb(238, 232, 170);
+  color: gold;
+  background: black;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+
 }
 /* END OF input animation section */

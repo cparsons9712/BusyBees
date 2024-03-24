@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../../public/watercolorbeehive.png");
+  background-size: cover;
+  background-position: center;
+}
