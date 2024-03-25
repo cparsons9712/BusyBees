@@ -94,9 +94,9 @@ const handleSubmit = async (e) => {
 
         <div className="demoLink" onClick={()=>signInDemo()}>Click here for Demo</div>
         <div>
-          Not a member?
+          Not a member?{" "}
           <span className="footerRedirect" onClick={()=>{switchToSignUp()}}>
-             Sign Up
+          Sign Up
           </span>
         </div>
       </footer>

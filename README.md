@@ -24,6 +24,8 @@
   <p align="center">
     A time blocking task app designed to keep you focused on the task at hand.
     <br />
+    <a href="https://trello.com/b/8FFXyDm2/app">Trello Board</a>
+    <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
     <br />
@@ -90,7 +92,8 @@ Here's why Busy Bees just works better:
 ### Built With
 
 
-* [![Next][Next.js]][Next-url]
+* ![Nestjs](https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white)
+
 * [![React][React.js]][React-url]
 * ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
 
@@ -104,32 +107,6 @@ Here's why Busy Bees just works better:
 
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
-
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-* Nest.js
-  ```sh
-  npm i -g @nestjs/cli
-  npm i --save @nestjs/config
-  ```
-* Chakra UI
-  ```sh
-  npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
-  ```
-* Axios
-  ```sh
-  npm i axios
-  ```
-* TypeORM, nestjs, and pg (helps communicate with postgres database)
-  ```sh
-  npm install @nestjs/typeorm typeorm pg
-  ```
-
 
 
 ### Installation
@@ -141,10 +118,6 @@ To get a local copy up and running follow these simple example steps.
    ```
 2. Create a .env file and copy the keys from .env.copy. Make sure the .env file is in the root of backend. Enter the information based your local postgres information
 
-2. Start up postgres database server by using this command in ubuntu/ terminal
-    ```sh
-    sudo service postgresql start
-    ```
 
   > NOTE: <br>
     Error: connect ECONNREFUSED 127.0.0.1:5432
@@ -154,14 +127,14 @@ To get a local copy up and running follow these simple example steps.
         sudo service postgresql status
       ```
 
-3. Open two terminals
-4. In one terminal navigate to frontend folder, install npm & start server. *Frontend runs on port 3000
+1. Open two terminals
+2. In one terminal navigate to frontend folder, install npm & start server. *Frontend runs on port 3000
    ```sh
    cd frontend
    npm install
    npm start
    ```
-5. In second terminal navigate to backend, install npm & start server in development mode. *Backend runs on port 8000
+3. In second terminal navigate to backend, install npm & start server in development mode. *Backend runs on port 8000. Enter your postgres password when prompted. If you haven't set a specific password 'postgres' will probably work
    ```sh
    cd backend
    npm install
@@ -189,13 +162,12 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [x] Auth
+- [ ] Account Maitenance
+- [ ] Time Block
+- [ ] Task
+- [ ] SubTask
+
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
@@ -233,9 +205,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Christine Parsons - [[LinkedIn](https://www.linkedin.com/in/christine-parsons-498b046a/)] - clong9712@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [Github-busyBees](https://github.com/cparsons9712/busyBees)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
