@@ -3,10 +3,13 @@ import { useFormik } from "formik";
 import { userSchema } from "../../Validations/UserValidation";
 import "../../Styling/signUp.css";
 import { AuthData } from "../../Auth/AuthWrapper";
+import { useModal } from "../../Context/Modal";
+import SignIn from "./SignIn";
 
 const SignUp = () => {
   const [err, setErr] = useState()
   const { signup } = AuthData();
+  const {showModal} = useModal()
 
 
   const formik = useFormik({
@@ -28,6 +31,12 @@ const SignUp = () => {
       }
     },
   });
+
+  const switchToLogin = () => {
+    showModal(<SignIn />)
+  }
+
+
 
   return (
     <div className="signUpContainter">
@@ -57,9 +66,9 @@ const SignUp = () => {
             <label htmlFor="name" className="form-label">
               First Name
             </label>
-            <div className="errorMsg">
+            <div >
               {formik.touched.name && formik.errors.name ? (
-                <div>{formik.errors.name}</div>
+                <div className="errorMsg">{formik.errors.name}</div>
               ) : null}
             </div>
           </div>
@@ -78,9 +87,9 @@ const SignUp = () => {
             <label htmlFor="email" className="form-label">
               Email
             </label>
-            <div className="errorMsg">
+            <div >
               {formik.touched.email && formik.errors.email ? (
-                <div>{formik.errors.email}</div>
+                <div className="errorMsg">{formik.errors.email}</div>
               ) : null}
             </div>
           </div>
@@ -101,9 +110,9 @@ const SignUp = () => {
             <label htmlFor="password" className="form-label">
               Password
             </label>
-            <div className="errorMsg">
+            <div >
               {formik.touched.password && formik.errors.password ? (
-                <div>{formik.errors.password}</div>
+                <div className="errorMsg">{formik.errors.password}</div>
               ) : null}
             </div>
           </div>
@@ -120,11 +129,11 @@ const SignUp = () => {
               placeholder="Confirm Password"
             />
             <label htmlFor="verifyPassword" className="form-label">
-              Confirm Password
+              Password Verify
             </label>
-            <div className="errorMsg">
+            <div className="signUpErr">
               {formik.touched.verifyPassword && formik.errors.verifyPassword ? (
-                <div>{formik.errors.verifyPassword}</div>
+                <div className="errorMsg signUpErr">{formik.errors.verifyPassword}</div>
               ) : null}
             </div>
           </div>
@@ -137,9 +146,9 @@ const SignUp = () => {
 
       <footer className="modalFooter">
         Already a member?{" "}
-        <a className="footerRedirect" href="/Login">
+        <span className="footerRedirect" onClick={()=>{switchToLogin()}}>
           Log In
-        </a>
+        </span>
       </footer>
     </div>
   );

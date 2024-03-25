@@ -1,10 +1,8 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from "../APIs/auth";
-import Lottie from 'react-lottie';
-import animationData from '../Media/BeesFlying.json'
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../Context/Modal";
-
+import Loading from "../Components/Pages/Loading";
 
 export const AuthContext = createContext();
 export const AuthData = () => useContext(AuthContext);
@@ -31,7 +29,12 @@ export const AuthWrapper = ({ children }) => {
             setUser({ isAuthenticated: false });
             goTo('/'); // Redirect to homepage on error
         } finally {
-          setLoading(false);
+          setLoading(false)
+          // uncomment this section and refresh
+          // to get a good look at loading screen
+          // setTimeout(() => {
+          //   setLoading(false);
+          // }, 5000);
         }
     };
 
@@ -93,23 +96,10 @@ export const AuthWrapper = ({ children }) => {
       throw error;
     }
   };
- // Define Lottie options
- const defaultOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: animationData,
-  rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice'
-  }
-};
+
 
 // Replace your loading condition
-if(loading) return (
-  <div className="loading" >
-    <h2>Loading ...</h2>
-    <Lottie options={defaultOptions} height={400} width={400} />
-  </div>
-);
+if(loading) return <Loading />
 
   return (
     <AuthContext.Provider value={{ user, login, logout, signup }}>

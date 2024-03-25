@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import  {  useState } from "react";
 import "../../Styling/signIn.css";
-import axios from "../../APIs/auth";
-import useAxiosFunction from "../../Hooks/useAxiosFunction";
-import { useNavigate } from "react-router-dom";
+
 import { useModal } from "../../Context/Modal";
 import { AuthData } from "../../Auth/AuthWrapper";
+import SignUp from "./SignUp";
+import ResetPassword from "./ForgotPW";
 
 
 const SignIn = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const { login } = AuthData()
-  const goTo = useNavigate();
-  const { hideModal } = useModal();
+  const {  showModal } = useModal();
   const [loginError, setLoginError] = useState("");
 
 
@@ -27,13 +26,25 @@ const handleSubmit = async (e) => {
     }
   };
 
+  const signInDemo = () => {
+    login('demo@email.com', 'Super5ecret!')
+  }
+
+  const switchToSignUp = () => {
+    showModal(<SignUp />)
+  }
+
+  const openResetPassword = () => {
+    showModal(<ResetPassword />)
+  }
+
   return (
     <div className="signUpContainter">
       <div className="modalHeader signIn">
         <img src="./BeeCenterDeco.png" alt="bee" className="beeCentered"></img>
         <h1>Nice to meet you!</h1>
 
-        {loginError && <div className="errorMsg">{loginError}</div>}
+        {loginError && <div className="signInError">{loginError}</div>}
       </div>
 
       <form onSubmit={handleSubmit} className="signUpForm" autoComplete="off">
@@ -77,17 +88,16 @@ const handleSubmit = async (e) => {
           Submit
         </button>
       </form>
-      <div className="forgotCont"><img className="forgotPW" src='questionMark.png' alt="Forgot Password block"/>  Forgot Password?</div>
+      <div className="forgotCont" onClick={()=>{openResetPassword()}}><img className="forgotPW" src='questionMark.png' alt="Forgot Password block"/>  Forgot Password?</div>
 
       <footer className="modalFooter">
 
-        <div className="demoLink">Click here for Demo</div>
+        <div className="demoLink" onClick={()=>signInDemo()}>Click here for Demo</div>
         <div>
-          Not a member?{" "}
-          <a className="footerRedirect" href="/signUp">
-            {" "}
-            Sign Up
-          </a>
+          Not a member?
+          <span className="footerRedirect" onClick={()=>{switchToSignUp()}}>
+             Sign Up
+          </span>
         </div>
       </footer>
     </div>

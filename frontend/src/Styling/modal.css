@@ -72,13 +72,54 @@
 .modalFooter{
   margin-bottom: 10px;
 }
+.errorMsg{
+  color: black;
+  text-align: center;
+  background-color:rgba(229, 30, 30);
+  padding-bottom: 5px;
+}
 
 .footerRedirect{
 
   color: blue;
   text-decoration-style: solid;
   cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+
+
 }
+/* Swap Modal Button Animation */
+
+.footerRedirect::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  width: 100%;
+  height: 8px;
+  z-index: -1;
+}
+.footerRedirect:hover::before {
+  bottom: 0;
+  height: 100%;
+}
+.footerRedirect::before {
+  content: '';
+  background-color:  gold;
+
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  height: 4px;
+  z-index: -1;
+  transition: all .3s ease-in-out;
+
+}
+
+
 
 /* Input animation Section */
 
@@ -113,9 +154,10 @@
 .form-group .form-label {
   position: absolute;
   top: 8px;
-  left: 50px;
+  left: 10px;
   font-size: 14px;
   padding: 0px 10px;
+  max-width: 100px;
   color: rgba(103, 101, 101, 0.836);
   pointer-events: none;
   transition: 0.4s all ease;
