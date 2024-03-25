@@ -1,0 +1,9 @@
+#error-page img{
+    max-width: 400px;
+    width: 80%;
+    border: double 5px black;
+    margin: 20px;
+}
+#error-page{
+    text-align: center;
+}

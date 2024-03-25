@@ -12,7 +12,182 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+<hr/>
+<hr/>
 
+## Routes
+### Users
+<hr/>
+
+####  Return All Users
+##### Req
+- method: 'GET'
+- endpoint: '/api/users'
+##### RES
+```
+[
+    {
+        "id": INT,
+        "name": STRING,
+        "email": STRING,
+    },
+]
+```
+####  Find user by email
+##### Req
+- method: 'GET'
+- endpoint: '/api/users/:email'
+##### RES
+```
+{
+  "id": INT,
+  "name": STRING,
+  "email": STRING,
+},
+```
+<hr/>
+
+####  Create new User
+
+> [!IMPORTANT]
+> This endpoint does not start a session, it only creates a new instance in the table
+##### Req
+- method: 'POST'
+- endpoint: '/api/users'
+- Constraints:
+  - Name:
+    - Required
+  - Email:
+    - Required
+    - Must be valid email
+    - Must be unique
+  - Password:
+    - One uppercase letter
+    - One lower case letter
+    - one number
+    - one symbol
+    - at least 5 characters long
+    - required
+- Body:
+```
+{
+  "name": STRING,
+  "email": STRING,
+  "password": STRING
+},
+```
+
+
+##### RES
+```
+{
+  "id": INT,
+  "name": STRING,
+  "email": STRING,
+},
+```
+<hr/>
+
+### Authentication
+<hr/>
+
+####  Sign up
+
+##### Req
+- method: 'POST'
+- endpoint: '/api/auth/signup'
+- Constraints:
+  - Name:
+    - Required
+  - Email:
+    - Required
+    - Must be valid email
+    - Must be unique
+  - Password:
+    - One uppercase letter
+    - One lower case letter
+    - one number
+    - one symbol
+    - at least 5 characters long
+    - required
+- Body:
+```
+{
+  "name": STRING,
+  "email": STRING,
+  "password": STRING
+},
+```
+
+
+##### RES
+```
+{
+  "id": INT,
+  "name": STRING,
+  "email": STRING,
+},
+```
+<hr/>
+
+####  Login
+##### Req
+- method: 'POST'
+- endpoint: '/api/auth/login'
+- Constraints:
+  - Email:
+    - Required
+  - Password:
+    - Required
+- Body:
+```
+{
+  "email": STRING,
+  "password": STRING
+},
+```
+
+##### RES
+```
+{
+  msg: 'Login Successful
+},
+```
+<hr/>
+
+####  Check current auth status
+##### Req
+- method: 'GET'
+- endpoint: '/api/auth/status'
+
+
+##### RES
+```
+{
+  user: {
+    id: INT,
+    email: STRING,
+    name: STRING
+  }
+},
+```
+<hr/>
+
+####  LogOut
+
+##### Req
+- method: 'GET'
+- endpoint: '/api/auth/logout'
+
+
+##### RES
+```
+{
+  msg: 'The user has been logged out'
+},
+```
+<hr/>
+<hr/>
 
 ## Test
 
@@ -66,8 +241,13 @@ $ DROP TABLE tableName
 
 ## Migration Commands
 ```bash
+
+
 # Makes files of sql commands from code changes that will alter database when run
-$ npm run migration:generate
+$ npm run migration:generate --name=descripted_name_here
+
+# Make sure the dist folder is up to date
+$ npm run build
 
 # Run commands in new migration files to alter the database
 $ npm run migration:run
@@ -94,7 +274,7 @@ $ \dt
 $ DROP TABLE changedTableName
 
 # Makes file that reflects the changes you made to the table
-$ npm run migration:generate
+$ npm run migration:generate --name=fileNameHere
 
 # Run commands to recreate the table with the changes
 $ npm run migration:run

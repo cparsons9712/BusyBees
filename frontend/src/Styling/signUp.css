@@ -1,0 +1,103 @@
+.beeCentered {
+  display: block;
+  height: 100px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signUpContainter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 450px;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+.signInError {
+  position: absolute;
+  top: 125px;
+  left: 105px;
+  height: 25px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: black;
+  text-align: center;
+  background-color:rgba(229, 30, 30);
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  font-weight: bolder;
+}
+
+signUpErr{
+  margin-top: 2px;
+  padding-left: 10px;
+  font-weight: bolder;
+  border-radius: 5px;
+}
+
+.forgotPW{
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+
+}
+.forgotCont{
+
+  position: absolute;
+  bottom: 100px;
+  right:50px;
+  z-index: 10;
+  font-size: 12px;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 20px;
+
+}
+.forgotCont:hover{
+  cursor: pointer;
+  font-weight: bolder;
+}
+@media (max-width: 500px) {
+ .modalContainer{
+  width: 250px;
+ }
+ .signUpForm{
+  display:flex;
+  flex-direction: column;
+ }
+ .formRow{
+  flex-direction: column;
+  gap: 0px;
+  width: 200px;
+ }
+ .form-group .input{
+  width:100%;
+
+ }
+
+ .hexagonSubmitBtn{
+  margin-top: 20px;
+ }
+ .forgotCont{
+  position: absolute;
+  bottom: 120px;
+  right: 85px;
+ }
+
+}
