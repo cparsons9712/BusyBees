@@ -20,14 +20,14 @@ export const AuthWrapper = ({ children }) => {
     const checkAuthStatus = async () => {
         try {
             const response = await axios.get('/status', { withCredentials: true });
-            console.log('UseEffect res: ', response.data.user);
-            if (response.status === 200) {
+            console.log('UseEffect res: ', response.data);
+            if (response.data.user) {
                 setUser({ ...response.data.user, isAuthenticated: true });
             }
         } catch (error) {
             console.error('Error checking authentication status:', error);
             setUser({ isAuthenticated: false });
-            goTo('/'); // Redirect to homepage on error
+
         } finally {
           setLoading(false)
           // uncomment this section and refresh
@@ -39,7 +39,7 @@ export const AuthWrapper = ({ children }) => {
     };
 
     checkAuthStatus();
-  }, [goTo]);
+  }, []);
 
   const login = async (email, password) => {
     try {

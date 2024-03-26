@@ -1,0 +1,35 @@
+.resetHeader {
+  background-color: black;
+  color: white;
+  height: 80px;
+  align-items: center;
+  text-align: center;
+  padding-top: 5px;
+  font-family: "Georgia", cursive;
+}
+.resetPWCont {
+  padding: 0px;
+  position: absolute;
+  top: 0px;
+  align-items: center;
+  background-color: rgba(238, 232, 170, 0.685);;
+
+
+}
+.resetBody {
+  padding: 10px;
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+.submitContReset{
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    align-self: flex-end;
+}
+#email{
+    width: 90%
+}
