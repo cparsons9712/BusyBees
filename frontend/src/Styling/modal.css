@@ -125,19 +125,18 @@
 
 .form-group {
   position: relative;
-  margin: 10px;
+  width: 45%;
+
   z-index: 10;
 }
 
 .form-group input {
 
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding: 10px;
+  margin: 10px;
   font-size: 14px;
   border: none;
-  width: 150px;
+  width: 85%;
   border: black solid 1px;
   border-bottom: black solid 2px;
   border-right: black solid 2px;
@@ -149,15 +148,16 @@
 
 .form-group input::placeholder {
   color: palegoldenrod;
+  width: 100%;
 }
 
 .form-group .form-label {
   position: absolute;
-  top: 8px;
-  left: 10px;
+  top: 20px;
+  left: 16px;
   font-size: 14px;
   padding: 0px 10px;
-  max-width: 100px;
+
   color: rgba(103, 101, 101, 0.836);
   pointer-events: none;
   transition: 0.4s all ease;
@@ -173,7 +173,7 @@
 
 .form-group input:focus + .form-label,
 .form-group input:not(:placeholder-shown) + .form-label {
-  transform: translate(-26px, -25px);
+  transform: translate(-15px, -25px);
   font-size: 14px;
   color: gold;
   background: black;

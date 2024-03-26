@@ -21,7 +21,7 @@ export default function ResetPassword() {
           hideModal();
         });
     } catch (error) {
-        
+
       setErr(error.response.data.message)
       console.error('ERROR status',error.response.status, ': ', err)
     }
@@ -41,7 +41,7 @@ export default function ResetPassword() {
           <input
             className="input resetInput"
             placeholder="email"
-            id="email"
+            id="emailPW"
             type="email"
             required
             value={email}
@@ -55,7 +55,7 @@ export default function ResetPassword() {
         </div>
         {err && <div className="errorMsg">{err}</div>}
         <div className="submitContReset">
-          <button type="submit" className="hexagonSubmitBtn">
+          <button type="submit" id="pwSubmitbtn" className="hexagonSubmitBtn">
             Submit
           </button>
         </div>
