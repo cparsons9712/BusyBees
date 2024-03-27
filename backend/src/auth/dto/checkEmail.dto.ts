@@ -1,6 +1,6 @@
 import { IsEmail } from 'class-validator';
 
-export class PasswordResetRequestDto {
+export class CheckEmailDto {
   @IsEmail({}, { message: 'Invalid email address' })
   email: string;
 }

@@ -44,4 +44,12 @@ export class UsersService {
     const user = await this.userRepository.findOne({ where: { email } });
     return !user;
   }
+
+  async updatePassword(email: string, hashedPW: string) {
+    const user = await this.userRepository.update(
+      { email: email },
+      { password: hashedPW },
+    );
+    return user;
+  }
 }
