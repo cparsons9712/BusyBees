@@ -3,7 +3,7 @@ import "../../Styling/resetPW.css";
 import { useModal } from "../../Context/Modal";
 import axios from "../../APIs/auth";
 
-export default function ResetPassword() {
+export default function SendPWEmail() {
   const [email, setEmail] = useState("");
   const [err, setErr] = useState("");
   const { hideModal } = useModal();
@@ -14,16 +14,15 @@ export default function ResetPassword() {
 
     try {
       const response = await axios
-        .post("/password-reset", { email }, { withCredentials: true })
+        .post("/change-request", { email }, { withCredentials: true })
         .then((res) => {
           console.log(res);
           setEmail("");
           hideModal();
         });
     } catch (error) {
-
-      setErr(error.response.data.message)
-      console.error('ERROR status',error.response.status, ': ', err)
+      setErr(error.response.data.message);
+      console.error("ERROR status", error.response.status, ": ", err);
     }
   };
 

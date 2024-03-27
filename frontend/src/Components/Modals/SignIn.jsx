@@ -4,7 +4,7 @@ import "../../Styling/signIn.css";
 import { useModal } from "../../Context/Modal";
 import { AuthData } from "../../Auth/AuthWrapper";
 import SignUp from "./SignUp";
-import ResetPassword from "./ForgotPW";
+import SendPWEmail from "./ForgotPW";
 
 
 const SignIn = () => {
@@ -35,7 +35,7 @@ const handleSubmit = async (e) => {
   }
 
   const openResetPassword = () => {
-    showModal(<ResetPassword />)
+    showModal(<SendPWEmail />)
   }
 
   return (

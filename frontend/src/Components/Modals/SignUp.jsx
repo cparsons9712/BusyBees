@@ -22,8 +22,6 @@ const SignUp = () => {
     validationSchema: userSchema,
     onSubmit: async (values) => {
       try{
-        console.log('SIGNUP VALUES:::')
-        console.log(values)
         await signup(values)
       } catch (error){
           console.error("Sign up error: ")
