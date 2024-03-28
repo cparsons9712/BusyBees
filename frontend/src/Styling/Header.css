@@ -41,3 +41,9 @@ a:active{
     font-weight: bolder;
     color:blueviolet
 }
+
+@media (max-width: 600px){
+    .headerOption{
+        width: 40px;
+    }
+}

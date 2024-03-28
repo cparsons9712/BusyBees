@@ -70,7 +70,7 @@ export default function ResetPassword() {
                     })}
                 </div>
 
-
+            <div className="pwInputs">
                 <div className="form-group">
                     <input
                     className="input"
@@ -102,7 +102,7 @@ export default function ResetPassword() {
                     Verify Password
                     </label>
                 </div>
-
+            </div>
                 <button type="submit" className="hexagonSubmitBtn">Submit</button>
 
             </form>

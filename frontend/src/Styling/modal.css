@@ -21,9 +21,8 @@
   box-shadow: (0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
-
-  border: thick double black;
-
+  border: 2px solid black;
+  box-shadow: 3px 3px 2px 1px rgba(5, 5, 50, 0.599);
   color: black;
 }
 
