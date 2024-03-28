@@ -32,12 +32,16 @@ export class UsersService {
   async findLogIn(email: string) {
     return await this.userRepository.findOne({
       where: { email },
-      select: ['email', 'password', 'name'],
+      select: ['email', 'password', 'name', 'id', 'profilePicUrl'],
     });
   }
 
   async findOne(email: string) {
     return await this.userRepository.findOneBy({ email });
+  }
+
+  async findOneById(id: number) {
+    return await this.userRepository.findOneBy({ id });
   }
 
   async isEmailUnique(email: string): Promise<boolean> {
@@ -51,5 +55,15 @@ export class UsersService {
       { password: hashedPW },
     );
     return user;
+  }
+  async updateUser(id: number, userInfo: any) {
+    await this.userRepository.update(id, { ...userInfo });
+    const updatedUser = await this.userRepository.findOneBy({ id });
+    return updatedUser;
+  }
+
+  async deleteUser(id: number) {
+    await this.userRepository.delete(id);
+    return { msg: 'User deleted' };
   }
 }
