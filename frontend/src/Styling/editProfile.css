@@ -78,6 +78,8 @@
   .previewImg {
     height: 40%; /* Top section takes 40% of the height */
     padding: 5px;
+    position: absolute;
+    top: 10px;
   }
 
   .editProfileInputs {
@@ -85,20 +87,17 @@
     justify-content: flex-start; /* Align content to the start */
   }
 
-  .EditUserForm,
-  .previewImg {
-    position: static; /* Override any absolute positioning */
-  }
 
-  .blackRectangleButton {
+  .EditUserForm > .blackRectangleButton {
     position: absolute;
-    bottom: 10px;
-    left: 5px;
+    bottom: -80px;
+    left: 15px;
 
   }
-  .yellowRectangleButton {
+  .previewImg > .yellowRectangleButton {
     position: absolute;
-    bottom: 10px;
+    bottom: -257px;
+    right: -25px;
   }
 
 
