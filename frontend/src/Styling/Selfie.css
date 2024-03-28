@@ -56,3 +56,40 @@
 .selfieImgCont {
   margin-top: 25px;
 }
+
+@media (max-width: 500px){
+  .selfie_container {
+    height: 475px;
+  }
+  .selfieIMG {
+    height: auto;
+    width: 270px;
+    position: absolute;
+    left: 10px;
+
+    border: 4px solid black;
+  }
+  .selfieImgCont {
+    margin-top: 50px;
+  }
+  .nameBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    width: 100%;
+    position: absolute;
+    bottom: 75px;
+    left: 15px;
+  }
+  .optionsBar{
+    width: 100%;
+    position: absolute;
+    left: 0px;
+  }
+  .selfieBtn{
+    width: 50px;
+    height: 35px;
+  }
+}

@@ -86,15 +86,12 @@ signUpErr{
     flex-direction: column;
     gap: 0px;
 
-    
+
   }
   .form-group{
     width: 230px !important
   }
-  .form-group .input{
 
-
-  }
 
   .hexagonSubmitBtn{
     margin-top: 20px;
