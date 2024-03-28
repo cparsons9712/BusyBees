@@ -27,51 +27,6 @@ export class UsersController {
     @Inject('USER_SERVICE') private readonly UserService: UsersService,
   ) {}
 
-  testArr = [
-    { id: 1, name: 'Joe' },
-    { id: 2, name: 'Mary' },
-    { id: 3, name: 'Riley' },
-  ];
-
-  @Get('/test')
-  getTest() {
-    return 'Get test success';
-  }
-
-  @Get('/test/all')
-  getAllTest() {
-    return this.testArr;
-  }
-
-  @Post('/test/create')
-  testPostReq(@Body() payload: any) {
-    const id = this.testArr.length + 1;
-    this.testArr.push({ id, ...payload.data });
-    return this.testArr;
-  }
-
-  @Put('/test/update/:id')
-  updateTestItem(@Param('id') id: number, @Body() payload: any) {
-    const index = this.testArr.findIndex((item) => item.id === Number(id));
-    if (index !== -1) {
-      this.testArr[index] = { ...this.testArr[index], ...payload.data };
-      return this.testArr;
-    } else {
-      return { error: 'Item not found' };
-    }
-  }
-
-  @Delete('/test/delete/:id')
-  deleteTestItem(@Param('id') id: number) {
-    const index = this.testArr.findIndex((item) => item.id === Number(id));
-    if (index !== -1) {
-      this.testArr.splice(index, 1);
-      return this.testArr;
-    } else {
-      return { error: 'Item not found' };
-    }
-  }
-
   @Post('')
   @UsePipes(ValidationPipe)
   @UseInterceptors(ClassSerializerInterceptor)
