@@ -21,6 +21,7 @@ export class BlocksController {
   @Get('')
   async getAllBlocks() {
     const blocks = await this.blockService.getAllBlocks;
+    return 'This is getAllBlocks';
   }
 
   @Get(':id')
@@ -39,7 +40,7 @@ export class BlocksController {
   }
 
   @Post('')
-  async createNewBlock(@Body createBlockDto: CreateBlockDto) {
+  async createNewBlock(@Body() createBlockDto: CreateBlockDto) {
     const newBlock = await this.blockService.createBlock(createBlockDto);
   }
 

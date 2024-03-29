@@ -41,7 +41,7 @@ export class BlocksService {
     return null;
   }
 
-  async deleteBlock() {
+  async deleteBlock(id) {
     //todo delete block
     return null;
   }
