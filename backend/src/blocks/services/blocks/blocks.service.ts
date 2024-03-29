@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Block } from 'src/entities/block.entity';
@@ -11,19 +16,30 @@ export class BlocksService {
     private blockRepository: Repository<Block>,
   ) {}
 
-  async createBlock(blockDto: CreateBlockDto) {
-    // todo post new block to repo
-    return null;
+  async createBlock(createBlockDto: CreateBlockDto) {
+    try {
+      const newBlock = await this.blockRepository.create(createBlockDto);
+      await this.blockRepository.save(newBlock);
+      return newBlock;
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Server ran into an issue creating new block and failed.',
+      );
+    }
   }
 
   async getAllBlocks() {
-    //todo get all blocks made by current user
-    return null;
+    const allBlocks = await this.blockRepository.find();
+    return allBlocks;
   }
 
   async getBlockById(id: number) {
-    // todo get a specific block by id
-    return null;
+    if (typeof id !== 'number') {
+      throw new BadRequestException('ID is not a valid number');
+    }
+    const block = await this.blockRepository.findOne({ where: { id } });
+    if (block) return block;
+    throw new NotFoundException('Not found');
   }
 
   async getCurrentActiveBlock() {

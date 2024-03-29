@@ -21,7 +21,7 @@ export class CreateBlockDto {
   title: string;
 
   @IsNotEmpty({ message: 'Start Time is required' })
-  @IsString({ message: 'StartTime must be a valid string' })
+  @IsString({ message: 'Start Time must be a valid string' })
   @Matches(/^([01]\d|2[0-3]):([0-5]\d)$/, {
     message: 'startTime must be in the format HH:mm',
   })
@@ -30,36 +30,36 @@ export class CreateBlockDto {
   @IsNotEmpty()
   @IsString()
   @Matches(/^([01]\d|2[0-3]):([0-5]\d)$/, {
-    message: 'endTime must be in the format HH:mm',
+    message: 'End Time must be in the format HH:mm',
   })
-  @IsAfter('startTime', { message: 'endTime must be after startTime' })
+  @IsAfter('startTime', { message: 'End Time must be after Start Time' })
   endTime: string;
 
   @IsBoolean({ message: 'isSunday must be either true or false' })
   @IsNotEmpty({ message: 'isSunday must be either true or false' })
-  isSunday: boolean;
+  isSunday: boolean = true;
 
   @IsBoolean({ message: 'isMonday must be either true or false' })
   @IsNotEmpty({ message: 'isMonday must be either true or false' })
-  isMonday: boolean;
+  isMonday: boolean = true;
 
   @IsBoolean({ message: 'isTuesday must be either true or false' })
   @IsNotEmpty({ message: 'isTuesday must be either true or false' })
-  isTuesday: boolean;
+  isTuesday: boolean = true;
 
   @IsBoolean({ message: 'isWednesday must be either true or false' })
   @IsNotEmpty({ message: 'isWednesday must be either true or false' })
-  isWednesday: boolean;
+  isWednesday: boolean = true;
 
   @IsBoolean({ message: 'isThursday must be either true or false' })
   @IsNotEmpty({ message: 'isThursday must be either true or false' })
-  isThursday: boolean;
+  isThursday: boolean = true;
 
   @IsBoolean({ message: 'isFriday must be either true or false' })
   @IsNotEmpty({ message: 'isFriday must be either true or false' })
-  isFriday: boolean;
+  isFriday: boolean = true;
 
   @IsBoolean({ message: 'isSaturday must be either true or false' })
   @IsNotEmpty({ message: 'isSaturday must be either true or false' })
-  isSaturday: boolean;
+  isSaturday: boolean = true;
 }

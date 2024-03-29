@@ -20,23 +20,24 @@ export class BlocksController {
 
   @Get('')
   async getAllBlocks() {
-    const blocks = await this.blockService.getAllBlocks;
-    return 'This is getAllBlocks';
+    const blocks = await this.blockService.getAllBlocks();
+    return blocks;
   }
 
   @Get(':id')
-  async getBlockById() {
-    const block = await this.blockService.getBlockById;
+  async getBlockById(@Param('id', ParseIntPipe) id: number) {
+    const block = await this.blockService.getBlockById(id);
+    return block;
   }
 
   @Get('/active')
   async getActiveBlock() {
-    const block = await this.blockService.getCurrentActiveBlock;
+    const block = await this.blockService.getCurrentActiveBlock();
   }
 
   @Get(':dayOfWeek')
   async getBlocksByDOW() {
-    const blocks = await this.blockService.getBlocksByDayOfWeek;
+    const blocks = await this.blockService.getBlocksByDayOfWeek();
   }
 
   @Post('')
