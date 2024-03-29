@@ -1,0 +1,76 @@
+.resetHeader {
+  background-color: black;
+  color: white;
+  height: 80px;
+  align-items: center;
+  text-align: center;
+  padding-top: 5px;
+  font-family: "Georgia", cursive;
+}
+.resetPWCont {
+  padding: 0px;
+  position: absolute;
+  top: 0px;
+  align-items: center;
+  background-color: rgba(238, 232, 170, 0.685);
+  height: 100%;
+}
+.resetBody {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.submitContReset {
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+
+  align-self: flex-end;
+}
+
+#emailPW {
+  width: 220px;
+}
+#pwSubmitbtn {
+  margin-top: 20px;
+}
+
+.newPasswordBackground {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/home/cparsons/busyBees/frontend/public/hexagonBackground.png");
+  background-size: cover;
+}
+
+.NewPasswordForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  width: 450px;
+  margin: 100px;
+  border: 3px solid black;
+  background-color: gold;
+}
+.newPWTitle {
+  background-color: black;
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+.pwInputs {
+  display: flex; /* Add this if you want to use flex properties */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally */
+  padding: 20px;
+  background-color: black;
+  width: 410px;
+  margin: 10px;
+}
+.pwInputs > .form-group {
+  align-self: center;
+}

@@ -74,30 +74,32 @@ signUpErr{
   font-weight: bolder;
 }
 @media (max-width: 500px) {
- .modalContainer{
-  width: 250px;
- }
- .signUpForm{
-  display:flex;
-  flex-direction: column;
- }
- .formRow{
-  flex-direction: column;
-  gap: 0px;
-  width: 200px;
- }
- .form-group .input{
-  width:100%;
+  .modalContainer{
+    width: 250px;
+  }
+  .signUpForm{
+    display:flex;
+    flex-direction: column;
+    width: 95%;
+  }
+  .formRow{
+    flex-direction: column;
+    gap: 0px;
 
- }
 
- .hexagonSubmitBtn{
-  margin-top: 20px;
- }
- .forgotCont{
-  position: absolute;
-  bottom: 120px;
-  right: 85px;
- }
+  }
+  .form-group{
+    width: 230px !important
+  }
+
+
+  .hexagonSubmitBtn{
+    margin-top: 20px;
+  }
+  .forgotCont{
+    position: absolute;
+    bottom: 120px;
+    right: 85px;
+  }
 
 }

@@ -4,7 +4,7 @@ import "../../Styling/signIn.css";
 import { useModal } from "../../Context/Modal";
 import { AuthData } from "../../Auth/AuthWrapper";
 import SignUp from "./SignUp";
-import ResetPassword from "./ForgotPW";
+import SendPWEmail from "./ForgotPW";
 
 
 const SignIn = () => {
@@ -35,7 +35,7 @@ const handleSubmit = async (e) => {
   }
 
   const openResetPassword = () => {
-    showModal(<ResetPassword />)
+    showModal(<SendPWEmail />)
   }
 
   return (
@@ -94,9 +94,9 @@ const handleSubmit = async (e) => {
 
         <div className="demoLink" onClick={()=>signInDemo()}>Click here for Demo</div>
         <div>
-          Not a member?
+          Not a member?{" "}
           <span className="footerRedirect" onClick={()=>{switchToSignUp()}}>
-             Sign Up
+          Sign Up
           </span>
         </div>
       </footer>

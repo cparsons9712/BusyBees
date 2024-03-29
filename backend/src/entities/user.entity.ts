@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { IsUrl, Matches } from 'class-validator';
 
 @Entity()
 export class User {
@@ -24,4 +25,12 @@ export class User {
     length: 255,
   })
   password: string;
+
+  @Column({ nullable: true })
+  @IsUrl()
+  @Matches(/.(jpg|jpeg|png|gif)$/i, {
+    message:
+      'URL must be a valid image URL ending with .jpg, .jpeg, .png, or .gif',
+  })
+  profilePicUrl: string;
 }

@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, Length, Matches } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsUrl, Length, Matches } from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail({}, { message: 'Invalid email address' })
@@ -16,4 +16,11 @@ export class CreateUserDto {
       'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character',
   })
   password: string;
+
+  @IsUrl()
+  @Matches(/.(jpg|jpeg|png|gif)$/i, {
+    message:
+      'URL must be a valid image URL ending with .jpg, .jpeg, .png, or .gif',
+  })
+  profilePicUrl: string;
 }

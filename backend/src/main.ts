@@ -5,6 +5,7 @@ import * as passport from 'passport';
 import { TypeormStore } from 'connect-typeorm';
 import { SessionEntity } from './entities/session.entity';
 import { connectionSource } from './config/typeorm';
+import { BadRequestException, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   await connectionSource.initialize(); // Ensure your DataSource is initialized
@@ -30,6 +31,19 @@ async function bootstrap() {
         sameSite: 'lax',
       }, //session should persist for 2 hours
       store: new TypeormStore().connect(sessionRepository),
+    }),
+  );
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      exceptionFactory: (errors) => {
+        const message = errors
+          .map((error) => Object.values(error.constraints).join(', '))
+          .join('. ');
+        return new BadRequestException(message);
+      },
     }),
   );
 
