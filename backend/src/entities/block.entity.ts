@@ -41,24 +41,24 @@ export class Block {
   endTime: string;
 
   // Use more descriptive names for days of the week
-  @Column({ default: false })
+  @Column({ default: true })
   isSunday: boolean;
 
-  @Column({ default: false })
+  @Column({ default: true })
   isMonday: boolean;
 
-  @Column({ default: false })
+  @Column({ default: true })
   isTuesday: boolean;
 
-  @Column({ default: false })
+  @Column({ default: true })
   isWednesday: boolean;
 
-  @Column({ default: false })
+  @Column({ default: true })
   isThursday: boolean;
 
-  @Column({ default: false })
+  @Column({ default: true })
   isFriday: boolean;
 
-  @Column({ default: false })
+  @Column({ default: true })
   isSaturday: boolean;
 }

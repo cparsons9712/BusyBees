@@ -98,7 +98,7 @@ export class UsersController {
     } catch (error) {
       // Log the error internally
       console.error(error);
-      throw new BadRequestException('Failed to update user');
+      throw new BadRequestException('Failed to delete user');
     }
   }
 }
