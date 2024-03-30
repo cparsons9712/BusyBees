@@ -17,19 +17,58 @@ export class BlocksService {
     private blockRepository: Repository<Block>,
   ) {}
 
-  async createBlock(createBlockDto: BlockDto, userId: number): Promise<Block> {
-    // Check for overlapping blocks
-    const overlappingBlock = await this.blockRepository
+  async createBlock(createBlockDto: BlockDto, userId: number) {
+    const blocksDuringTime = await this.blockRepository
       .createQueryBuilder('block')
       .where('block.userId = :userId', { userId })
       .andWhere('block.startTime < :endTime AND block.endTime > :startTime', {
         startTime: createBlockDto.startTime,
         endTime: createBlockDto.endTime,
       })
-      .getOne();
+      .getMany();
 
-    if (overlappingBlock) {
-      throw new BadRequestException('Blocks cannot overlap.');
+    if (blocksDuringTime.length) {
+      const days = [
+        'isSunday',
+        'isMonday',
+        'isTuesday',
+        'isWednesday',
+        'isThursday',
+        'isFriday',
+        'isSaturday',
+      ];
+
+      const conflicts = {};
+
+      blocksDuringTime.forEach((block) => {
+        days.forEach((day) => {
+          if (block[day] && createBlockDto[day]) {
+            const title = block.title; // Correctly accessing title property
+            if (!conflicts[title]) {
+              conflicts[title] = [];
+            }
+            const formattedDay = day.slice(2); // Format day name
+            if (!conflicts[title].includes(formattedDay)) {
+              conflicts[title].push(formattedDay); // Avoid duplicate days
+            }
+          }
+        });
+      });
+
+      if (Object.keys(conflicts).length) {
+        let conflictMessages = Object.entries(conflicts).map(
+          ([title, days]) => {
+            // Explicitly typing days as an array of strings
+            const conflictDays = days as string[];
+
+            let dayList = `${conflictDays.slice(0, -1).join(', ')}${conflictDays.length > 1 ? ', and ' : ''}${conflictDays.slice(-1)}`;
+            return `on ${dayList} with ${title}`;
+          },
+        );
+
+        let finalMessage = `Timing conflict ${conflictMessages.join(' and ')}.`;
+        throw new BadRequestException(finalMessage);
+      }
     }
 
     const newBlock = this.blockRepository.create({ ...createBlockDto, userId });
