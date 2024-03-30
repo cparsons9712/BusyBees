@@ -86,23 +86,43 @@ export class BlocksService {
   }
 
   async editBlock(id: number, blockDto: BlockDto, userId: number) {
+    // First, verify the block being edited exists and belongs to the user
     const block = await this.blockRepository
       .createQueryBuilder('block')
       .where('block.userId = :userId', { userId })
-      .andWhere('block.id = :id', { id });
+      .andWhere('block.id = :id', { id })
+      .getOne(); // Make sure to execute the query with getOne()
 
     if (!block) {
       throw new NotFoundException(`Block with ID ${id} not found.`);
     }
-    if (blockDto.startTime) {
-      blockDto.startTime = moment(blockDto.startTime, 'HH:mm:ss').format(
-        'HH:mm',
-      );
+
+    // Check for overlapping blocks, excluding the current block being edited
+    const overlappingBlock = await this.blockRepository
+      .createQueryBuilder('blocker') // Using a different alias ('blocker') for clarity
+      .where('blocker.userId = :userId', { userId })
+      .andWhere(
+        'blocker.startTime < :endTime AND blocker.endTime > :startTime',
+        {
+          startTime: blockDto.startTime,
+          endTime: blockDto.endTime,
+        },
+      )
+      .andWhere('blocker.id != :blockId', { blockId: id }) // Correctly exclude the block being edited
+      .getOne();
+
+    if (overlappingBlock) {
+      throw new BadRequestException('Blocks cannot overlap.');
     }
-    if (blockDto.endTime) {
-      blockDto.endTime = moment(blockDto.endTime, 'HH:mm:ss').format('HH:mm');
-    }
-    await this.blockRepository.update(id, blockDto);
+
+    // Proceed with updating block information...
+    await this.blockRepository.update(id, {
+      ...blockDto,
+      startTime: moment(blockDto.startTime, 'HH:mm:ss').format('HH:mm'),
+      endTime: moment(blockDto.endTime, 'HH:mm:ss').format('HH:mm'),
+    });
+
+    // Optionally, return the updated block
     return this.blockRepository.findOne({ where: { id } });
   }
 
