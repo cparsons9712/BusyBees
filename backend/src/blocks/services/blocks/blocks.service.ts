@@ -27,8 +27,8 @@ export class BlocksService {
   }
 
   async getAllBlocks() {
-    //todo get all blocks made by current user
-    return null;
+    const blocks = await this.blockRepository.find();
+    return blocks;
   }
 
   async getBlockById(id: number) {
