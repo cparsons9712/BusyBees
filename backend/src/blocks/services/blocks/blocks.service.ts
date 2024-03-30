@@ -5,9 +5,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UsingJoinColumnOnlyOnOneSideAllowedError } from 'typeorm';
 import { Block } from 'src/entities/block.entity';
 import { CreateBlockDto } from 'src/blocks/dto/create-block.dto/create-block.dto';
+import * as moment from 'moment-timezone';
 
 @Injectable()
 export class BlocksService {
@@ -41,8 +42,17 @@ export class BlocksService {
   }
 
   async getCurrentActiveBlock() {
-    //todo find and return the block thats currently in effect
-    return null;
+    const currentTime = moment().format('HH:mm');
+
+    const query = this.blockRepository
+      .createQueryBuilder('block')
+      .where(
+        ':currentTime >= block.startTime AND :currentTime <= block.endTime',
+        { currentTime },
+      );
+
+    const activeBlocks = await query.getMany();
+    return activeBlocks;
   }
 
   async getBlocksByDayOfWeek() {

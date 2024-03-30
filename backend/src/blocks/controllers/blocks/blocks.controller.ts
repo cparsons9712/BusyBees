@@ -24,21 +24,22 @@ export class BlocksController {
     return blocks;
   }
 
+  @Get('/active')
+  async getActiveBlock() {
+    console.log('in controller');
+    const block = await this.blockService.getCurrentActiveBlock();
+    return block;
+  }
+
+  @Get('/day/:dayOfWeek')
+  async getBlocksByDOW() {
+    const blocks = await this.blockService.getBlocksByDayOfWeek();
+  }
+
   @Get(':id')
   async getBlockById(@Param('id', ParseIntPipe) id: number) {
     const block = await this.blockService.getBlockById(id);
     return block;
-  }
-
-  @Get('/active')
-  async getActiveBlock() {
-    const block = await this.blockService.getCurrentActiveBlock();
-    return block
-  }
-
-  @Get(':dayOfWeek')
-  async getBlocksByDOW() {
-    const blocks = await this.blockService.getBlocksByDayOfWeek();
   }
 
   @Post('')
