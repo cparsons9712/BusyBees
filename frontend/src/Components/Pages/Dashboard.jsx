@@ -1,16 +1,12 @@
 import ComingSoonPage from "./ComingSoon";
-import EditProfile from "../Modals/editProfile";
+import EditProfile from "../Modals/EditProfile";
 
-
-import { useState } from "react"
+import { useState } from "react";
 
 export default function Dashboard() {
-
-
-    return (
-        <div >
-
-            <ComingSoonPage />
-        </div>
-    );
-  }
+  return (
+    <div>
+      <ComingSoonPage />
+    </div>
+  );
+}

@@ -40,7 +40,7 @@ export class Block {
   })
   endTime: string;
 
-  // Use more descriptive names for days of the week
+
   @Column({ default: true })
   isSunday: boolean;
 
