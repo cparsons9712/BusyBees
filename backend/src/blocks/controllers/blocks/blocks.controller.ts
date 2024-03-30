@@ -25,13 +25,15 @@ export class BlocksController {
   }
 
   @Get(':id')
-  async getBlockById() {
-    const block = await this.blockService.getBlockById();
+  async getBlockById(@Param('id', ParseIntPipe) id: number) {
+    const block = await this.blockService.getBlockById(id);
+    return block;
   }
 
   @Get('/active')
   async getActiveBlock() {
     const block = await this.blockService.getCurrentActiveBlock();
+    return block
   }
 
   @Get(':dayOfWeek')

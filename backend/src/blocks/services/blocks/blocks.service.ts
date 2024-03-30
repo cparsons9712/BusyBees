@@ -1,4 +1,9 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Block } from 'src/entities/block.entity';
@@ -27,8 +32,12 @@ export class BlocksService {
   }
 
   async getBlockById(id: number) {
-    // todo get a specific block by id
-    return null;
+    if (typeof id !== 'number') {
+      throw new BadRequestException('ID is not a valid number');
+    }
+    const block = await this.blockRepository.findOne({ where: { id } });
+    if (block) return block;
+    throw new NotFoundException('Not found');
   }
 
   async getCurrentActiveBlock() {
