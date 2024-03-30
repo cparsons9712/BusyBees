@@ -7,15 +7,23 @@ export async function checkAvailability(
   blockRepository: Repository<Block>,
   createBlockDto: BlockDto,
   userId: number,
+  blockId?: number,
 ) {
-  const blocksDuringTime = await blockRepository
+  // find all blocks that overlap on the time
+  let query = blockRepository
     .createQueryBuilder('block')
     .where('block.userId = :userId', { userId })
     .andWhere('block.startTime < :endTime AND block.endTime > :startTime', {
       startTime: createBlockDto.startTime,
       endTime: createBlockDto.endTime,
-    })
-    .getMany();
+    });
+
+  // Conditionally exclude a block by ID if blockId is provided
+  if (blockId !== undefined) {
+    query = query.andWhere('block.id != :blockId', { blockId });
+  }
+
+  const blocksDuringTime = await query.getMany();
 
   if (blocksDuringTime.length) {
     const days = [
@@ -30,6 +38,7 @@ export async function checkAvailability(
 
     const conflicts = {};
 
+    // go through overlapping time blocks and check if its onverlapping on the same day
     blocksDuringTime.forEach((block) => {
       days.forEach((day) => {
         if (block[day] && createBlockDto[day]) {
@@ -45,6 +54,7 @@ export async function checkAvailability(
       });
     });
 
+    // formatt error string to tell user when and what is causing the conflict
     if (Object.keys(conflicts).length) {
       const conflictMessages = Object.entries(conflicts).map(
         ([title, days]) => {
