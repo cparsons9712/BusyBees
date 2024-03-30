@@ -75,6 +75,7 @@ export class BlocksService {
 
   async editBlock(id: number, blockDto: BlockDto, userId: number) {
     // First, verify the block being edited exists and belongs to the user
+    await checkAvailability(this.blockRepository, blockDto, userId, id);
     const block = await this.blockRepository
       .createQueryBuilder('block')
       .where('block.userId = :userId', { userId })
@@ -83,24 +84,6 @@ export class BlocksService {
 
     if (!block) {
       throw new NotFoundException(`Block with ID ${id} not found.`);
-    }
-
-    // Check for overlapping blocks, excluding the current block being edited
-    const overlappingBlock = await this.blockRepository
-      .createQueryBuilder('blocker') // Using a different alias ('blocker') for clarity
-      .where('blocker.userId = :userId', { userId })
-      .andWhere(
-        'blocker.startTime < :endTime AND blocker.endTime > :startTime',
-        {
-          startTime: blockDto.startTime,
-          endTime: blockDto.endTime,
-        },
-      )
-      .andWhere('blocker.id != :blockId', { blockId: id }) // Correctly exclude the block being edited
-      .getOne();
-
-    if (overlappingBlock) {
-      throw new BadRequestException('Blocks cannot overlap.');
     }
 
     // Proceed with updating block information...
