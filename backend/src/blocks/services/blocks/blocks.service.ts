@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Block } from 'src/entities/block.entity';
@@ -11,9 +11,14 @@ export class BlocksService {
     private blockRepository: Repository<Block>,
   ) {}
 
-  async createBlock(blockDto: CreateBlockDto) {
-    // todo post new block to repo
-    return null;
+  async createBlock(createBlockDto: CreateBlockDto) {
+    try {
+      const newEntity = await this.blockRepository.create(createBlockDto);
+      await this.blockRepository.save(newEntity);
+      return newEntity;
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to create block');
+    }
   }
 
   async getAllBlocks() {

@@ -37,7 +37,4 @@ export class User {
 
   @OneToMany(() => Block, (block) => block.user)
   blocks: Block[];
-
-  @OneToMany(() => Block, (block) => block.user) // Specify inverse side as a second parameter
-  blocks: Block[];
 }

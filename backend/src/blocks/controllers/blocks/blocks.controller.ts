@@ -42,6 +42,11 @@ export class BlocksController {
   @Post('')
   async createNewBlock(@Body() createBlockDto: CreateBlockDto) {
     const newBlock = await this.blockService.createBlock(createBlockDto);
+    if (newBlock) {
+      return newBlock;
+    } else {
+      throw new BadRequestException('Block could not be created');
+    }
   }
 
   @Put(':id')

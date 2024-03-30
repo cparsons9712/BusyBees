@@ -6,6 +6,8 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { User } from './user.entity';
+import { Validate } from 'class-validator';
+import IsAfter from 'src/blocks/dto/create-block.dto/IsAfter';
 
 @Entity()
 export class Block {
@@ -38,8 +40,8 @@ export class Block {
     type: 'time',
     nullable: false,
   })
+  @Validate(IsAfter, ['startTime'])
   endTime: string;
-
 
   @Column({ default: true })
   isSunday: boolean;

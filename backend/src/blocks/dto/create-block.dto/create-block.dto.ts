@@ -37,29 +37,29 @@ export class CreateBlockDto {
 
   @IsBoolean({ message: 'isSunday must be either true or false' })
   @IsNotEmpty({ message: 'isSunday must be either true or false' })
-  isSunday: boolean;
+  isSunday: boolean = true;
 
   @IsBoolean({ message: 'isMonday must be either true or false' })
   @IsNotEmpty({ message: 'isMonday must be either true or false' })
-  isMonday: boolean;
+  isMonday: boolean = true;
 
   @IsBoolean({ message: 'isTuesday must be either true or false' })
   @IsNotEmpty({ message: 'isTuesday must be either true or false' })
-  isTuesday: boolean;
+  isTuesday: boolean = true;
 
   @IsBoolean({ message: 'isWednesday must be either true or false' })
   @IsNotEmpty({ message: 'isWednesday must be either true or false' })
-  isWednesday: boolean;
+  isWednesday: boolean = true;
 
   @IsBoolean({ message: 'isThursday must be either true or false' })
   @IsNotEmpty({ message: 'isThursday must be either true or false' })
-  isThursday: boolean;
+  isThursday: boolean = true;
 
   @IsBoolean({ message: 'isFriday must be either true or false' })
   @IsNotEmpty({ message: 'isFriday must be either true or false' })
-  isFriday: boolean;
+  isFriday: boolean = true;
 
   @IsBoolean({ message: 'isSaturday must be either true or false' })
   @IsNotEmpty({ message: 'isSaturday must be either true or false' })
-  isSaturday: boolean;
+  isSaturday: boolean = true;
 }
