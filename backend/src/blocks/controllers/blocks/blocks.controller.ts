@@ -11,8 +11,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { BlocksService } from 'src/blocks/services/blocks/blocks.service';
-import { CreateBlockDto } from 'src/blocks/dto/create-block.dto/create-block.dto';
-import { UpdateBlockDto } from 'src/blocks/dto/create-block.dto/update-block.dto';
+import { BlockDto } from 'src/blocks/dto/create-block.dto/block.dto';
 
 @Controller('blocks')
 export class BlocksController {
@@ -44,7 +43,7 @@ export class BlocksController {
   }
 
   @Post('')
-  async createNewBlock(@Body() createBlockDto: CreateBlockDto) {
+  async createNewBlock(@Body() createBlockDto: BlockDto) {
     const newBlock = await this.blockService.createBlock(createBlockDto);
     if (newBlock) {
       return newBlock;
@@ -56,12 +55,8 @@ export class BlocksController {
   @Put(':id')
   async updateBlock(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateBlockDto: UpdateBlockDto,
+    @Body() updateBlockDto: BlockDto,
   ) {
-    const block = await this.blockService.getBlockById(id);
-    if (!block) {
-      throw new NotFoundException('Block not found');
-    }
     try {
       const updatedBlock = await this.blockService.editBlock(
         id,
@@ -70,20 +65,19 @@ export class BlocksController {
       return updatedBlock;
     } catch (err) {
       console.error(err);
-      throw new BadRequestException('Block was not updated');
+      throw new BadRequestException(err.message || 'Block was not updated');
+
     }
   }
 
   @Delete(':id')
   async deleteBlock(@Param('id', ParseIntPipe) id: number) {
-    const block = await this.blockService.getBlockById(id);
-    if (!block) throw new NotFoundException('Block not found');
     try {
       await this.blockService.deleteBlock(id);
-      return { msg: 'Block Successfully Deleted' };
+      return { message: `Block with ID ${id} was deleted successfully` };
     } catch (err) {
       console.error(err);
-      throw new BadRequestException('Failed to delete user');
+      throw new BadRequestException('Could not delete block');
     }
   }
 }

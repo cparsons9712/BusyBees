@@ -5,9 +5,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, UsingJoinColumnOnlyOnOneSideAllowedError } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Block } from 'src/entities/block.entity';
-import { CreateBlockDto } from 'src/blocks/dto/create-block.dto/create-block.dto';
+import { BlockDto } from 'src/blocks/dto/create-block.dto/block.dto';
 import * as moment from 'moment-timezone';
 import { getActiveDayColumnName } from 'src/utils/getWeekDayFromNum';
 
@@ -18,7 +18,7 @@ export class BlocksService {
     private blockRepository: Repository<Block>,
   ) {}
 
-  async createBlock(createBlockDto: CreateBlockDto) {
+  async createBlock(createBlockDto: BlockDto) {
     try {
       const newEntity = await this.blockRepository.create(createBlockDto);
       await this.blockRepository.save(newEntity);
@@ -57,6 +57,10 @@ export class BlocksService {
   }
 
   async getBlocksByDayOfWeek(weekDayNum: number): Promise<Block[]> {
+    if (weekDayNum > 6 || weekDayNum < 0) {
+      throw new BadRequestException('Param number must be between 0 and 6');
+    }
+
     const dayString = getActiveDayColumnName(weekDayNum);
     const blocks = await this.blockRepository
       .createQueryBuilder('block')
@@ -66,13 +70,36 @@ export class BlocksService {
     return blocks;
   }
 
-  async editBlock(id, payload) {
-    //change a record in db of a block
-    return null;
+  async editBlock(id: number, blockDto: BlockDto) {
+    const block = await this.blockRepository.findOne({ where: { id } });
+    if (!block) {
+      throw new NotFoundException(`Block with ID ${id} not found.`);
+    }
+    if (blockDto.startTime) {
+      blockDto.startTime = moment(blockDto.startTime, 'HH:mm:ss').format(
+        'HH:mm',
+      );
+    }
+    if (blockDto.endTime) {
+      blockDto.endTime = moment(blockDto.endTime, 'HH:mm:ss').format('HH:mm');
+    }
+    await this.blockRepository.update(id, blockDto);
+    const updatedBlock = await this.blockRepository.findOne({ where: { id } });
+    return updatedBlock;
   }
 
-  async deleteBlock(id) {
-    //todo delete block
-    return null;
+  async deleteBlock(id: number) {
+    const block = await this.blockRepository.findOne({ where: { id } });
+    if (!block) {
+      throw new NotFoundException(`Block with ID ${id} not found.`);
+    }
+
+    try {
+      await this.blockRepository.delete(id);
+      return { message: `Block with ID ${id} was deleted successfully` };
+    } catch (err) {
+      console.error(err);
+      throw new BadRequestException(`Block with ID ${id} could not be deleted`);
+    }
   }
 }

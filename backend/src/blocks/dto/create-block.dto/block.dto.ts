@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 import IsAfter from './IsAfter';
 
-export class CreateBlockDto {
+export class BlockDto {
   @IsInt({ message: 'User id must be a valid number' })
   @IsNotEmpty({ message: 'User id is required' })
   userId: number;
