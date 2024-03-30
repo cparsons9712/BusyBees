@@ -9,6 +9,7 @@ import { Repository, UsingJoinColumnOnlyOnOneSideAllowedError } from 'typeorm';
 import { Block } from 'src/entities/block.entity';
 import { CreateBlockDto } from 'src/blocks/dto/create-block.dto/create-block.dto';
 import * as moment from 'moment-timezone';
+import { getActiveDayColumnName } from 'src/utils/getWeekDayFromNum';
 
 @Injectable()
 export class BlocksService {
@@ -55,9 +56,14 @@ export class BlocksService {
     return activeBlocks;
   }
 
-  async getBlocksByDayOfWeek() {
-    // query and get blocks active for a specific week day
-    return null;
+  async getBlocksByDayOfWeek(weekDayNum: number): Promise<Block[]> {
+    const dayString = getActiveDayColumnName(weekDayNum);
+    const blocks = await this.blockRepository
+      .createQueryBuilder('block')
+      .where(`block.${dayString} = :isActive`, { isActive: true })
+      .getMany();
+
+    return blocks;
   }
 
   async editBlock(id, payload) {

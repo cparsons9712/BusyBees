@@ -32,8 +32,9 @@ export class BlocksController {
   }
 
   @Get('/day/:dayOfWeek')
-  async getBlocksByDOW() {
-    const blocks = await this.blockService.getBlocksByDayOfWeek();
+  async getBlocksByDOW(@Param('dayOfWeek', ParseIntPipe) dayOfWeek: number) {
+    const blocks = await this.blockService.getBlocksByDayOfWeek(dayOfWeek);
+    return blocks;
   }
 
   @Get(':id')
