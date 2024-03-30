@@ -34,7 +34,6 @@ export class AuthController {
   @Post('login')
   async login(@Req() req: Request) {
     const user = req.user;
-    console.log('USER being returned: ', user);
     return user;
   }
 

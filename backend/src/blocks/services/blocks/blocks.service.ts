@@ -1,7 +1,6 @@
 import {
   BadRequestException,
   Injectable,
-  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -18,31 +17,45 @@ export class BlocksService {
     private blockRepository: Repository<Block>,
   ) {}
 
-  async createBlock(createBlockDto: BlockDto) {
-    try {
-      const newEntity = await this.blockRepository.create(createBlockDto);
-      await this.blockRepository.save(newEntity);
-      return newEntity;
-    } catch (error) {
-      throw new InternalServerErrorException('Failed to create block');
+  async createBlock(createBlockDto: BlockDto, userId: number): Promise<Block> {
+    // Check for overlapping blocks
+    const overlappingBlock = await this.blockRepository
+      .createQueryBuilder('block')
+      .where('block.userId = :userId', { userId })
+      .andWhere('block.startTime < :endTime AND block.endTime > :startTime', {
+        startTime: createBlockDto.startTime,
+        endTime: createBlockDto.endTime,
+      })
+      .getOne();
+
+    if (overlappingBlock) {
+      throw new BadRequestException('Blocks cannot overlap.');
     }
+
+    const newBlock = this.blockRepository.create({ ...createBlockDto, userId });
+    return this.blockRepository.save(newBlock);
   }
 
-  async getAllBlocks() {
-    const blocks = await this.blockRepository.find();
-    return blocks;
+  async getAllBlocks(userId) {
+    return await this.blockRepository.find({
+      where: { userId },
+    });
   }
 
-  async getBlockById(id: number) {
+  async getBlockById(id: number, userId: number) {
     if (typeof id !== 'number') {
       throw new BadRequestException('ID is not a valid number');
     }
-    const block = await this.blockRepository.findOne({ where: { id } });
+    const block = await this.blockRepository
+      .createQueryBuilder('block')
+      .where('block.userId = :userId', { userId })
+      .andWhere('block.id = :id', { id })
+      .getOne();
     if (block) return block;
     throw new NotFoundException('Not found');
   }
 
-  async getCurrentActiveBlock() {
+  async getCurrentActiveBlock(userId: number) {
     const currentTime = moment().format('HH:mm');
 
     const query = this.blockRepository
@@ -50,28 +63,34 @@ export class BlocksService {
       .where(
         ':currentTime >= block.startTime AND :currentTime <= block.endTime',
         { currentTime },
-      );
+      )
+      .andWhere('block.userId = :userId', { userId });
 
-    const activeBlocks = await query.getMany();
-    return activeBlocks;
+    return await query.getMany();
   }
 
-  async getBlocksByDayOfWeek(weekDayNum: number): Promise<Block[]> {
+  async getBlocksByDayOfWeek(
+    weekDayNum: number,
+    userId: number,
+  ): Promise<Block[]> {
     if (weekDayNum > 6 || weekDayNum < 0) {
       throw new BadRequestException('Param number must be between 0 and 6');
     }
 
     const dayString = getActiveDayColumnName(weekDayNum);
-    const blocks = await this.blockRepository
+    return await this.blockRepository
       .createQueryBuilder('block')
       .where(`block.${dayString} = :isActive`, { isActive: true })
+      .andWhere('block.userId = :userId', { userId })
       .getMany();
-
-    return blocks;
   }
 
-  async editBlock(id: number, blockDto: BlockDto) {
-    const block = await this.blockRepository.findOne({ where: { id } });
+  async editBlock(id: number, blockDto: BlockDto, userId: number) {
+    const block = await this.blockRepository
+      .createQueryBuilder('block')
+      .where('block.userId = :userId', { userId })
+      .andWhere('block.id = :id', { id });
+
     if (!block) {
       throw new NotFoundException(`Block with ID ${id} not found.`);
     }
@@ -84,22 +103,26 @@ export class BlocksService {
       blockDto.endTime = moment(blockDto.endTime, 'HH:mm:ss').format('HH:mm');
     }
     await this.blockRepository.update(id, blockDto);
-    const updatedBlock = await this.blockRepository.findOne({ where: { id } });
-    return updatedBlock;
+    return this.blockRepository.findOne({ where: { id } });
   }
 
-  async deleteBlock(id: number) {
-    const block = await this.blockRepository.findOne({ where: { id } });
-    if (!block) {
-      throw new NotFoundException(`Block with ID ${id} not found.`);
+  async deleteBlock(id: number, userId: number) {
+    const block = await this.blockRepository
+      .createQueryBuilder('block')
+      .where('block.userId = :userId', { userId })
+      .andWhere('block.id = :id', { id })
+      .getOne();
+    if (block) {
+      try {
+        await this.blockRepository.delete(id);
+        return { message: `Block with ID ${id} was deleted successfully` };
+      } catch (err) {
+        console.error(err);
+        throw new BadRequestException(
+          `Block with ID ${id} could not be deleted`,
+        );
+      }
     }
-
-    try {
-      await this.blockRepository.delete(id);
-      return { message: `Block with ID ${id} was deleted successfully` };
-    } catch (err) {
-      console.error(err);
-      throw new BadRequestException(`Block with ID ${id} could not be deleted`);
-    }
+    throw new NotFoundException(`Block with ID ${id} not found.`);
   }
 }

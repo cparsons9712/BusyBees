@@ -46,7 +46,7 @@ export class UsersController {
     }
   }
 
-  @UseGuards(AuthenticatedGuard)
+
   @Get('')
   getAllUsers() {
     const userArray = this.UserService.getAll();

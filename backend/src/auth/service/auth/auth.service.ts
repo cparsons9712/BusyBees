@@ -16,7 +16,7 @@ export class AuthService {
     if (comparePasswords(password, userDB.password)) {
       return userDB;
     } else {
-      return null;
+      return { message: 'Password was incorrect' };
     }
   }
 

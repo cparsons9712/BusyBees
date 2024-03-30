@@ -1,6 +1,5 @@
 import {
   IsBoolean,
-  IsInt,
   IsNotEmpty,
   IsString,
   Length,
@@ -9,10 +8,6 @@ import {
 import IsAfter from './IsAfter';
 
 export class BlockDto {
-  @IsInt({ message: 'User id must be a valid number' })
-  @IsNotEmpty({ message: 'User id is required' })
-  userId: number;
-
   @IsString({ message: 'Title must be a string data type' })
   @IsNotEmpty({ message: 'Title is required' })
   @Length(3, 100, {
