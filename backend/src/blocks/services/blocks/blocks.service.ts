@@ -9,6 +9,7 @@ import { Block } from 'src/entities/block.entity';
 import { BlockDto } from 'src/blocks/dto/create-block.dto/block.dto';
 import * as moment from 'moment-timezone';
 import { getActiveDayColumnName } from 'src/utils/getWeekDayFromNum';
+import { checkAvailability } from 'src/utils/checkAvailability';
 
 @Injectable()
 export class BlocksService {
@@ -16,64 +17,6 @@ export class BlocksService {
     @InjectRepository(Block)
     private blockRepository: Repository<Block>,
   ) {}
-
-  async createBlock(createBlockDto: BlockDto, userId: number) {
-    const blocksDuringTime = await this.blockRepository
-      .createQueryBuilder('block')
-      .where('block.userId = :userId', { userId })
-      .andWhere('block.startTime < :endTime AND block.endTime > :startTime', {
-        startTime: createBlockDto.startTime,
-        endTime: createBlockDto.endTime,
-      })
-      .getMany();
-
-    if (blocksDuringTime.length) {
-      const days = [
-        'isSunday',
-        'isMonday',
-        'isTuesday',
-        'isWednesday',
-        'isThursday',
-        'isFriday',
-        'isSaturday',
-      ];
-
-      const conflicts = {};
-
-      blocksDuringTime.forEach((block) => {
-        days.forEach((day) => {
-          if (block[day] && createBlockDto[day]) {
-            const title = block.title; // Correctly accessing title property
-            if (!conflicts[title]) {
-              conflicts[title] = [];
-            }
-            const formattedDay = day.slice(2); // Format day name
-            if (!conflicts[title].includes(formattedDay)) {
-              conflicts[title].push(formattedDay); // Avoid duplicate days
-            }
-          }
-        });
-      });
-
-      if (Object.keys(conflicts).length) {
-        let conflictMessages = Object.entries(conflicts).map(
-          ([title, days]) => {
-            // Explicitly typing days as an array of strings
-            const conflictDays = days as string[];
-
-            let dayList = `${conflictDays.slice(0, -1).join(', ')}${conflictDays.length > 1 ? ', and ' : ''}${conflictDays.slice(-1)}`;
-            return `on ${dayList} with ${title}`;
-          },
-        );
-
-        let finalMessage = `Timing conflict ${conflictMessages.join(' and ')}.`;
-        throw new BadRequestException(finalMessage);
-      }
-    }
-
-    const newBlock = this.blockRepository.create({ ...createBlockDto, userId });
-    return this.blockRepository.save(newBlock);
-  }
 
   async getAllBlocks(userId) {
     return await this.blockRepository.find({
@@ -122,6 +65,12 @@ export class BlocksService {
       .where(`block.${dayString} = :isActive`, { isActive: true })
       .andWhere('block.userId = :userId', { userId })
       .getMany();
+  }
+
+  async createBlock(createBlockDto: BlockDto, userId: number) {
+    await checkAvailability(this.blockRepository, createBlockDto, userId);
+    const newBlock = this.blockRepository.create({ ...createBlockDto, userId });
+    return this.blockRepository.save(newBlock);
   }
 
   async editBlock(id: number, blockDto: BlockDto, userId: number) {
