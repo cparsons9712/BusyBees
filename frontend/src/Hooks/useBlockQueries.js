@@ -16,3 +16,19 @@ export const useActiveBlocks = () => {
   // Return these values so your components can use them.
   return { currBlock, isError, isLoading, error };
 };
+
+export const useAllBlocks = () => {
+  const fetchAllBlocks = async () => {
+    const response = await axios.get('/', { withCredentials: true });
+    return response.data;
+  };
+
+  // Using a more descriptive query key and returning all relevant data and states.
+  const { data: allBlocks, isError, isLoading, error } = useQuery({
+    queryKey: ['allBlocks'],
+    queryFn: fetchAllBlocks
+  });
+
+  // Return these values so your components can use them.
+  return { allBlocks, isError, isLoading, error };
+};
