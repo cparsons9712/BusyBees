@@ -1,18 +1,38 @@
-import React from "react";
+import React ,{ useState } from "react";
 import moment from "moment"; // Import Moment.js
-import { useAllBlocks } from "../../Hooks/useBlockQueries";
+import { useBlocksByDay } from "../../Hooks/useBlockQueries";
 import "../../Styling/blocks.css";
 
+
 function Blocks() {
-  const { allBlocks, isError, isLoading, error } = useAllBlocks(); // Your custom hook to fetch activities
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  const [dayNum, setDayNum] = useState(moment().day()); // Current day number (0-6)
+  const { blocks, isError, isLoading, error } = useBlocksByDay(dayNum);
+
+
+  const handlePreviousDay = () => {
+    setDayNum(dayNum => (dayNum - 1 + days.length) % days.length);
+  };
+
+  const handleNextDay = () => {
+    setDayNum(dayNum => (dayNum + 1) % days.length);
+  };
+
+
+
+
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
+
 
   const timeBlocks = Array.from({ length: 24 }, (_, index) => ({
     startTime: moment({ hour: index }).format("ha"),
     endTime: moment({ hour: index + 1 }).format("ha"),
   }));
+
+
   const getMinutesFromMidnight = (timeString) => {
     const hourNum = moment(timeString, "HH:mm:ss").hours();
     const minNum = moment(timeString, "HH:mm:ss").minutes();
@@ -20,7 +40,7 @@ function Blocks() {
   };
 
   const buildAgenda = () => {
-    return allBlocks.map((currBlock, index) => {
+    return blocks.map((currBlock, index) => {
       const top = getMinutesFromMidnight(currBlock.startTime);
       const bottom = getMinutesFromMidnight(currBlock.endTime);
       const height = bottom - top;
@@ -40,25 +60,16 @@ function Blocks() {
     });
   };
 
-  const days = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thurday', 'Friday', 'Saturday']
 
-  const dayNum = moment().day()
+
   return (
     <div className="blockPageContainer">
 
 
-      <div className="blockPageNav">
-          <div>
-
-          </div>
-
-          <div>
-            {days[dayNum]}
-          </div>
-
-          <div>
-
-          </div>
+<div className="blockPageNav">
+        <button onClick={handlePreviousDay}>{days[(dayNum - 1 + days.length) % days.length]}</button>
+        <div className="dayOfWeek">{days[dayNum]}</div>
+        <button onClick={handleNextDay}>{days[(dayNum + 1) % days.length]}</button>
       </div>
 
       <div style={{ position: "relative", height: "100%" }} className="timeTable">
@@ -74,7 +85,7 @@ function Blocks() {
         </div>
 
         <div className="blockColumn"></div>
-        {allBlocks && allBlocks.length > 0 ? (
+        {blocks && blocks.length > 0 ? (
           buildAgenda()
         ) : (
           <div> Nothing to display</div>

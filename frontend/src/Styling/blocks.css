@@ -22,3 +22,15 @@
     border: 1px solid black;
     width: 600px;
 }
+.blockPageNav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.dayOfWeek{
+    padding: 10px;
+    border: 1px solid black;
+    margin: 2px;
+}

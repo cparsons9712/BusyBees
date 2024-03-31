@@ -32,3 +32,19 @@ export const useAllBlocks = () => {
   // Return these values so your components can use them.
   return { allBlocks, isError, isLoading, error };
 };
+
+
+export const useBlocksByDay = (dayOfWeek) => {
+  const fetchBlocksbyDay = async () => {
+    const response = await axios.get(`/day/${dayOfWeek}`, { withCredentials: true });
+    console.log('DAY BLOCKS: ', response.data)
+    return response.data;
+  };
+
+  const { data: blocks, isError, isLoading, error } = useQuery({
+    queryKey: ['dayBlocks', dayOfWeek],
+    queryFn: fetchBlocksbyDay
+  });
+
+  return { blocks, isError, isLoading, error };
+};
