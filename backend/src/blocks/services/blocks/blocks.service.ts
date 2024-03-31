@@ -48,7 +48,7 @@ export class BlocksService {
       )
       .andWhere('block.userId = :userId', { userId });
 
-    return await query.getMany();
+    return await query.getOne();
   }
 
   async getBlocksByDayOfWeek(

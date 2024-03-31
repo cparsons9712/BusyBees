@@ -21,18 +21,18 @@
     "framer-motion": "^11.0.8",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
+    "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-lottie": "^1.2.4",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
     "sort-by": "^1.2.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "yup": "^1.4.0",
-    "yup-password": "^0.3.0",
-    "moment": "^2.30.1"
-
+    "yup-password": "^0.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -59,7 +59,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-lottie": "^1.2.10",
-    "@tanstack/eslint-plugin-query": "^5.28.6"
+    "@tanstack/eslint-plugin-query": "^5.28.6",
+    "@types/react-lottie": "^1.2.10"
   }
 }
