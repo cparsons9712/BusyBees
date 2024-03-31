@@ -2,14 +2,14 @@ import React ,{ useState } from "react";
 import moment from "moment"; // Import Moment.js
 import { useBlocksByDay } from "../../Hooks/useBlockQueries";
 import "../../Styling/blocks.css";
-
+import { useModal } from "../../Context/Modal";
+import BlockDetails from "../Modals/BlockDetails";
 
 function Blocks() {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-  const [dayNum, setDayNum] = useState(moment().day()); // Current day number (0-6)
+  const [dayNum, setDayNum] = useState(moment().day());
   const { blocks, isError, isLoading, error } = useBlocksByDay(dayNum);
-
+  const {showModal} = useModal()
 
   const handlePreviousDay = () => {
     setDayNum(dayNum => (dayNum - 1 + days.length) % days.length);
@@ -18,6 +18,10 @@ function Blocks() {
   const handleNextDay = () => {
     setDayNum(dayNum => (dayNum + 1) % days.length);
   };
+
+  const showBlockDetails = (currBlock) => {
+    showModal(<BlockDetails currBlock={currBlock} />)
+  }
 
 
 
@@ -53,6 +57,7 @@ function Blocks() {
             top: `${top}px`,
             height: `${height}px`,
           }}
+          onClick={() => showBlockDetails(currBlock)}
         >
           {currBlock.title}
         </div>
@@ -64,9 +69,13 @@ function Blocks() {
 
   return (
     <div className="blockPageContainer">
+      <div className="blockHeader">
+        <h2>Blocks of Time</h2>
+        <button>New</button>
+      </div>
 
 
-<div className="blockPageNav">
+  <div className="blockPageNav">
         <button onClick={handlePreviousDay}>{days[(dayNum - 1 + days.length) % days.length]}</button>
         <div className="dayOfWeek">{days[dayNum]}</div>
         <button onClick={handleNextDay}>{days[(dayNum + 1) % days.length]}</button>

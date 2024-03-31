@@ -34,6 +34,7 @@ export const useAllBlocks = () => {
 };
 
 
+
 export const useBlocksByDay = (dayOfWeek) => {
   const fetchBlocksbyDay = async () => {
     const response = await axios.get(`/day/${dayOfWeek}`, { withCredentials: true });
