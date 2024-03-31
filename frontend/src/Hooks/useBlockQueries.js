@@ -2,25 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "../APIs/blocks";
 
 export const useActiveBlocks = () => {
-  const queryKey = "activeBlocks";
+  const fetchActiveBlock = async () => {
+    const response = await axios.get('/active', { withCredentials: true });
+    return response.data;
+  };
 
-  const fetchActiveBlocks = async () => {
-    try {
-      const response = await axios.get('/active', { withCredentials: true });
-      console.log(response.data); // Log the response data
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching active blocks:', error);
-      throw error;
-    }
-  };;
+  // Using a more descriptive query key and returning all relevant data and states.
+  const { data: currBlock, isError, isLoading, error } = useQuery({
+    queryKey: ['activeBlocks'],
+    queryFn: fetchActiveBlock
+  });
 
-  const {
-    data: activeBlocks,
-    isLoading,
-    isError,
-    error,
-  } = useQuery(queryKey, fetchActiveBlocks);
-
-  return { activeBlocks, isLoading, isError, error };
+  // Return these values so your components can use them.
+  return { currBlock, isError, isLoading, error };
 };
