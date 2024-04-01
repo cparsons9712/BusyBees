@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import moment from 'moment';
+import moment from "moment";
 import { useEditBlock } from "../../Hooks/useBlockQueries";
+import { useModal } from "../../Context/Modal";
 
 const CreateEditBlock = ({ blockDetails }) => {
   const [typeForm, setTypeForm] = useState("Create");
@@ -15,7 +16,7 @@ const CreateEditBlock = ({ blockDetails }) => {
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
   const { mutate, isError, error } = useEditBlock();
-
+  const {hideModal} = useModal()
 
   useEffect(() => {
     if (blockDetails) {
@@ -34,29 +35,38 @@ const CreateEditBlock = ({ blockDetails }) => {
   }, [blockDetails]);
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const formattedStart = moment(startTime, "HH:mm:ss").format('HH:mm')
-    const formattedEnd = moment(endTime, "HH:mm:ss").format('HH:mm')
+    const formattedStart = moment(startTime, "HH:mm:ss").format("HH:mm");
+    const formattedEnd = moment(endTime, "HH:mm:ss").format("HH:mm");
 
-    let payload = {title, isSunday, isMonday,isTuesday,isWednesday,isThursday,isFriday,isSaturday, startTime: formattedStart, endTime:formattedEnd}
+    let payload = {
+      title,
+      isSunday,
+      isMonday,
+      isTuesday,
+      isWednesday,
+      isThursday,
+      isFriday,
+      isSaturday,
+      startTime: formattedStart,
+      endTime: formattedEnd,
+    };
 
-    console.log('BEFORE MUTATE: ', payload)
+    try {
+      if (typeForm === "Edit" && blockDetails?.id) {
+        mutate({ id: blockDetails.id, payload });
+      }
 
-  if(typeForm === 'Edit' && blockDetails?.id) {
-    mutate({ id: blockDetails.id, payload });
-  }
-
-
-  }
-
-
-
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div>
       <h2>{typeForm} a Block </h2>
-      {isError  && <p>Error: {error.message}</p>}
+      {isError && <p>Error: {error.message}</p>}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <input
@@ -164,7 +174,6 @@ const CreateEditBlock = ({ blockDetails }) => {
             <label htmlFor="endTime" className="form-label">
               End Time
             </label>
-
           </div>
         </div>
 

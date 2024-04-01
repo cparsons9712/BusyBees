@@ -7,7 +7,7 @@ export async function checkAvailability(
   blockRepository: Repository<Block>,
   createBlockDto: BlockDto,
   userId: number,
-  blockId?: number,
+  id?: number,
 ) {
   // find all blocks that overlap on the time
   let query = blockRepository
@@ -17,10 +17,10 @@ export async function checkAvailability(
       startTime: createBlockDto.startTime,
       endTime: createBlockDto.endTime,
     });
-
+  console.log(id);
   // Conditionally exclude a block by ID if blockId is provided
-  if (blockId !== undefined) {
-    query = query.andWhere('block.id != :blockId', { blockId });
+  if (id !== undefined) {
+    query = query.andWhere('block.id != :id', { id });
   }
 
   const blocksDuringTime = await query.getMany();

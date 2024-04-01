@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "../APIs/blocks";
+import { useModal } from "../Context/Modal";
 
 export const useActiveBlocks = () => {
   const fetchActiveBlock = async () => {
@@ -51,6 +52,7 @@ export const useBlocksByDay = (dayOfWeek) => {
 
 export const useEditBlock = () => {
   const queryClient = useQueryClient();
+  const {hideModal} =useModal()
 
   const fetchEditBlock = async ({ id, payload }) => {
     try {
@@ -77,6 +79,7 @@ export const useEditBlock = () => {
       queryClient.invalidateQueries(['activeBlocks']);
       queryClient.invalidateQueries(['allBlocks']);
       queryClient.invalidateQueries(['dayBlocks']);
+      hideModal();
     },
 
 
