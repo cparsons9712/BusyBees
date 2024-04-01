@@ -39,6 +39,9 @@ export class BlocksService {
 
   async getCurrentActiveBlock(userId: number) {
     const currentTime = moment().format('HH:mm');
+    const currentDay = moment().day();
+
+    const dayString = getActiveDayColumnName(currentDay);
 
     const query = this.blockRepository
       .createQueryBuilder('block')
@@ -46,9 +49,16 @@ export class BlocksService {
         ':currentTime >= block.startTime AND :currentTime <= block.endTime',
         { currentTime },
       )
-      .andWhere('block.userId = :userId', { userId });
+      .andWhere('block.userId = :userId', { userId })
+      .andWhere(`block.${dayString} = :isActive`, { isActive: true });
 
-    return await query.getOne();
+    try {
+      return await query.getOne();
+    } catch (error) {
+      // Handle or log the error appropriately
+      console.error('Error fetching the active block:', error);
+      throw error; // Rethrow or handle as needed
+    }
   }
 
   async getBlocksByDayOfWeek(
