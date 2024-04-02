@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import moment from "moment";
-import { useEditBlock } from "../../Hooks/useBlockQueries";
+import { useEditBlock, useCreateBlock } from "../../Hooks/useBlockQueries";
 import { useModal } from "../../Context/Modal";
 
 const CreateEditBlock = ({ blockDetails }) => {
@@ -15,8 +15,9 @@ const CreateEditBlock = ({ blockDetails }) => {
   const [isSaturday, setIsSaturday] = useState(true);
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
-  const { mutate, isError, error } = useEditBlock();
-  const {hideModal} = useModal()
+  const { mutate: editMutate, isError: editIsError, error: editError } = useEditBlock();
+  const {mutate: createMutate, isError: createIsError, error: createError} = useCreateBlock()
+
 
   useEffect(() => {
     if (blockDetails) {
@@ -55,7 +56,9 @@ const CreateEditBlock = ({ blockDetails }) => {
 
     try {
       if (typeForm === "Edit" && blockDetails?.id) {
-        mutate({ id: blockDetails.id, payload });
+        editMutate({ id: blockDetails.id, payload });
+      }else{
+        createMutate({payload});
       }
 
     } catch (err) {
@@ -66,7 +69,8 @@ const CreateEditBlock = ({ blockDetails }) => {
   return (
     <div>
       <h2>{typeForm} a Block </h2>
-      {isError && <p>Error: {error.message}</p>}
+      {editIsError && <p>Error: {editError.message}</p>}
+      {createIsError && <p>Error: {createError.message}</p>}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <input

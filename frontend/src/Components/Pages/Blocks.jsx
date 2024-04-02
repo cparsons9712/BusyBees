@@ -4,6 +4,7 @@ import { useBlocksByDay } from "../../Hooks/useBlockQueries";
 import "../../Styling/blocks.css";
 import { useModal } from "../../Context/Modal";
 import BlockDetails from "../Modals/BlockDetails";
+import CreateEditBlock from "../Modals/Create-Edit-Block";
 
 function Blocks() {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -19,11 +20,17 @@ function Blocks() {
     setDayNum(dayNum => (dayNum + 1) % days.length);
   };
 
+  const handleToday = () => {
+    setDayNum(moment().day());
+  };
+
   const showBlockDetails = (currBlock) => {
     showModal(<BlockDetails currBlock={currBlock} />)
   }
 
-
+  const openNewBlockForm = () => {
+    showModal(< CreateEditBlock />)
+  }
 
 
 
@@ -70,15 +77,15 @@ function Blocks() {
   return (
     <div className="blockPageContainer">
       <div className="blockHeader">
-        <h2>Blocks of Time</h2>
-        <button>New</button>
+        <h2><span>{days[dayNum]}'s</span> Blocks of Time</h2>
+        <button onClick={openNewBlockForm}>New</button>
       </div>
 
 
   <div className="blockPageNav">
-        <button onClick={handlePreviousDay}>{days[(dayNum - 1 + days.length) % days.length]}</button>
-        <div className="dayOfWeek">{days[dayNum]}</div>
-        <button onClick={handleNextDay}>{days[(dayNum + 1) % days.length]}</button>
+        <div className="dayOfWeek" onClick={handlePreviousDay}>{days[(dayNum - 1 + days.length) % days.length]}</div>
+        <div className="dayOfWeek" onClick={handleToday}>Today</div>
+        <div className="dayOfWeek" onClick={handleNextDay}>{days[(dayNum + 1) % days.length]}</div>
       </div>
 
       <div style={{ position: "relative", height: "100%" }} className="timeTable">

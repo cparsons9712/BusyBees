@@ -82,8 +82,46 @@ export const useEditBlock = () => {
       hideModal();
     },
 
-
   });
 
   return mutation;
 };
+
+export const useCreateBlock = () => {
+  const queryClient = useQueryClient();
+  const {hideModal} =useModal()
+
+  const fetchCreateBlock = async ({payload }) => {
+    try {
+      const response = await axios.post(`/`, payload, { withCredentials: true });
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        // Throw an error that can be caught by React Query with more details
+        throw new Error(error.response.data.message || "An error occurred while creating the block.");
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+        throw new Error("No response was received when attempting to create the block.");
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+        throw new Error("An error occurred while setting up the request to create the block.");
+      }
+    }
+  };
+
+  const mutation = useMutation(fetchCreateBlock, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['activeBlocks']);
+      queryClient.invalidateQueries(['allBlocks']);
+      queryClient.invalidateQueries(['dayBlocks']);
+      hideModal();
+    },
+
+  });
+
+  return mutation;
+
+
+}
