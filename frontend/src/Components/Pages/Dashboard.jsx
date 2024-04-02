@@ -55,7 +55,9 @@ const Dashboard =  () => {
             </div>
         </div>
         <div className='hexLeft'></div>
+        <div className='hexLeftBorder'></div>
         <div className='hexright'></div>
+        <div className='hexrightBorder'></div>
       </div>
 
 
