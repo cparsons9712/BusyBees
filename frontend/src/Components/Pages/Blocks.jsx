@@ -24,14 +24,14 @@ function Blocks() {
     setDayNum(moment().day());
   };
 
-  const showBlockDetails = (currBlock) => {
+  const showBlockDetails = (event, currBlock) => {
+    event.stopPropagation();
     showModal(<BlockDetails currBlock={currBlock} />)
   }
 
   const openNewBlockForm = () => {
-    showModal(< CreateEditBlock />)
+    showModal(< CreateEditBlock/>)
   }
-
 
 
   if (isLoading) return <div>Loading...</div>;
@@ -55,19 +55,18 @@ function Blocks() {
       const top = getMinutesFromMidnight(currBlock.startTime);
       const bottom = getMinutesFromMidnight(currBlock.endTime);
       const height = bottom - top;
-      // Adjust the style as needed, using `top` and `height` to position your blocks
       return (
-        <div
-          className="blockBoxTitle"
-          key={index}
-          style={{
-            top: `${top}px`,
-            height: `${height}px`,
-          }}
-          onClick={() => showBlockDetails(currBlock)}
-        >
-          {currBlock.title}
-        </div>
+         <div
+            className="blockBoxTitle"
+            key={index}
+            style={{
+              top: `${top}px`,
+              height: `${height}px`,
+            }}
+            onClick={(event) => showBlockDetails(event, currBlock)}
+          >
+            {currBlock.title}
+          </div>
       );
     });
   };
@@ -88,7 +87,7 @@ function Blocks() {
         <div className="dayOfWeek" onClick={handleNextDay}>{days[(dayNum + 1) % days.length]}</div>
       </div>
 
-      <div style={{ position: "relative", height: "100%" }} className="timeTable">
+      <div style={{ position: "relative", height: "100%" }} className="timeTable" onClick={openNewBlockForm}>
         <div className="timeColumn">
           {timeBlocks.map((block, index) => (
             <div

@@ -4,6 +4,9 @@ import { useEditBlock, useCreateBlock } from "../../Hooks/useBlockQueries";
 import { useModal } from "../../Context/Modal";
 
 const CreateEditBlock = ({ blockDetails }) => {
+  /*
+    State management
+  */
   const [typeForm, setTypeForm] = useState("Create");
   const [title, setTitle] = useState();
   const [isSunday, setIsSunday] = useState(true);

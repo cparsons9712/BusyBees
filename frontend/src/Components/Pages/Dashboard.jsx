@@ -10,6 +10,7 @@ import moment from 'moment'
 import { AuthData } from '../../Auth/AuthWrapper';
 import { useState , useEffect} from 'react';
 import { useActiveBlocks } from '../../Hooks/useBlockQueries';
+import '../../Styling/dash.css'
 
 const Dashboard =  () => {
   const [time, setTime] = useState(moment().format('h:mm:ss A'));
@@ -20,11 +21,11 @@ const Dashboard =  () => {
   useEffect(() => {
     const timerId = setInterval(() => {
       const currentTime = moment();
-      setTime(currentTime.format('h:mm:ss A'));
+      setTime(currentTime.format('h:mm A'));
 
       // Check if the current time is past currBlock.endTime
       if (currBlock && currBlock.endTime) {
-        const endTime = moment(currBlock.endTime, 'HH:mm:ss A'); // Ensure this format matches your endTime format
+        const endTime = moment(currBlock.endTime, 'HH:mm A'); // Ensure this format matches your endTime format
         if (currentTime.isAfter(endTime)) {
           // Invalidate the 'activeBlocks' query to refetch the current block
           queryClient.invalidateQueries(['activeBlocks']);
@@ -41,9 +42,45 @@ const Dashboard =  () => {
 
 
   return (
-    <div>
-      <h2>Hello {user.name}! It is currently {time}, Time to {currBlock?.title || 'be free!'}!</h2>
+    <div className='dashCont'>
+      <div className='dashTop'>
+      <div class="hexContainer">
+        <div class="hexCenter">
+            <div className=' handwriting small'>Hey </div>
+            <div className='cursive big'>{user.name}!</div>
+            <div className=' handwriting small'>It's {time},</div>
+            <div className=' handwriting small'>Time to ... </div>
+            <div className='cursive big'>
+              {currBlock?.title || 'be free!'}
+            </div>
+        </div>
+        <div className='hexLeft'></div>
+        <div className='hexright'></div>
+      </div>
 
+
+
+        <div className='dashTextCont'>
+
+
+        </div>
+      </div>
+
+
+      <div className='dashBottom'>
+        <div className='dashSeperator'>
+          You should ...
+        </div>
+
+        <div className='dashTaskCont'>
+
+          <div className='dashTask'>
+            Clean the bathroom
+          </div>
+        </div>
+
+
+      </div>
     </div>
   );
 };

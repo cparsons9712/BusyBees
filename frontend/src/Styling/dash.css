@@ -1,0 +1,114 @@
+.dashCont {
+  height: 80vh;
+}
+
+.dashTop {
+  background-image: url("/home/cparsons/busyBees/frontend/public/hexagonBackground.png");
+  background-color: rgba(238, 232, 170, 0.706);
+  padding: 25px;
+  height: 220px;
+  text-align: center;
+  border-bottom: 5px solid gold;
+}
+
+.dashTextCont {
+  text-align: center;
+
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
+.hexContainer {
+  width: 280px; /* Fixed width */
+  height: 200px; /* Fixed height */
+  margin-left: auto;
+  margin-right: auto;
+  position: relative; /* This makes it a reference for absolutely positioned child elements */
+  /* Optional: to ensure the container is also centered vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.hexCenter {
+  position: absolute;
+  height: 200px;
+  width: 180px;
+  background-color: gold;
+  top: 0px;
+  left: 50px;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
+.hexLeft {
+  width: 0;
+  height: 0;
+  border-top: 100px solid transparent;
+  border-right: 51px solid gold;
+  border-bottom: 100px solid transparent;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+}
+.hexright{
+    width: 0;
+    height: 0;
+    border-top: 100px solid transparent;
+    border-left: 51px solid gold;
+    border-bottom: 100px solid transparent;
+    z-index: 3;
+    position: absolute;
+    right: 0;
+}
+
+.dashSeperator {
+  background-color: gold;
+  font-size: large;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  color: black;
+  position: relative;
+  top: -25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashText {
+  text-align: center;
+}
+
+.small {
+  font-size: 20px;
+}
+
+.big {
+  font-size: 30px;
+}
+
+.dashBottom{
+    background-color: black;
+    color: gainsboro;
+    height: 500px;
+    text-align: center;
+
+}
+.dashTaskCont{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.dashTask{
+    margin: 10px;
+    padding: 10px;
+    width: 250px;
+    border-top: 2px solid gainsboro;
+    border-bottom: 2px solid gainsboro;
+}
