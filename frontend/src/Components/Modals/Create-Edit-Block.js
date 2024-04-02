@@ -69,8 +69,8 @@ const CreateEditBlock = ({ blockDetails }) => {
   return (
     <div>
       <h2>{typeForm} a Block </h2>
-      {editIsError && <p>Error: {editError.message}</p>}
-      {createIsError && <p>Error: {createError.message}</p>}
+      {editIsError && <p>{editError.message}</p>}
+      {createIsError && <p>{createError.message}</p>}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <input

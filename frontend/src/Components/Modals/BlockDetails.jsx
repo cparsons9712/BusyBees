@@ -3,6 +3,8 @@ import '../../Styling/blocks.css'
 import moment from 'moment';
 import { useModal } from '../../Context/Modal';
 import CreateEditBlock from './Create-Edit-Block';
+import ConfirmDelete from './ConfirmDelete';
+
 const BlockDetails = ({ currBlock }) => {
   const {showModal} = useModal()
 
@@ -45,7 +47,8 @@ const BlockDetails = ({ currBlock }) => {
         </div>
 
         <div className='bdButtonBar'>
-            <button>Delete</button>
+          <button onClick={()=> showModal(<ConfirmDelete resource={{type: 'block', title: currBlock.title, id: currBlock.id }}/>)}>Delete</button>
+
             <button onClick={()=>openEdit()}>Edit</button>
 
         </div>
