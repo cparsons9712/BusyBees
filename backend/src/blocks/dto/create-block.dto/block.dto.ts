@@ -10,8 +10,8 @@ import IsAfter from './IsAfter';
 export class BlockDto {
   @IsString({ message: 'Title must be a string data type' })
   @IsNotEmpty({ message: 'Title is required' })
-  @Length(3, 100, {
-    message: 'Title must be between 3 and 100 characters long',
+  @Length(3, 30, {
+    message: 'Title must be between 3 and 30 characters long',
   })
   title: string;
 

@@ -15,7 +15,6 @@ export class TaskController {
   }
 }
 
-
 // getTaskById
 
 // getUnassignedTask
@@ -23,5 +22,8 @@ export class TaskController {
 // MakeaTask
 
 // EditATask
+
+// Mark a Task Completed
+  // be sure to also check for repeat on and update the nextActiveDate
 
 // DeleteATask
