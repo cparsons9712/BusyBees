@@ -18,7 +18,7 @@ export class BlocksService {
     private blockRepository: Repository<Block>,
   ) {}
 
-  async getAllBlocks(userId) {
+  async getAllBlocks(userId: number) {
     return await this.blockRepository.find({
       where: { userId },
     });
@@ -45,6 +45,7 @@ export class BlocksService {
 
     const query = this.blockRepository
       .createQueryBuilder('block')
+      .leftJoinAndSelect('block.tasks', 'task')
       .where(
         ':currentTime >= block.startTime AND :currentTime <= block.endTime',
         { currentTime },

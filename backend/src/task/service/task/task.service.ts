@@ -5,10 +5,15 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class TaskService {
-    constructor(
-        @InjectRepository(Task)
-        private taskRepository: Repository(Task),
-    ) {}
+  constructor(
+    @InjectRepository(Task)
+    private taskRepository: Repository<Task>,
+  ) {}
 
-    async getTask()
+  async getTaskByUserId(userId: number) {
+    return await this.taskRepository.find({
+      where: { userId },
+      relations: ['block'],
+    });
+  }
 }
