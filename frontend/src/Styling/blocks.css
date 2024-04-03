@@ -171,14 +171,13 @@ BLOCK DETAILS MODAL
   border-radius: 5px;
 }
 
-.bdButtonBar{
+.bdButtonBar {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-
 }
 
-.bdButton{
+.bdButton {
   background-color: black;
   margin: 10px;
   padding: 5px;
@@ -187,8 +186,82 @@ BLOCK DETAILS MODAL
   text-align: center;
 }
 
-.bdButton:hover{
+.bdButton:hover {
   cursor: pointer;
   background-color: #d3b81d;
   color: black;
+}
+
+/******************************
+Edit/ Create form
+**********************************/
+.blockChangeCont {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.blockChangeHeader {
+  color: whitesmoke;
+  background-color: black;
+  width: 400px;
+  display: flex;
+  align-items: flex-start; /* Keeps items aligned at the start */
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.blockChangeModalTitle {
+  width: auto; /* Adjust to auto or a specific width depending on design needs */
+  max-width: 350px; /* Use max-width to constrain the title but allow it to be smaller */
+  overflow-wrap: break-word; /* Allows long words to break and wrap to the next line */
+  word-wrap: break-word; /* Deprecated but used for older browsers */
+  margin: auto; /* Centers the title within the header */
+  font-size: 30px;
+  height: auto; /* Allows the height to grow with content */
+}
+
+.blockFormGroup {
+  margin-top: 30px;
+}
+
+#title{
+  width: 300px;;
+}
+
+.repeatLabel{
+  margin: 10px 0px;
+  background-color: black;
+  color: gold;
+  padding: 5px;
+  width: 55px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.dayCheckboxBar{
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+.checkBoxGroup{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+}
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: gold;
+}
+
+.ebTimeBar{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }

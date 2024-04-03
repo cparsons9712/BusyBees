@@ -20,6 +20,7 @@ const CreateEditBlock = ({ blockDetails }) => {
   const [endTime, setEndTime] = useState();
   const { mutate: editMutate, isError: editIsError, error: editError } = useEditBlock();
   const {mutate: createMutate, isError: createIsError, error: createError} = useCreateBlock()
+  const {hideModal} = useModal();
 
 
   useEffect(() => {
@@ -70,12 +71,17 @@ const CreateEditBlock = ({ blockDetails }) => {
   };
 
   return (
-    <div>
-      <h2>{typeForm} a Block </h2>
+    <div className='blockChangeCont'>
+      <div className='blockChangeHeader'>
+          <div className='cursive blockChangeModalTitle'>{typeForm} a Block </div>
+      </div>
+
+
+
       {editIsError && <p>{editError.message}</p>}
       {createIsError && <p>{createError.message}</p>}
       <form onSubmit={onSubmit}>
-        <div className="form-group">
+        <div className="form-group blockFormGroup">
           <input
             className="input"
             placeholder="Title"
@@ -87,69 +93,85 @@ const CreateEditBlock = ({ blockDetails }) => {
               setTitle(e.target.value);
             }}
           />
-          <label htmlFor="title" className="form-label">
+          <label htmlFor="title" id="blockTitleLabel" className="form-label">
             Title
           </label>
         </div>
 
-        <div>Repeat</div>
+        <div className="repeatLabel">Repeat</div>
 
         <div className="dayCheckboxBar">
-          <input
-            type="checkbox"
-            id="sun"
-            checked={isSunday}
-            onChange={() => setIsSunday(!isSunday)}
-          />
-          <label htmlFor="sun">Sun</label>
 
-          <input
-            type="checkbox"
-            id="mon"
-            checked={isMonday}
-            onChange={() => setIsMonday(!isMonday)}
-          />
-          <label htmlFor="mon">Mon</label>
+          <div className="checkBoxGroup">
+            <input
+              type="checkbox"
+              id="sun"
+              checked={isSunday}
+              onChange={() => setIsSunday(!isSunday)}
+            />
+            <label htmlFor="sun">Sun</label>
+          </div>
 
-          <input
-            type="checkbox"
-            id="tue"
-            checked={isTuesday}
-            onChange={() => setIsTuesday(!isTuesday)}
-          />
-          <label htmlFor="tue">Tues</label>
+          <div className="checkBoxGroup">
+            <input
+              type="checkbox"
+              id="mon"
+              checked={isMonday}
+              onChange={() => setIsMonday(!isMonday)}
+            />
+            <label htmlFor="mon">Mon</label>
+          </div>
 
-          <input
-            type="checkbox"
-            id="wed"
-            checked={isWednesday}
-            onChange={() => setIsWednesday(!isWednesday)}
-          />
-          <label htmlFor="wed">Wed</label>
+          <div className="checkBoxGroup">
+            <input
+              type="checkbox"
+              id="tue"
+              checked={isTuesday}
+              onChange={() => setIsTuesday(!isTuesday)}
+            />
+            <label htmlFor="tue">Tues</label>
+          </div>
 
-          <input
-            type="checkbox"
-            id="thu"
-            checked={isThursday}
-            onChange={() => setIsThursday(!isThursday)}
-          />
-          <label htmlFor="thu">Thu</label>
+          <div className="checkBoxGroup">
+            <input
+              type="checkbox"
+              id="wed"
+              checked={isWednesday}
+              onChange={() => setIsWednesday(!isWednesday)}
+            />
+            <label htmlFor="wed">Wed</label>
+          </div>
 
-          <input
-            type="checkbox"
-            id="fri"
-            checked={isFriday}
-            onChange={() => setIsFriday(!isFriday)}
-          />
-          <label htmlFor="fri">Fri</label>
+          <div className="checkBoxGroup">
+            <input
+              type="checkbox"
+              id="thu"
+              checked={isThursday}
+              onChange={() => setIsThursday(!isThursday)}
+            />
+            <label htmlFor="thu">Thu</label>
+          </div>
 
-          <input
-            type="checkbox"
-            id="sat"
-            checked={isSaturday}
-            onChange={() => setIsSaturday(!isSaturday)}
-          />
-          <label htmlFor="sat">Sat</label>
+          <div className="checkBoxGroup">
+            <input
+              type="checkbox"
+              id="fri"
+              checked={isFriday}
+              onChange={() => setIsFriday(!isFriday)}
+            />
+            <label htmlFor="fri">Fri</label>
+          </div>
+
+          <div className="checkBoxGroup">
+            <input
+              type="checkbox"
+              id="sat"
+              checked={isSaturday}
+              onChange={() => setIsSaturday(!isSaturday)}
+            />
+            <label htmlFor="sat">Sat</label>
+          </div>
+
         </div>
 
         <div className="ebTimeBar">
@@ -184,9 +206,9 @@ const CreateEditBlock = ({ blockDetails }) => {
           </div>
         </div>
 
-        <div className="buttonBar">
-          <button>Cancel</button>
-          <button type="submit">Submit</button>
+        <div className="bdButtonBar">
+          <button className="bdButton" onClick={hideModal}>Cancel</button>
+          <button className="bdButton" type="submit">Submit</button>
         </div>
       </form>
     </div>
