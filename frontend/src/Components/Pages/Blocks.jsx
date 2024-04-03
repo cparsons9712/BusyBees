@@ -70,18 +70,43 @@ function Blocks() {
           }}
           onClick={(event) => showBlockDetails(event, currBlock)}
         >
-
-            {currBlock.title}
-
-
+          {currBlock.title}
         </div>
       );
     });
   };
 
+  const handleTimeTableClick = (event) => {
+    let targetElement = event.target;
+
+    // Check immediately if the click is within excluded elements
+    if (targetElement.classList.contains("blockHeader") || targetElement.classList.contains("blockPageNav")) {
+      return; // Stop the function from proceeding further
+    }
+
+    while (targetElement && targetElement !== event.currentTarget) {
+      // Check if the targetElement or any of its parents is a blockBoxTitle
+      if (targetElement.classList.contains("blockBoxTitle")) {
+        const blockId = targetElement.dataset.blockId; // Assuming blocks have an ID and it's stored here
+        const currBlock = blocks.find((block) => block.id === blockId);
+        if (currBlock) {
+          showBlockDetails(event, currBlock);
+          return; // Stop further processing
+        }
+      } else if (targetElement.classList.contains("blockHeader") || targetElement.classList.contains("blockPageNav")) {
+        // If the click is on the header/nav or their child, do nothing
+        return;
+      }
+      targetElement = targetElement.parentNode; // Move up in the DOM tree
+    }
+
+    // If the loop completes without finding a blockBoxTitle or excluded areas, the click was outside, so open the new block form
+    openNewBlockForm();
+  };
+
   return (
     <div className="blockPageBackground">
-      <div className="blockPageContainer">
+      <div className="blockPageContainer" onClick={handleTimeTableClick}>
         <div className="blockHeader">
           <div className="blockTitle">
             <h2 className="cursive">{days[dayNum]}'s Blocks of Time</h2>
@@ -102,14 +127,16 @@ function Blocks() {
 
         <div
           style={{ position: "relative", height: "100%" }}
-          className="timeTable "
-          onClick={openNewBlockForm}
+          className="timeTable"
+
         >
           <div className="timeColumn">
             {timeBlocks.map((block, index) => (
               <div key={index} className="timeBox">
-                <div className="timeDisplay handwriting"> {block.startTime} - {block.endTime}</div>
-
+                <div className="timeDisplay handwriting">
+                  {" "}
+                  {block.startTime} - {block.endTime}
+                </div>
               </div>
             ))}
           </div>
