@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 import { BlocksModule } from './blocks/blocks.module';
+import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { BlocksModule } from './blocks/blocks.module';
       session: true,
     }),
     BlocksModule,
+    TaskModule,
   ],
 })
 export class AppModule {}
