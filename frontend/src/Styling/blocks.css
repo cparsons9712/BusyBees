@@ -69,6 +69,12 @@
   background-color: black;
   color: rgb(231, 197, 8);
 }
+.dayOfWeek:hover{
+
+  font-weight: 900;
+  border: 3px solid gold;
+}
+
 .activeOnBar {
   display: flex;
   flex-direction: row;
