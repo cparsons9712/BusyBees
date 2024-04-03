@@ -5,6 +5,7 @@ import typeorm from './config/typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
+import { BlocksModule } from './blocks/blocks.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PassportModule } from '@nestjs/passport';
     PassportModule.register({
       session: true,
     }),
+    BlocksModule,
   ],
 })
 export class AppModule {}

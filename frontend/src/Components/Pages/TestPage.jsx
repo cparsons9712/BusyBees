@@ -1,7 +1,7 @@
 import ComingSoonPage from "./ComingSoon";
 import { useEffect, useState } from "react";
 import useAxiosFunction from "../../Hooks/useAxiosFunction";
-import axios from "../../APIs/jsonPH";
+import axios from "../../APIs/users";
 
 export default function Test() {
   const [data, error, loading, axiosFetch] = useAxiosFunction();

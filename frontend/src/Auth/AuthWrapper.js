@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "../APIs/auth";
+import userAxios from '../APIs/users'
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../Context/Modal";
 import Loading from "../Components/Pages/Loading";
@@ -17,10 +18,12 @@ export const AuthWrapper = ({ children }) => {
 
 
   useEffect(() => {
+    checkAuthStatus();
+  }, []);
+
     const checkAuthStatus = async () => {
         try {
             const response = await axios.get('/status', { withCredentials: true });
-            console.log('UseEffect res: ', response.data);
             if (response.data.user) {
                 setUser({ ...response.data.user, isAuthenticated: true });
             }
@@ -38,8 +41,27 @@ export const AuthWrapper = ({ children }) => {
         }
     };
 
-    checkAuthStatus();
-  }, []);
+    const deleteUserAccount = async (id) => {
+      try{
+        const response = await userAxios.delete(
+            `${user.id}`,
+            { withCredentials: true }
+          );
+          console.log(response)
+          setUser({ name: "", email:"", isAuthenticated: false });
+          hideModal()
+
+          goTo('/')
+
+
+    } catch (error){
+        console.error("Edit Profile error: ", error)
+        throw error;
+    }
+    };
+
+
+
 
   const login = async (email, password) => {
     try {
@@ -102,7 +124,7 @@ export const AuthWrapper = ({ children }) => {
 if(loading) return <Loading />
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, signup }}>
+    <AuthContext.Provider value={{ user, login, logout, signup, checkAuthStatus, deleteUserAccount }}>
       {children}
     </AuthContext.Provider>
   );

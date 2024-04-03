@@ -34,7 +34,6 @@ export class AuthController {
   @Post('login')
   async login(@Req() req: Request) {
     const user = req.user;
-    console.log('USER being returned: ', user);
     return user;
   }
 
@@ -51,6 +50,7 @@ export class AuthController {
 
   @Get('status')
   async getAuthStatus(@Req() req: Request) {
+    console.log('WHYYY');
     if (req.user) return { user: req.user };
     return { msg: 'No signed in user' };
   }

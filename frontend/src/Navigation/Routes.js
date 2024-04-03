@@ -10,7 +10,7 @@ import ResetPassword from "../Components/Pages/ResetPassword";
 import { AuthData } from "../Auth/AuthWrapper";
 import { Routes, Route } from "react-router-dom";
 import ErrorPage from "../Components/Pages/ErrorPage";
-import { Redirect } from "../Components/Structure/Redirect";
+import { Redirect } from "../Components/Utility/Redirect";
 
 // Placing the elements that need routes in an array like this makes it easy to change on the fly
 const logoImage = <img className="headerLogo" src="./logo.png" alt="logo" />;

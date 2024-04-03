@@ -1,43 +1,44 @@
 import { useFormik } from "formik";
 import { userSchema } from "../../Validations/UserValidation";
 import { useState } from "react";
-import axios from "../../APIs/auth";
+import axios from "../../APIs/users";
 import { useModal } from "../../Context/Modal";
 import Selfie from "./Selfie";
 import '../../Styling/editProfile.css'
+import { AuthData } from "../../Auth/AuthWrapper";
 
 export default function EditProfile() {
         const [err, setErr] = useState();
         const {showModal} = useModal();
+        const {user, checkAuthStatus} = AuthData()
         const defaultImage = 'https://i.imgur.com/XhNphUJ.png'
 
 
         const formik = useFormik({
           initialValues: {
-            name: "",
-            email: "",
-            url: "",
+            name: user.name,
+            email: user.email,
+            profilePicUrl: user.profilePicUrl,
           },
           //validationSchema: userSchema,
           onSubmit: async (values) => {
+
             try{
-                // const response = await axios.post(
-                //     "/edit-profile",
-                //     {   name: values.name,
-                //         email: values.email,
-                //         password: values.password
-                //     },
-                //     { withCredentials: true }
-                //   );
-                  console.log({   name: values.name,
-                 email: values.email,
-                url: values.url || defaultImage
-                  })
+                const response = await axios.put(
+                    `${user.id}`,
+                    {   name: values.name,
+                        email: values.email,
+                        profilePicUrl: values.profilePicUrl || defaultImage
+                    },
+                    { withCredentials: true }
+                  );
+                  console.log(response)
+                  checkAuthStatus()
                  showModal(<Selfie />)
 
 
             } catch (error){
-                console.error("Sign up error: ")
+                console.error("Edit Profile error: ")
                 setErr(error.message)
             }
           },
@@ -91,13 +92,13 @@ export default function EditProfile() {
                         <input
                         className="input"
                         placeholder="url"
-                        id="url"
+                        id="profilePicUrl"
                         type="url"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        value={formik.values.url}
+                        value={formik.values.profilePicUrl}
                         />
-                        <label htmlFor="url" className="form-label">
+                        <label htmlFor="profilePicUrl" className="form-label">
                         Profile Image URL
                         </label>
                     </div>
@@ -108,10 +109,10 @@ export default function EditProfile() {
             <div className="previewImg">
                 <img
                     className="selfieIMGPreview"
-                    src={formik.values.url || defaultImage}
+                    src={formik.values.profilePicUrl || defaultImage}
                     alt="Bee smiling or uploaded pic"
                 />
-                <button className="yellowRectangleButton">Cancel</button>
+                <button className="yellowRectangleButton" onClick={()=>showModal(<Selfie />)}>Cancel</button>
 
             </div>
 

@@ -1,0 +1,289 @@
+.timeTable {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+}
+
+.timeColumn {
+  width: 25%;
+}
+
+.timeBox {
+  box-sizing: border-box;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  margin-left: 20px;
+}
+.timeDisplay {
+  height: 40px;
+  width: 200px;
+  background-color: black;
+  border: 3px ridge rgb(231, 197, 8);
+  color: rgb(231, 197, 8);
+  padding: 5px;
+  font-size: 20px;
+}
+
+.blockBoxTitle {
+  position: absolute;
+  box-sizing: border-box;
+  right: 5px;
+  border: 5px solid black;
+  width: 65%;
+  margin-right: 20px;
+  background-color: rgb(231, 197, 8);
+  padding: 5px;
+  font-size: larger;
+  overflow: hidden;
+
+  font-size: 25px; /* You can adjust this value according to your preference */
+}
+.blockBoxTitle:hover {
+  background-color: gold;
+  font-weight: 900;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.blockPageNav {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top: -40px;
+  justify-content: space-around;
+  z-index: 3;
+  padding: 10px;
+}
+
+.dayOfWeek {
+  box-sizing: border-box;
+  padding: 10px;
+  border: 3px solid rgb(231, 197, 8);
+  margin: 2px;
+  background-color: black;
+  color: rgb(231, 197, 8);
+}
+.dayOfWeek:hover{
+
+  font-weight: 900;
+  border: 3px solid gold;
+}
+
+.activeOnBar {
+  display: flex;
+  flex-direction: row;
+}
+
+.blockPageBackground {
+  background-image: url("/home/cparsons/busyBees/frontend/public/hexagonBackground.png");
+  background-color: rgba(238, 232, 170, 0.706);
+  padding: 30px;
+  height: 79vh;
+}
+.blockPageContainer {
+  background-color: white;
+  height: 78vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: 3px solid black;
+  text-align: center;
+  cursor: pointer;
+}
+
+.blockHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 5px solid black;
+  position: relative;
+  cursor: default;
+}
+.blockTitle {
+  text-align: center;
+  width: 100%;
+}
+
+/*************************
+BLOCK DETAILS MODAL
+**************************/
+
+.blockDetailsCont {
+  border: 3px solid black;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blockDetailsHeader {
+  color: whitesmoke;
+  background-color: black;
+  width: 300px;
+  display: flex;
+  align-items: flex-start; /* Keeps items aligned at the start */
+  text-align: center;
+  padding: 20px; /* Adjust padding as needed */
+}
+.blockDetailsModalTitle {
+  width: auto; /* Adjust to auto or a specific width depending on design needs */
+  max-width: 250px; /* Use max-width to constrain the title but allow it to be smaller */
+  overflow-wrap: break-word; /* Allows long words to break and wrap to the next line */
+  word-wrap: break-word; /* Deprecated but used for older browsers */
+  margin: auto; /* Centers the title within the header */
+  font-size: 30px;
+  height: auto; /* Allows the height to grow with content */
+}
+
+.activeOnBar {
+  border: 3px solid black;
+  background-color: rgb(242, 233, 142);
+  border-radius: 5px;
+  padding: 5px 20px;
+  margin-top: 20px;
+}
+
+.bdTimeBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; /* Keeps space around elements */
+  text-align: center;
+  align-items: center;
+  gap: 20px; /* Add gap for more control over spacing between .bdTime elements */
+}
+
+.bdTime {
+  margin-top: 50px;
+  position: relative; /* New addition: makes this a reference for absolute positioning */
+  display: inline-flex; /* Adjust to ensure elements are inline and flex for better alignment */
+  flex-direction: column; /* Stack title and contents */
+  align-items: center; /* Center-align children */
+  justify-content: center; /* Center along the vertical axis */
+}
+
+.dbTimeContents {
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(242, 233, 142);
+  width: 100px; /* Consider adjusting if needed to match design requirements */
+}
+
+.dbTimeTitle {
+  background-color: black;
+  color: #d3b81d;
+  padding: 5px;
+  width: 50px; /* Consider adjusting to ensure visual centering */
+  position: absolute; /* Adjust for absolute positioning */
+  top: -30px; /* Adjust as needed to position correctly */
+  border-radius: 5px;
+}
+
+.bdButtonBar {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.bdButton {
+  background-color: black;
+  margin: 10px;
+  padding: 5px;
+  width: 100px;
+  color: #d3b81d;
+  text-align: center;
+}
+
+.bdButton:hover {
+  cursor: pointer;
+  background-color: #d3b81d;
+  color: black;
+}
+
+/******************************
+Edit/ Create form
+**********************************/
+.blockChangeCont {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.blockChangeHeader {
+  color: whitesmoke;
+  background-color: black;
+  width: 400px;
+  display: flex;
+  align-items: flex-start; /* Keeps items aligned at the start */
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.blockChangeModalTitle {
+  width: auto; /* Adjust to auto or a specific width depending on design needs */
+  max-width: 350px; /* Use max-width to constrain the title but allow it to be smaller */
+  overflow-wrap: break-word; /* Allows long words to break and wrap to the next line */
+  word-wrap: break-word; /* Deprecated but used for older browsers */
+  margin: auto; /* Centers the title within the header */
+  font-size: 30px;
+  height: auto; /* Allows the height to grow with content */
+}
+
+.blockFormGroup {
+  margin-top: 30px;
+}
+
+#title {
+  width: 300px;
+}
+
+.repeatLabel {
+  margin: 10px 0px;
+  background-color: black;
+  color: gold;
+  padding: 5px;
+  width: 55px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.dayCheckboxBar {
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+.checkBoxGroup {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: gold;
+}
+
+.ebTimeBar {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.errorMessageBlock {
+  padding: 0 10px;
+  font: 800;
+  color: black;
+  background-color: rgba(168, 4, 4, 0.743);
+  margin: 15px;
+}

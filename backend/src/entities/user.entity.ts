@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { IsUrl, Matches } from 'class-validator';
+import { Block } from './block.entity';
 
 @Entity()
 export class User {
@@ -33,4 +34,7 @@ export class User {
       'URL must be a valid image URL ending with .jpg, .jpeg, .png, or .gif',
   })
   profilePicUrl: string;
+
+  @OneToMany(() => Block, (block) => block.user)
+  blocks: Block[];
 }

@@ -1,4 +1,4 @@
-import Header from "./Components/Structure/Header";
+import Header from "./Components/Utility/Header";
 import DynamicRouter from "./Navigation/Routes";
 import Modal from "./Components/Modals/Modal";
 import './Styling/App.css'
