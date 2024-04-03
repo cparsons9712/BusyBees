@@ -24,6 +24,6 @@ export class TaskController {
 // EditATask
 
 // Mark a Task Completed
-  // be sure to also check for repeat on and update the nextActiveDate
+// be sure to also check for repeat on and update the nextActiveDate
 
 // DeleteATask

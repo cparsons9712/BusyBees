@@ -24,7 +24,7 @@ export class CreateTaskDto {
   @IsDate({ message: 'Completed on should be a valid date' })
   completedOn: Date;
 
-  @IsNumber({ message: 'Repeat in must be a valid number of days' })
+  @IsNumber()
   repeatIn: number;
 
   @IsDate({ message: 'Next Active On should be a valid date in the future' })
