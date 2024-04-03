@@ -44,16 +44,20 @@ const Dashboard =  () => {
   return (
     <div className='dashCont'>
       <div className='dashTop'>
+
+
       <div class="hexContainer">
-        <div class="hexCenter">
-            <div className=' handwriting small'>Hey </div>
-            <div className='cursive big'>{user.name}!</div>
-            <div className=' handwriting small'>It's {time},</div>
-            <div className=' handwriting small'>Time to ... </div>
-            <div className='cursive big'>
-              {currBlock?.title || 'be free!'}
-            </div>
-        </div>
+
+      <div className='hexText'>
+              <div className=' handwriting small'>Hey </div>
+              <div className='cursive big'>{user.name}!</div>
+              <div className=' handwriting small'>It's {time},</div>
+              <div className=' handwriting small'>Time to ... </div>
+              <div className='cursive big'>
+                {currBlock?.title || 'be free!'}
+              </div>
+      </div>
+        <div class="hexCenter"></div>
         <div className='hexLeft'></div>
         <div className='hexLeftBorder'></div>
         <div className='hexright'></div>
@@ -70,13 +74,13 @@ const Dashboard =  () => {
 
 
       <div className='dashBottom'>
-        <div className='dashSeperator'>
+        <div className='dashSeperator handwriting'>
           You should ...
         </div>
 
         <div className='dashTaskCont'>
 
-          <div className='dashTask'>
+          <div className='dashTask handwriting'>
             Clean the bathroom
           </div>
         </div>
