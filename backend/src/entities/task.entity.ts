@@ -36,19 +36,23 @@ export class Task {
   })
   title: string;
 
-  @Column()
+  @Column({
+    default: false,
+  })
   status: boolean;
 
   @Column({
-    nullable: false,
+    nullable: true,
   })
   completedOn: Date;
 
   @Column({
-    nullable: false,
+    nullable: true,
   })
   repeatIn: number;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   nextActiveOn: Date;
 }

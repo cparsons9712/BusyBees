@@ -24,28 +24,32 @@ export class TaskService {
     });
   }
   // getTaskById
-  async getTaskById(id: number) {
-    return await this.taskRepository.findOne({
-      where: { id },
-    });
+  async getTaskById(id: number, userId: number) {
+    try {
+      return await this.taskRepository.findOneOrFail({
+        where: { id, userId },
+      });
+    } catch (error) {
+      throw new NotFoundException(`Task with ID ${id} not found.`);
+    }
   }
 
   // getUnassignedTask
-  async getAllUnassignedTask() {
+  async getAllUnassignedTask(userId) {
     return await this.taskRepository.find({
-      where: { blockId: IsNull() },
+      where: { blockId: IsNull(), userId },
     });
   }
 
   // MakeaTask
-  async createNewTask(createTaskDto: CreateTaskDto) {
-    const newTask = this.taskRepository.create(createTaskDto);
+  async createNewTask(createTaskDto: CreateTaskDto, userId: number) {
+    const newTask = this.taskRepository.create({ ...createTaskDto, userId });
     return this.taskRepository.save(newTask);
   }
 
   // EditATask
-  async editTask(id: number, createTaskDto: CreateTaskDto) {
-    const task = this.taskRepository.findOne({ where: { id } });
+  async editTask(id: number, createTaskDto: CreateTaskDto, userId) {
+    const task = this.taskRepository.findOne({ where: { id, userId } });
     if (!task) {
       throw new NotFoundException(`Task with ID ${id} not found.`);
     }
@@ -56,9 +60,8 @@ export class TaskService {
   }
 
   // Mark a Task Completed
-  // be sure to also check for repeat on and update the nextActiveDate
-  async completeTask(id: number, createTaskDto: CreateTaskDto) {
-    const task = this.taskRepository.findOne({ where: { id } });
+  async completeTask(id: number, createTaskDto: CreateTaskDto, userId) {
+    const task = this.taskRepository.findOne({ where: { id, userId } });
     if (!task) {
       throw new NotFoundException(`Task with ID ${id} not found.`);
     }
@@ -71,12 +74,13 @@ export class TaskService {
   }
 
   // activate reoccuring task
-  async activateReoccuringTask() {
-    const today = moment().startOf('day').toDate(); // Convert to JavaScript Date
+  async activateReoccuringTask(userId) {
+    const today = moment().startOf('day').toDate();
     const tasks = await this.taskRepository.find({
       where: {
-        nextActiveOn: LessThanOrEqual(today), // Example using TypeORM's LessThanOrEqual
+        nextActiveOn: LessThanOrEqual(today),
         status: true,
+        userId,
       },
     });
 

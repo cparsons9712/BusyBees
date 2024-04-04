@@ -1,12 +1,4 @@
-import {
-  IsBoolean,
-  IsDate,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  Length,
-  MinDate,
-} from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
 
 export class CreateTaskDto {
   @IsString({ message: 'Title must be a string data type' })
@@ -16,20 +8,14 @@ export class CreateTaskDto {
   })
   title: string;
 
-  @IsBoolean({
-    message: 'Status should be false for uncompleted and true for completed',
-  })
-  status: boolean = false;
-
-  @IsDate({ message: 'Completed on should be a valid date' })
-  completedOn: Date;
+  @IsNumber()
+  blockId: number;
 
   @IsNumber()
   repeatIn: number;
 
-  @IsDate({ message: 'Next Active On should be a valid date in the future' })
-  @MinDate(new Date(), {
-    message: 'Next Active On should be a valid date in the future',
+  @IsBoolean({
+    message: 'Status should be false for uncompleted and true for completed',
   })
-  nextActiveOn: Date;
+  status: boolean = false;
 }
