@@ -21,6 +21,7 @@ export class BlocksService {
   async getAllBlocks(userId: number) {
     return await this.blockRepository.find({
       where: { userId },
+      relations: ['tasks'],
     });
   }
 

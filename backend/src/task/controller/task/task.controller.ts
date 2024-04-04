@@ -50,17 +50,6 @@ export class TaskController {
     return await this.taskService.createNewTask(createTaskDto, user.id);
   }
 
-  // EditATask
-  @UseGuards(AuthenticatedGuard)
-  @Put(':id')
-  async editTask(
-    @Body() taskDto: CreateTaskDto,
-    @GetUser() user: User,
-    @Param('id', ParseIntPipe) id: number,
-  ) {
-    return await this.taskService.editTask(id, taskDto, user.id);
-  }
-
   // Mark a Task Completed
   @UseGuards(AuthenticatedGuard)
   @Put('/complete/:id')
@@ -79,6 +68,17 @@ export class TaskController {
     return await this.taskService.activateReoccuringTask(user.id);
   }
 
+
+  // EditATask
+  @UseGuards(AuthenticatedGuard)
+  @Put(':id')
+  async editTask(
+    @Body() taskDto: CreateTaskDto,
+    @GetUser() user: User,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    return await this.taskService.editTask(id, taskDto, user.id);
+  }
   // DeleteATask
 
   @UseGuards(AuthenticatedGuard)

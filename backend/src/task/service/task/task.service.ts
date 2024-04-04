@@ -8,7 +8,7 @@ import { Task } from 'src/entities/task.entity';
 import { IsNull, LessThanOrEqual, Repository } from 'typeorm';
 import { CreateTaskDto } from 'src/task/dto/create-task.dto';
 import { buildCompletedTask } from 'src/task/utils/buildCompletedTask';
-import moment from 'moment';
+import * as moment from 'moment';
 
 @Injectable()
 export class TaskService {

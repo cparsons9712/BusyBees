@@ -2,6 +2,7 @@ import {
   IsBoolean,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Length,
 } from 'class-validator';
@@ -14,11 +15,13 @@ export class CreateTaskDto {
   })
   title: string;
 
-  @IsNumber()
-  blockId: number;
+  @IsOptional() // This indicates that the property is not required
+  @IsNumber({}, { message: 'Block ID must be a number' })
+  blockId?: number;
 
+  @IsOptional()
   @IsNumber()
-  repeatIn: number;
+  repeatIn?: number;
 
   @IsBoolean({
     message: 'Status should be false for uncompleted and true for completed',
