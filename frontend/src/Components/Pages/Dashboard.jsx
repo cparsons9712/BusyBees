@@ -57,6 +57,7 @@ const Dashboard =  () => {
                 {currBlock?.title || 'be free!'}
               </div>
       </div>
+
         <div class="hexCenter"></div>
         <div className='hexLeft'></div>
         <div className='hexLeftBorder'></div>
@@ -79,10 +80,15 @@ const Dashboard =  () => {
         </div>
 
         <div className='dashTaskCont'>
+          {currBlock.tasks.map((task)=>{
+            return(
+              <div className='dashTask handwriting'>
+                {task.title}
+              </div>
+            )
+          })}
 
-          <div className='dashTask handwriting'>
-            Clean the bathroom
-          </div>
+
         </div>
 
 

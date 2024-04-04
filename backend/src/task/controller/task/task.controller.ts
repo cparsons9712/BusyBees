@@ -68,7 +68,6 @@ export class TaskController {
     return await this.taskService.activateReoccuringTask(user.id);
   }
 
-
   // EditATask
   @UseGuards(AuthenticatedGuard)
   @Put(':id')
