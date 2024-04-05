@@ -4,11 +4,14 @@ import { useAllBlocks } from "../../Hooks/useBlockQueries";
 import * as moment from 'moment'
 import Loading from "./Loading";
 import { buildWeekdayBar } from "../Utility/weekDayBar";
+import { useModal } from "../../Context/Modal";
+import CreateEditTask from "../Modals/Create-Edit-Task";
 
 export default function Task() {
     const {unassignedTask, isLoading: uaTaskIsLoading, isError: uaTaskIsError, error: uaTaskError} = useGetUnassignedTask();
     const {allBlocks, isError: abIsError, isLoading: abIsLoading, error: abError} = useAllBlocks();
     console.log(allBlocks)
+    const {showModal} = useModal();
 
     if(uaTaskIsLoading || abIsLoading) return <Loading />
 
@@ -30,7 +33,7 @@ export default function Task() {
                             <h3>{block.title}</h3>
                             <div>{moment(block.startTime, "HH:mm:ss").format('h:mm A')} - {moment(block.endTime, "HH:mm:ss").format('h:mm A')}</div>
                             <div className="taskWeedayBar"> {buildWeekdayBar(block, "gold")}</div>
-                            <button>Add Task</button>
+                            <button onClick={()=>showModal(<CreateEditTask blockId = {block.id}/>)}>Add Task</button>
                         </div>
                         {block.tasks && block.tasks.length > 0 ? (
                             block.tasks.map((task) => (
