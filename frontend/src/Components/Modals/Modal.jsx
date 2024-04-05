@@ -4,7 +4,7 @@ import { useModal } from "../../Context/Modal";
 import "../../Styling/modal.css";
 
 const Modal = () => {
-const { isVisible, hideModal, modalContent } = useModal();
+const { isVisible, hideModal, modalContent, closeButtonClass  } = useModal();
   const handleEscape = (e) => {
     if (e.keyCode === 27) {
         hideModal();
@@ -38,7 +38,7 @@ const { isVisible, hideModal, modalContent } = useModal();
         <animated.div style={styles} className="modalBackground">
           <animated.div style={springs} className="modalContainer">
             <div className="modalContent">
-              <button onClick={hideModal} type="button" className="closeButton">
+              <button onClick={hideModal} type="button" className={`closeButton ${closeButtonClass}`}>
                 X
               </button>
               {modalContent}

@@ -21,7 +21,7 @@ export default function DeleteAccount() {
             <h2>Delete Account</h2>
             <p> This action is permanent and cannot be reversed. All of the data associated with your account will be deleted and gone forever. </p>
             <p>Are you sure you want to delete your account for good? </p>
-            <button onClick={()=>handleDelete()}>DELETE</button> <button onClick={()=>showModal(<Selfie/>)}>Think It Over</button>
+            <button onClick={()=>handleDelete()}>DELETE</button> <button onClick={()=>showModal(<Selfie/>, 'black')}>Think It Over</button>
         </div>
     );
   }

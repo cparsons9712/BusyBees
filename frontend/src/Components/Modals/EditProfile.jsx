@@ -34,7 +34,7 @@ export default function EditProfile() {
                   );
                   console.log(response)
                   checkAuthStatus()
-                 showModal(<Selfie />)
+                 showModal(<Selfie />, 'black')
 
 
             } catch (error){
@@ -112,7 +112,7 @@ export default function EditProfile() {
                     src={formik.values.profilePicUrl || defaultImage}
                     alt="Bee smiling or uploaded pic"
                 />
-                <button className="yellowRectangleButton" onClick={()=>showModal(<Selfie />)}>Cancel</button>
+                <button className="yellowRectangleButton" onClick={()=>showModal(<Selfie />, 'black')}>Cancel</button>
 
             </div>
 

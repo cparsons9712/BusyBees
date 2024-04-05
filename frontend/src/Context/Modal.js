@@ -7,9 +7,11 @@ export const useModal = () => useContext(ModalContext);
 export const ModalProvider = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [modalContent, setModalContent] = useState(null);
+  const [closeButtonClass, setCloseButtonClass] = useState('black');;
 
-  const showModal = (content) => {
+  const showModal = (content, closeButtonClass = 'black') => {
     setModalContent(content);
+    setCloseButtonClass(closeButtonClass); // Optionally set a different class
     setIsVisible(true);
   };
 
@@ -19,7 +21,7 @@ export const ModalProvider = ({ children }) => {
   };
 
   return (
-    <ModalContext.Provider value={{ isVisible, showModal, hideModal, modalContent }}>
+    <ModalContext.Provider value={{ isVisible, showModal, hideModal, closeButtonClass, modalContent }}>
       {children}
     </ModalContext.Provider>
   );

@@ -13,7 +13,7 @@ const BlockDetails = ({ currBlock }) => {
 
 
     const openEdit = () => {
-      showModal(<CreateEditBlock blockDetails={currBlock} />)
+      showModal(<CreateEditBlock blockDetails={currBlock} />, 'gold')
     }
 
     return (
@@ -40,7 +40,7 @@ const BlockDetails = ({ currBlock }) => {
         </div>
 
         <div className='bdButtonBar'>
-          <div className="bdButton" onClick={()=> showModal(<ConfirmDelete resource={{type: 'block', title: currBlock.title, id: currBlock.id }}/>)}>Delete</div>
+          <div className="bdButton" onClick={()=> showModal(<ConfirmDelete resource={{type: 'block', title: currBlock.title, id: currBlock.id }}/>, 'gold')}>Delete</div>
 
             <div className="bdButton" onClick={()=>openEdit()}>Edit</div>
 
