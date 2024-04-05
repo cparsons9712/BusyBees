@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAllBlocks } from "../../Hooks/useBlockQueries";
 import { useModal } from "../../Context/Modal";
 import { useCreateTask } from "../../Hooks/useTaskQueries";
+import { useEditTask } from "../../Hooks/useTaskQueries";
 
 const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
   /* set which type of form (will override if edit)*/
@@ -16,13 +17,21 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
   /* Ability to close the modal on submit*/
   const { hideModal } = useModal();
   /* hooks to create and edit task */
-//   const { mutate: editMutate, isError: editIsError, error: editError } = useEditTask();
-  const {mutate: createMutate, isError: createIsError, error: createError} = useCreateTask()
-  const [error, setError] = useState([])
+  const {
+    mutate: editMutate,
+    isError: editIsError,
+    error: editError,
+  } = useEditTask();
+  const {
+    mutate: createMutate,
+    isError: createIsError,
+    error: createError,
+  } = useCreateTask();
+  const [error, setError] = useState([]);
 
   useEffect(() => {
     if (createIsError && createError) {
-      setError(prevErrors => [...prevErrors, createError]);
+      setError((prevErrors) => [...prevErrors, createError]);
     }
   }, [createIsError, createError]);
 
@@ -46,15 +55,14 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const payload = {title, blockId, repeatFrequency, timeUnit}
-    if(typeForm === 'Create'){
-        createMutate({payload});
-    }else {
-
+    const payload = { title, blockId, repeatFrequency, timeUnit };
+    if (typeForm === "Create") {
+      createMutate({ payload });
+    } else {
+      editMutate({ id: taskDetails.id, payload });
     }
 
     // Form submission logic here
-
   };
   return (
     <div className="ceContainer">
@@ -63,14 +71,13 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
       </div>
 
       <form onSubmit={onSubmit}>
-            {error.length > 0 && (
-                <ul>
-                    {error.map((err, index) => (
-                    <li key={index}>{err.message}</li> // Assuming error objects have a 'message' property
-                    ))}
-                </ul>
-            )}
-
+        {error.length > 0 && (
+          <ul>
+            {error.map((err, index) => (
+              <li key={index}>{err.message}</li> // Assuming error objects have a 'message' property
+            ))}
+          </ul>
+        )}
 
         {/* Title input field */}
         <div
