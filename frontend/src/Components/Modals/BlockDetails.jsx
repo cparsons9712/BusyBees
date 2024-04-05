@@ -4,22 +4,13 @@ import moment from 'moment';
 import { useModal } from '../../Context/Modal';
 import CreateEditBlock from './Create-Edit-Block';
 import ConfirmDelete from './ConfirmDelete';
+import { buildWeekdayBar } from '../Utility/weekDayBar';
 
 const BlockDetails = ({ currBlock }) => {
   const {showModal} = useModal()
 
-    const styleStrong = {
-      color: 'black',
-      fontWeight: 'bold',
-      margin: '2px',
-      fontSize: '20px'
 
-    };
-    const styleWeak = {
-      color: 'grey',
-      margin: '2px',
-      fontSize: '20px'
-    };
+
 
     const openEdit = () => {
       showModal(<CreateEditBlock blockDetails={currBlock} />)
@@ -34,14 +25,7 @@ const BlockDetails = ({ currBlock }) => {
 
 
         <div className='activeOnBar handwriting'>
-          <div style={currBlock?.isSunday ? styleStrong : styleWeak} className='handwriting'>Sun</div>
-          <div style={currBlock?.isMonday ? styleStrong : styleWeak} className='handwriting'>Mon</div>
-          <div style={currBlock?.isTuesday ? styleStrong : styleWeak} className='handwriting'>Tues</div>
-          <div style={currBlock?.isWednesday ? styleStrong : styleWeak} className='handwriting'>Wed</div>
-          <div style={currBlock?.isThursday ? styleStrong : styleWeak} className='handwriting'>Thur</div>
-          <div style={currBlock?.isFriday ? styleStrong : styleWeak} className='handwriting'>Fri</div>
-          <div style={currBlock?.isSaturday ? styleStrong : styleWeak} className='handwriting'>Sat</div>
-
+            {buildWeekdayBar(currBlock, "black")}
         </div>
 
         <div className='bdTimeBar'>
