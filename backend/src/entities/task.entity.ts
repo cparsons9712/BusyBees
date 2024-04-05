@@ -49,7 +49,12 @@ export class Task {
   @Column({
     nullable: true,
   })
-  repeatIn: number;
+  repeatFrequency: number;
+
+  @Column({
+    nullable: true,
+  })
+  timeUnit: number;
 
   @Column({
     nullable: true,

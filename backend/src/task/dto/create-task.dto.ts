@@ -5,7 +5,9 @@ import {
   IsOptional,
   IsString,
   Length,
+  ValidateIf,
 } from 'class-validator';
+import { IsTimeUnit } from 'src/utils/timeUnits';
 
 export class CreateTaskDto {
   @IsString({ message: 'Title must be a string data type' })
@@ -20,8 +22,15 @@ export class CreateTaskDto {
   blockId?: number;
 
   @IsOptional()
-  @IsNumber()
-  repeatIn?: number;
+  @ValidateIf((o) => o.timeUnit != null)
+  @IsNumber({}, { message: 'Repeat Frequency must be a number' })
+  repeatFrequency?: number;
+
+  @IsOptional()
+  @ValidateIf((o) => o.repeatFrequency != null)
+  @IsNumber({}, { message: 'Time unit must be a number' })
+  @IsTimeUnit({ message: 'Value must be 1, 7, 30, or 91' })
+  timeUnit?: number;
 
   @IsBoolean({
     message: 'Status should be false for uncompleted and true for completed',
