@@ -97,14 +97,11 @@ export const useCreateBlock = () => {
       return response.data;
     } catch (error) {
       if (error.response) {
-        // Throw an error that can be caught by React Query with more details
         throw new Error(error.response.data.message || "An error occurred while creating the block.");
       } else if (error.request) {
-        // The request was made but no response was received
         console.log(error.request);
         throw new Error("No response was received when attempting to create the block.");
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.log('Error', error.message);
         throw new Error("An error occurred while setting up the request to create the block.");
       }
