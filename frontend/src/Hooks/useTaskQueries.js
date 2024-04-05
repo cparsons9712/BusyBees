@@ -33,17 +33,17 @@ export const useCreateTask = () => {
       if (error.response) {
         throw new Error(
           error.response.data.message ||
-            "An error occurred while creating the block."
+            "An error occurred while creating the task."
         );
       } else if (error.request) {
         console.log(error.request);
         throw new Error(
-          "No response was received when attempting to create the block."
+          "No response was received when attempting to create the task."
         );
       } else {
         console.log("Error", error.message);
         throw new Error(
-          "An error occurred while setting up the request to create the block."
+          "An error occurred while setting up the request to create the task."
         );
       }
     }
@@ -58,3 +58,47 @@ export const useCreateTask = () => {
   });
   return mutation;
 };
+
+export const useEditTask = () => {
+  const queryClient = useQueryClient();
+  const { hideModal } = useModal();
+
+  const fetchEditTask = async ({ id, payload }) => {
+    try {
+      const response = await axios.put(`/${id}`, payload, {
+        withCredentials: true,
+      });
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        throw new Error(
+          error.response.data.message ||
+            "An error occurred while editing the task."
+        );
+      } else if (error.request) {
+        console.log(error.request);
+        throw new Error(
+          "No response was received when attempting to edit the task."
+        );
+      } else {
+        console.log("Error", error.message);
+        throw new Error(
+          "An error occurred while setting up the request to edit the task."
+        );
+      }
+    }
+  };
+  const mutation = useMutation(fetchEditTask, {
+    onSuccess: () => {
+        queryClient.invalidateQueries(["unassignedTask"])
+        queryClient.invalidateQueries(['activeBlocks']);
+        queryClient.invalidateQueries(['allBlocks']);
+        hideModal();
+    }
+  });
+  return mutation;
+}
+
+export const useDeleteTask = () => {
+
+}
