@@ -91,22 +91,26 @@ const Dashboard = () => {
         <div className="dashSeperator handwriting">You should ...</div>
 
         <div className="dashTaskCont">
-          {currBlock
-            ? currBlock.tasks?.map((task) => (
-                <div className="dashTask" key={task.id}>
-                  <div className="checkOffDash" onClick={()=>{markComplete(task.id)}}> </div>
-                  <div className="handwriting"> {task.title}</div>
+  {currBlock
+    ? currBlock.tasks?.map((task) => (
+        <div className="dashTask" key={task.id}>
+          {/* Render checkOffDash div only if task is not completed */}
+          {!task.status && (
+            <div className="checkOffDash" onClick={() => { markComplete(task.id); }}> </div>
+          )}
 
-                </div>
-              ))
-            : unassignedTask?.map((task) => (
-              <div className="dashTask" key={task.id}>
-              <div className="checkOffDash" onClick={()=>{markComplete(task.id)}}> </div>
-              <div className="handwriting"> {task.title}</div>
-
-            </div>
-              ))}
+          {/* Conditional rendering for title with strikethrough */}
+          <div className="handwriting" style={task.status ? { textDecoration: 'line-through' } : {}}>{task.title}</div>
         </div>
+      ))
+    : unassignedTask?.map((task) => (
+        <div className="dashTask" key={task.id}>
+          {/* Assume unassignedTask is always not completed */}
+          <div className="checkOffDash" onClick={() => { markComplete(task.id); }}> </div>
+          <div className="handwriting">{task.title}</div>
+        </div>
+      ))}
+</div>
       </div>
     </div>
   );
