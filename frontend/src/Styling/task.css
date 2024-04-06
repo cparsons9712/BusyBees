@@ -133,3 +133,126 @@
 .taskTitle:hover{
     font-weight: 900;background-color: #ffd900cd;
 }
+.ceContainer{
+  box-shadow: -2px -2px  rgba(255, 217, 0, 0.296);
+  width: 400px;
+
+}
+
+.ceHeader{
+background-color: black;
+color: white;
+text-align: center;
+font-size: 40px;
+padding: 20px;
+
+}
+
+.taskFormGroup{
+  margin: 30px;
+}
+
+.select-group select {
+  background-color: palegoldenrod;
+  color: black;
+  font-size: 14px;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+
+
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.blockSelect select{
+  margin-left: 40px;
+  padding: 10px;
+  width: 80%;
+}
+
+
+.select-group{
+  position: relative;
+}
+
+
+.select-group option {
+  padding: 10px;
+  background: palegoldenrod;
+}
+
+.ceTaskBlockLabel{
+  background-color: black;
+  color: gold;
+  width: 50px;
+  padding: 3px;
+  padding-left: 10px;
+  position: absolute;
+  font-size: 14px;
+  z-index: 5;
+  top: -18px;
+  left: 30px;
+}
+
+.ceTaskReapeatBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 350px;
+  margin: 20px;
+}
+
+.ceRepeatInput {
+  width: 30px;
+  background-color: palegoldenrod;
+  height: 27px;
+  text-align: center;
+  line-height: 25px; /* Match input height */
+  padding-left: 15px; /* Reset padding */
+  border: 1px solid black; /* Example border */
+  border-right: 2px solid black;
+  border-bottom:  2px solid black;
+}
+
+.ceRepeatLabel{
+  background-color: black;
+  color: gold;
+  padding: 5px;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 20px;
+}
+
+.timeUnitSelect select{
+  padding: 5px;
+  width: 85px;
+}
+
+.buttonBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.ceButton{
+  background-color: black;
+  color: gold;
+  padding: 10px;
+  margin: 10px;
+  width: 75px;
+  text-align: center;
+}
+
+.ceButton:hover{
+  cursor: pointer;
+  background-color: #FFD700;
+  color: black;
+  box-shadow: 2px 2px 2px black;
+
+
+
+}

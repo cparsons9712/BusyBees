@@ -57,6 +57,7 @@ export class TaskService {
       throw new NotFoundException(`Task with ID ${id} not found.`);
     }
 
+    task.blockId = createTaskDto.blockId; // This can be null
     if (createTaskDto.blockId === 0) task.blockId = null;
 
     await this.taskRepository.save(task);
