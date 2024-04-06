@@ -100,5 +100,35 @@ export const useEditTask = () => {
 }
 
 export const useDeleteTask = () => {
+  const queryClient = useQueryClient();
+  const {hideModal} =useModal()
 
+  const fetchDeleteTask = async ({ id }) => {
+    try {
+      const response = await axios.delete(`/${id}`, { withCredentials: true });
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        throw new Error(error.response.data.message || "An error occurred while deleting the block.");
+      } else if (error.request) {
+        console.log(error.request);
+        throw new Error("No response was received when attempting to delete the block.");
+      } else {
+        console.log('Error', error.message);
+        throw new Error("An error occurred while setting up the request to delete the block.");
+      }
+    }
+  };
+
+  const mutation = useMutation(fetchDeleteTask, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["unassignedTask"])
+      queryClient.invalidateQueries(['activeBlocks']);
+      queryClient.invalidateQueries(['allBlocks']);
+      hideModal();
+    },
+
+  });
+
+  return mutation;
 }

@@ -1,24 +1,63 @@
-import { useDeleteBlock } from "../../Hooks/useBlockQueries"
-import { useModal } from "../../Context/Modal"
-import '../../Styling/confirmDelete.css'
+import { useDeleteBlock } from "../../Hooks/useBlockQueries";
+import { useModal } from "../../Context/Modal";
+import "../../Styling/confirmDelete.css";
+import { useDeleteTask } from "../../Hooks/useTaskQueries";
 
-const ConfirmDelete = ({resource}) => {
-    const { mutate, isError, error} = useDeleteBlock()
-    const {hideModal} = useModal()
+const ConfirmDelete = ({ resource }) => {
+  const {
+    mutate: deleteBlock,
+    isError: blockIsError,
+    error: blockError,
+  } = useDeleteBlock();
+  const {
+    mutate: deleteTask,
+    isError: taskIsError,
+    error: taskError,
+  } = useDeleteTask();
+  const { hideModal } = useModal();
 
-    return (
-        <div className="confirmDelete">
-           <h2 className="cursive caution">Caution!!!</h2>
-            <p className="handwriting deleteText">Deleting this {resource.type} is permanent and can not be reversed. </p>
-            <div className="handwriting deleteText">Are you sure you want to delete the {resource.type} "{resource.title}"?  </div>
-            <div className="deleteBtnBar">
-                <button onClick={hideModal} className="handwriting deleteText deleteBtn">Keep it</button>
-                <button onClick={()=>{mutate({id: +resource.id})}} className="handwriting deleteText deleteBtn">Delete it</button>
-            </div>
-            {isError && <div> {error.message} </div>}
+  const handleDelete = () => {
+    switch (resource.type) {
+      case "block":
+        deleteBlock({ id: +resource.id });
+        break;
+      case "task":
+        deleteTask({ id: +resource.id });
+        break;
+      default:
+        break;
+    }
+  };
 
-        </div>
-    )
-}
+  return (
+    <div className="confirmDelete">
+      <h2 className="cursive caution">Caution!!!</h2>
+      <p className="handwriting deleteText">
+        Deleting this {resource.type} is permanent and can not be reversed.{" "}
+      </p>
+      <div className="handwriting deleteText">
+        Are you sure you want to delete the {resource.type} "{resource.title}"?{" "}
+      </div>
+      <div className="deleteBtnBar">
+        <button
+          onClick={hideModal}
+          className="handwriting deleteText deleteBtn"
+        >
+          Keep it
+        </button>
+        <button
+          onClick={() => {
+            handleDelete();
+          }}
+          className="handwriting deleteText deleteBtn"
+        >
+          Delete it
+        </button>
+      </div>
+      {blockIsError && <div> {blockError.message} </div>}
+      {taskIsError && <div> {taskError.message} </div>}
+    </div>
+  );
+};
 
-export default ConfirmDelete
+export default ConfirmDelete;

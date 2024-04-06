@@ -140,8 +140,11 @@
 }
 .dashTaskCont {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  max-height: 80%;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .dashTask {
