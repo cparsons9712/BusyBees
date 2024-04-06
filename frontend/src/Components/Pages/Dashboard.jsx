@@ -71,10 +71,11 @@ const Dashboard = () => {
           </div>
 
           <div class="hexCenter"></div>
-          <div className="hexLeft"></div>
+          <div class="hexborder"></div>
+          {/* <div className="hexLeft"></div>
           <div className="hexLeftBorder"></div>
           <div className="hexright"></div>
-          <div className="hexrightBorder"></div>
+          <div className="hexrightBorder"></div> */}
         </div>
 
         <div className="dashTextCont"></div>
@@ -86,8 +87,10 @@ const Dashboard = () => {
         <div className="dashTaskCont">
           {currBlock
             ? currBlock.tasks?.map((task) => (
-                <div className="dashTask handwriting" key={task.id}>
-                  {task.title}
+                <div className="dashTask" key={task.id}>
+                  <div className="checkOffDash"> </div>
+                  <div className="handwriting"> {task.title}</div>
+
                 </div>
               ))
             : unassignedTask?.map((task) => (
