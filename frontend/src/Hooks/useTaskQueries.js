@@ -65,6 +65,8 @@ export const useEditTask = () => {
 
   const fetchEditTask = async ({ id, payload }) => {
     try {
+      console.log("In hook try:: ")
+      console.log("ID: ", id, "PAYLOAD: ", payload)
       const response = await axios.put(`/${id}`, payload, {
         withCredentials: true,
       });

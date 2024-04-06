@@ -57,8 +57,19 @@ export class TaskService {
       throw new NotFoundException(`Task with ID ${id} not found.`);
     }
 
-    task.blockId = createTaskDto.blockId; // This can be null
-    if (createTaskDto.blockId === 0) task.blockId = null;
+    // we are going to excplicitly state what is changing because
+    // it fixes a frustrating bug where the blockId either wont update
+    // or throws an error when it changes
+
+    task.title = createTaskDto.title;
+    task.repeatFrequency = createTaskDto.repeatFrequency;
+    task.timeUnit = createTaskDto.timeUnit;
+    task.status = createTaskDto.status;
+    if (createTaskDto.blockId === 0) {
+      task.blockId = null;
+    } else {
+      task.blockId = createTaskDto.blockId;
+    }
 
     await this.taskRepository.save(task);
 

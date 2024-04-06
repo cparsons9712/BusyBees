@@ -53,6 +53,8 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
     if (typeForm === "Create") {
       createMutate({ payload });
     } else {
+      console.log('In edit onsubmit: ')
+      console.log("ID: ", taskDetails.id, 'PAYLOAD: ', payload )
       editMutate({ id: taskDetails.id, payload });
     }
   };
