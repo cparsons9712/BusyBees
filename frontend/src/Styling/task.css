@@ -46,7 +46,7 @@
 
 }
 .TPaddTaskButton {
-  background-color: #fcce14;
+  background-color: #FFD700;
   color: black;
   width: 100px;
   height: 25px;
@@ -59,7 +59,7 @@
 }
 .TPaddTaskButton:hover {
   font-weight: 900;
-  background-color: rgb(252, 215, 7);
+  background-color: #f7db39;
 }
 
 .taskBlockInfoCont {
@@ -121,7 +121,7 @@
 
 }
 .taskTitle{
-    background-color: rgba(247, 211, 5, 0.758);
+    background-color: #FFD700;
     width: 80%;
     margin: 10px;
     padding: 10px;
@@ -131,5 +131,5 @@
     cursor: pointer;
 }
 .taskTitle:hover{
-    font-weight: 900;background-color: rgba(247, 211, 5, 0.567);
+    font-weight: 900;background-color: #ffd900cd;
 }

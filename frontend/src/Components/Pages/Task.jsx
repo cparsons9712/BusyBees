@@ -39,7 +39,7 @@ export default function Task() {
                     </div>
                     <div className="taskforBlockContainer">
                         {unassignedTask?.map((task)=>{ return (
-                            <div className="taskTitle" onClick={()=>
+                            <div key={`TASK${task.id}`} className="taskTitle" onClick={()=>
                                 showModal(<TaskDetails task={task} />, 'gold')}>
                                     {task.title }
                             </div>)
@@ -50,18 +50,9 @@ export default function Task() {
                     </div>
 
 
-
-
-
-
-
-
-
-
-
                 {allBlocks.map((block)=> {
                     return (
-                        <div className="taskBlockRow">
+                        <div key={`BLOCK${block.id}`} className="taskBlockRow">
 
 
                             <div className="taskBlockInfoCont">
@@ -77,7 +68,7 @@ export default function Task() {
                                     {buildWeekdayBar(block, "rgba(247, 211, 5, 0.758)")}
                                 </div>
 
-                                <div onClick={()=>showModal(<CreateEditTask/>, 'gold')} className="TPaddTaskButton handwriting">
+                                <div onClick={()=>showModal(<CreateEditTask blockId={block.id}/>, 'gold')} className="TPaddTaskButton handwriting">
                             Add task
                         </div>
                             </div>
@@ -86,7 +77,7 @@ export default function Task() {
                             <div className="taskforBlockContainer">
                             {block.tasks && block.tasks.length > 0 ? (
                                 block.tasks.map((task) => (
-                                    <div className="taskTitle" onClick={()=> showModal(<TaskDetails task={task} blockTitle={block.title}/>, 'gold')}>{task.title}</div>
+                                    <div key={`TASK${task.id}`} className="taskTitle" onClick={()=> showModal(<TaskDetails task={task} blockTitle={block.title}/>, 'gold')}>{task.title}</div>
                                 ))
                             ) : (
                                 <div>No assigned task</div>

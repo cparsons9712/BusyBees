@@ -17,9 +17,10 @@ export class CreateTaskDto {
   })
   title: string;
 
-  @IsOptional() // This indicates that the property is not required
-  @IsNumber({}, { message: 'Block ID must be a number' })
-  blockId?: number;
+  @IsOptional()
+  @IsNumber({}, { message: 'Block ID must be a number', each: true })
+  @ValidateIf((o) => o.blockId !== null)
+  blockId?: number | null;
 
   @IsOptional()
   @ValidateIf((o) => o.timeUnit != null)

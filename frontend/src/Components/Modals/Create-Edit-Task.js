@@ -55,7 +55,7 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const payload = { title, blockId, repeatFrequency, timeUnit };
+    const payload = { title, blockId : +blockId , repeatFrequency, timeUnit };
     if (typeForm === "Create") {
       createMutate({ payload });
     } else {
@@ -106,10 +106,10 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
         <div
         // className="form-group blockFormGroup"
         >
-          <select value={blockId} onChange={(e) => setBlockId(e.target.value)}>
+          <select value={blockId} onChange={(e) => setBlockId(e.target.value === "0" ? null : e.target.value)}>
             <option value="0">None</option>
             {allBlocks?.map((block) => (
-              <option value={block.id}>{block.title}</option>
+              <option key={`BLOCK-OPTION-${block.id}`}value={block.id}>{block.title}</option>
             ))}
           </select>
         </div>

@@ -43,25 +43,30 @@ export class TaskService {
 
   // MakeaTask
   async createNewTask(createTaskDto: CreateTaskDto, userId: number) {
-    const newTask = this.taskRepository.create({ ...createTaskDto, userId });
+    const newTask = await this.taskRepository.create({
+      ...createTaskDto,
+      userId,
+    });
     return this.taskRepository.save(newTask);
   }
 
   // EditATask
   async editTask(id: number, createTaskDto: CreateTaskDto, userId) {
-    const task = this.taskRepository.findOne({ where: { id, userId } });
+    const task = await this.taskRepository.findOne({ where: { id, userId } });
     if (!task) {
       throw new NotFoundException(`Task with ID ${id} not found.`);
     }
 
-    await this.taskRepository.update(id, createTaskDto);
+    if (createTaskDto.blockId === 0) task.blockId = null;
+
+    await this.taskRepository.save(task);
 
     return this.taskRepository.findOne({ where: { id } });
   }
 
   // Mark a Task Completed
   async completeTask(id: number, userId) {
-    const task = this.taskRepository.findOne({ where: { id, userId } });
+    const task = await this.taskRepository.findOne({ where: { id, userId } });
     if (!task) {
       throw new NotFoundException(`Task with ID ${id} not found.`);
     }
