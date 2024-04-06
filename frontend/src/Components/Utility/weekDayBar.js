@@ -3,14 +3,11 @@ import { useState } from "react";
 export const buildWeekdayBar = (currBlock, activeColor) => {
     const strong = {
         color: activeColor,
-        fontWeight: "bold",
-        margin: "2px",
-        fontSize: "20px",
+  
+
     }
     const weak = {
             color: "grey",
-            margin: "2px",
-            fontSize: "20px",
         }
 
 
