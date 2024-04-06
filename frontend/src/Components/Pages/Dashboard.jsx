@@ -10,7 +10,7 @@ import moment from "moment";
 import { AuthData } from "../../Auth/AuthWrapper";
 import { useState, useEffect } from "react";
 import { useActiveBlocks } from "../../Hooks/useBlockQueries";
-import { useGetUnassignedTask } from "../../Hooks/useTaskQueries";
+import { useGetUnassignedTask, useMarkComplete } from "../../Hooks/useTaskQueries";
 import "../../Styling/dash.css";
 import Loading from "./Loading";
 
@@ -30,6 +30,7 @@ const Dashboard = () => {
     error: unassignedError,
   } = useGetUnassignedTask();
   const queryClient = useQueryClient();
+  const {mutate, isError: markCompleteIsError, error: markCompleteError} = useMarkComplete()
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -88,15 +89,17 @@ const Dashboard = () => {
           {currBlock
             ? currBlock.tasks?.map((task) => (
                 <div className="dashTask" key={task.id}>
-                  <div className="checkOffDash"> </div>
+                  <div className="checkOffDash" onClick={()=>mutate(task.id)}> </div>
                   <div className="handwriting"> {task.title}</div>
 
                 </div>
               ))
             : unassignedTask?.map((task) => (
-                <div className="dashTask handwriting" key={task.id}>
-                  {task.title}
-                </div>
+              <div className="dashTask" key={task.id}>
+              <div className="checkOffDash" onClick={()=>mutate(task.id)}> </div>
+              <div className="handwriting"> {task.title}</div>
+
+            </div>
               ))}
         </div>
       </div>

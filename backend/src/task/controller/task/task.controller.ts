@@ -40,7 +40,7 @@ export class TaskController {
     return await this.taskService.getTaskById(id, user.id);
   }
 
-  // MakeaTask
+  // Make a Task
   @UseGuards(AuthenticatedGuard)
   @Post('')
   async createNewTask(
@@ -54,11 +54,10 @@ export class TaskController {
   @UseGuards(AuthenticatedGuard)
   @Put('/complete/:id')
   async checkCompleted(
-    @Body() taskDto: CreateTaskDto,
     @GetUser() user: User,
     @Param('id', ParseIntPipe) id: number,
   ) {
-    return await this.taskService.completeTask(id, taskDto, user.id);
+    return await this.taskService.completeTask(id, user.id);
   }
 
   //activate reoccuring task

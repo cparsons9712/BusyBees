@@ -132,3 +132,43 @@ export const useDeleteTask = () => {
 
   return mutation;
 }
+
+export const useMarkComplete = () => {
+  const queryClient = useQueryClient();
+  const { hideModal } = useModal();
+
+  const fetchCompleteTask = async ({ id }) => {
+    try {
+      const response = await axios.put(`/complete/${id}`, {
+        withCredentials: true,
+      });
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        throw new Error(
+          error.response.data.message ||
+            "An error occurred while marking the task complete."
+        );
+      } else if (error.request) {
+        console.log(error.request);
+        throw new Error(
+          "No response was received when attempting mark the task complete."
+        );
+      } else {
+        console.log("Error", error.message);
+        throw new Error(
+          "An error occurred while setting up the request to mark the task complete."
+        );
+      }
+    }
+  }
+  const mutation = useMutation(fetchCompleteTask, {
+    onSuccess: () => {
+        queryClient.invalidateQueries(["unassignedTask"])
+        queryClient.invalidateQueries(['activeBlocks']);
+        queryClient.invalidateQueries(['allBlocks']);
+        hideModal();
+    }
+  });
+  return mutation;
+}

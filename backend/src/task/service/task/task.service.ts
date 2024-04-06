@@ -60,13 +60,13 @@ export class TaskService {
   }
 
   // Mark a Task Completed
-  async completeTask(id: number, createTaskDto: CreateTaskDto, userId) {
+  async completeTask(id: number, userId) {
     const task = this.taskRepository.findOne({ where: { id, userId } });
     if (!task) {
       throw new NotFoundException(`Task with ID ${id} not found.`);
     }
 
-    const completedTask = buildCompletedTask(createTaskDto);
+    const completedTask = buildCompletedTask(task);
 
     await this.taskRepository.update(id, completedTask);
 
