@@ -133,42 +133,43 @@ export const useDeleteTask = () => {
   return mutation;
 }
 
-export const useMarkComplete = () => {
+export const useCompleteTask = () => {
   const queryClient = useQueryClient();
-  const { hideModal } = useModal();
+  const {hideModal} =useModal()
 
   const fetchCompleteTask = async ({ id }) => {
-    try {
-      const response = await axios.put(`/complete/${id}`, {
+    try { // WITHOUT THE CONFIG TYPED OUT LIKE THIS THE REQUEST FAILS AS UNAUTHORIZED. DO NOT CHANGE
+      const requestConfig = {
+        method: 'put',
+        url: `/complete/${id}`,
         withCredentials: true,
-      });
+      };
+      const response = await axios(requestConfig);
+
+
       return response.data;
     } catch (error) {
       if (error.response) {
-        throw new Error(
-          error.response.data.message ||
-            "An error occurred while marking the task complete."
-        );
+        throw new Error(error.response.data.message || "An error occurred while deleting the block.");
       } else if (error.request) {
         console.log(error.request);
-        throw new Error(
-          "No response was received when attempting mark the task complete."
-        );
+        throw new Error("No response was received when attempting to delete the block.");
       } else {
-        console.log("Error", error.message);
-        throw new Error(
-          "An error occurred while setting up the request to mark the task complete."
-        );
+        console.log('Error', error.message);
+        throw new Error("An error occurred while setting up the request to delete the block.");
       }
     }
-  }
+  };
+
   const mutation = useMutation(fetchCompleteTask, {
     onSuccess: () => {
-        queryClient.invalidateQueries(["unassignedTask"])
-        queryClient.invalidateQueries(['activeBlocks']);
-        queryClient.invalidateQueries(['allBlocks']);
-        hideModal();
-    }
+      queryClient.invalidateQueries(["unassignedTask"])
+      queryClient.invalidateQueries(['activeBlocks']);
+      queryClient.invalidateQueries(['allBlocks']);
+      hideModal();
+    },
+
   });
+
   return mutation;
 }

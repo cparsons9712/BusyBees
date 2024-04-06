@@ -10,11 +10,13 @@ import moment from "moment";
 import { AuthData } from "../../Auth/AuthWrapper";
 import { useState, useEffect } from "react";
 import { useActiveBlocks } from "../../Hooks/useBlockQueries";
-import { useGetUnassignedTask, useMarkComplete } from "../../Hooks/useTaskQueries";
+import { useGetUnassignedTask, } from "../../Hooks/useTaskQueries";
 import "../../Styling/dash.css";
 import Loading from "./Loading";
+import { useCompleteTask } from "../../Hooks/useTaskQueries";
 
 const Dashboard = () => {
+  const {mutate} = useCompleteTask();
   const [time, setTime] = useState(moment().format("h:mm:ss A"));
   const { user } = AuthData();
   const {
@@ -30,7 +32,6 @@ const Dashboard = () => {
     error: unassignedError,
   } = useGetUnassignedTask();
   const queryClient = useQueryClient();
-  const {mutate, isError: markCompleteIsError, error: markCompleteError} = useMarkComplete()
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -58,6 +59,10 @@ const Dashboard = () => {
         Error: {activeError.message}, {unassignedError.message}
       </div>
     );
+
+    const markComplete = (id) => {
+      mutate({id: +id})
+    }
 
   return (
     <div className="dashCont">
@@ -89,14 +94,14 @@ const Dashboard = () => {
           {currBlock
             ? currBlock.tasks?.map((task) => (
                 <div className="dashTask" key={task.id}>
-                  <div className="checkOffDash" onClick={()=>mutate(task.id)}> </div>
+                  <div className="checkOffDash" onClick={()=>{markComplete(task.id)}}> </div>
                   <div className="handwriting"> {task.title}</div>
 
                 </div>
               ))
             : unassignedTask?.map((task) => (
               <div className="dashTask" key={task.id}>
-              <div className="checkOffDash" onClick={()=>mutate(task.id)}> </div>
+              <div className="checkOffDash" onClick={()=>{markComplete(task.id)}}> </div>
               <div className="handwriting"> {task.title}</div>
 
             </div>
