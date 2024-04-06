@@ -27,7 +27,7 @@ export class Task {
   })
   blockId: number;
 
-  @ManyToOne(() => Block, (block) => block.tasks)
+  @ManyToOne(() => Block, (block) => block.tasks, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'blockId' }) // This matches the column name you defined
   block: Block;
 
