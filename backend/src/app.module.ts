@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 import { BlocksModule } from './blocks/blocks.module';
 import { TaskModule } from './task/task.module';
+import { SubtaskModule } from './subtask/subtask.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { TaskModule } from './task/task.module';
     }),
     BlocksModule,
     TaskModule,
+    SubtaskModule,
   ],
 })
 export class AppModule {}
