@@ -24,22 +24,13 @@ export class LocalAuthGuard extends AuthGuard('local') {
 // checks if a user is logged in and restricts access if not
 export class AuthenticatedGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<any> {
-    console.log('In the authenticated guard');
     const req = context.switchToHttp().getRequest<Request>();
-    console.log('****************************************************')
-    console.log('Is Authenticated:', req.isAuthenticated());
 
     // Log relevant parts of the request for debugging
     // Note: Be careful with logging sensitive information in production
-    console.log('Headers:', JSON.stringify(req.headers));
-    console.log('Cookies:', JSON.stringify(req.cookies)); // Make sure your app uses cookie-parser middleware
-    console.log('Session:', JSON.stringify(req.session));
 
     // You can also log specific headers that are relevant to your authentication mechanism, e.g., Authorization header
-    if (req.headers.authorization) {
-      console.log('Authorization Header:', req.headers.authorization);
-    }
-    console.log('****************************************************')
+
     if (req.isAuthenticated()) {
       return true;
     } else {

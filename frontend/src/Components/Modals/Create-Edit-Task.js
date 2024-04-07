@@ -3,7 +3,7 @@ import { useAllBlocks } from "../../Hooks/useBlockQueries";
 import { useModal } from "../../Context/Modal";
 import { useCreateTask } from "../../Hooks/useTaskQueries";
 import { useEditTask } from "../../Hooks/useTaskQueries";
-import '../../Styling/task.css'
+import "../../Styling/task.css";
 
 const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
   const [typeForm, setTypeForm] = useState("Create");
@@ -49,20 +49,21 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const payload = { title, blockId : +blockId , repeatFrequency: +repeatFrequency, timeUnit: +timeUnit };
+    const payload = {
+      title,
+      blockId: +blockId,
+      repeatFrequency: +repeatFrequency,
+      timeUnit: +timeUnit,
+    };
     if (typeForm === "Create") {
       createMutate({ payload });
     } else {
-      console.log('In edit onsubmit: ')
-      console.log("ID: ", taskDetails.id, 'PAYLOAD: ', payload )
       editMutate({ id: taskDetails.id, payload });
     }
   };
 
-
   return (
     <div className="ceContainer">
-
       <div className="ceHeader">
         <div className="ceTitle cursive">{typeForm} a Task</div>
       </div>
@@ -76,9 +77,7 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
           </ul>
         )}
 
-        <div
-        className="form-group taskFormGroup"
-        >
+        <div className="form-group taskFormGroup">
           <input
             className="input"
             placeholder="Title"
@@ -90,43 +89,33 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
               setTitle(e.target.value);
             }}
           />
-          <label
-            htmlFor="title"
-            id="blockTitleLabel"
-            className="form-label"
-          >
+          <label htmlFor="title" id="blockTitleLabel" className="form-label">
             Title
           </label>
         </div>
         {/* Block Selection input */}
         <div class="select-group cursive blockSelect">
-            <div className="ceTaskBlockLabel">Block</div>
+          <div className="ceTaskBlockLabel">Block</div>
 
-          <select value={blockId} onChange={(e) =>
-            setBlockId(e.target.value === "0" ? null : e.target.value)}>
+          <select
+            value={blockId}
+            onChange={(e) =>
+              setBlockId(e.target.value === "0" ? null : e.target.value)
+            }
+          >
+            <option value="0">None</option>
 
-                  <option value="0">
-                    None
-                  </option>
-
-                {allBlocks?.map((block) => (
-
-                  <option key={`BLOCK-OPTION-${block.id}`}value={block.id}>
-                    {block.title}
-                  </option>
-
-              ))}
-
+            {allBlocks?.map((block) => (
+              <option key={`BLOCK-OPTION-${block.id}`} value={block.id}>
+                {block.title}
+              </option>
+            ))}
           </select>
         </div>
 
-
-
         {/* Repeat Frequency Selection input */}
         <div className="ceTaskReapeatBar">
-          <div className="ceRepeatLabel">
-            Repeat Every
-          </div>
+          <div className="ceRepeatLabel">Repeat Every</div>
 
           <div>
             <input
@@ -135,12 +124,12 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
               value={repeatFrequency}
               onChange={(e) => {
                 setRepeatFrequency(e.target.value);
-            }}/>
+              }}
+            />
           </div>
 
           <div className="select-group timeUnitSelect">
             <select
-
               value={timeUnit}
               onChange={(e) => setTimeUnit(e.target.value)}
             >
@@ -151,14 +140,15 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
               <option value="91"> Quarter(s)</option>
             </select>
           </div>
-
-
         </div>
 
-
         <div className="buttonBar">
-          <div onClick={hideModal} className="ceButton">Cancel</div>
-          <div onClick={onSubmit} className="ceButton">Submit</div>
+          <div onClick={hideModal} className="ceButton">
+            Cancel
+          </div>
+          <div onClick={onSubmit} className="ceButton">
+            Submit
+          </div>
         </div>
       </form>
     </div>

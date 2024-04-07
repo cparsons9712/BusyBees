@@ -57,14 +57,12 @@ export class TaskController {
   //   @GetUser() user,
   //   @Param('id', ParseIntPipe) id: number,
   // ) {
-  //   console.log('Got to controller');
-  //   console.log(user);
+
   //   return await this.taskService.completeTask(id, user.id);
   // }
   @UseGuards(AuthenticatedGuard)
   @Put('/complete/:id')
   async completeTask(@GetUser() user, @Param('id', ParseIntPipe) id: number) {
-    console.log(user);
     return await this.taskService.completeTask(id, user.id);
   }
 

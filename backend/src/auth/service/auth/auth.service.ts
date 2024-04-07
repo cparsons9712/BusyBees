@@ -36,6 +36,6 @@ export class AuthService {
 
   // const sendResetEmail(email){
   //   const user = await this.usersService.findLogIn(email);
-  //   console.log(user);
+
   // }
 }
