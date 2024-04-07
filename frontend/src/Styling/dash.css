@@ -46,14 +46,14 @@
   box-sizing: border-box;
   border-top: 6px solid black;
   border-bottom: 6px solid black; */
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   background-color: #E7C508;
   height: 220px;
   width: 300px;
   z-index: 2;
 }
 .hexborder{
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   background-color: black;
   height: 225px;
   width: 305px;
