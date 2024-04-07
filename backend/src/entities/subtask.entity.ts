@@ -5,7 +5,6 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Block } from './block.entity';
 import { User } from './user.entity';
 import { Task } from './task.entity';
 
@@ -23,5 +22,12 @@ export class Subtask {
   @JoinColumn({ name: 'userId' })
   user: User;
 
-  
+  @Column({
+    nullable: false,
+  })
+  taskId: number;
+
+  @ManyToOne(() => Task, (task) => task.subtasks)
+  @JoinColumn({ name: 'taskId' })
+  task: Task;
 }
