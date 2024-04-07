@@ -1,0 +1,49 @@
+.tdSubtaskcont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tdToggleSubtask{
+    background-color: black;
+    color: gold;
+    width: 80%;
+    padding: 5px;
+    text-align: center;
+    margin-top: 30px;
+    border-radius: 3px;
+}
+
+.tdSubtaskList{
+    display: flex;
+    background-color: palegoldenrod;
+    width: 78%;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+
+}
+
+.addSTButton{
+    background-color: black;
+    color: gold;
+    width: 40%;
+    text-align: center;
+    border-radius: 3px;
+    margin: 10px;
+    font-size: 20px;
+}
+
+.tdSubtaskList{
+    display: flex;
+    flex-direction: column;
+}
+
+.stTitle{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin: 5px;
+    width: 90%;
+    text-align: center;
+}

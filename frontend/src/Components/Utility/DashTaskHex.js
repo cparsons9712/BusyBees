@@ -17,7 +17,8 @@ const DashTaskHex = ({ task, colorClass }) => {
 
     }, [task]); // Depend on `subtasks` to recalculate when they change
 
-    const markComplete = () => {
+    const markComplete = (event) => {
+        event.stopPropagation()
         if(task?.subtasks?.length){
             alert('THERE IS SUBTASK')
             console.log(task.id)
