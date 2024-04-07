@@ -8,6 +8,7 @@ export const useActiveBlocks = () => {
     return response.data;
   };
 
+
   // Using a more descriptive query key and returning all relevant data and states.
   const {
     data: currBlock,

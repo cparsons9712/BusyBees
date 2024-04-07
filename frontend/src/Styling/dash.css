@@ -173,14 +173,19 @@
 
 .checkOffDash {
 
-  width: 15px; /* Adjust based on your needs */
-  height: 20px; /* Adjust based on your needs */
+  width: 25px; /* Adjust based on your needs */
+  height: 25px; /* Adjust based on your needs */
   cursor: pointer;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(208, 207, 207);;
+  font-size: 12px;
   margin-right: 10px;
 
+
+}
+.whiteHex{
+    background-color: rgb(208, 207, 207);
+    color: black;
 }
