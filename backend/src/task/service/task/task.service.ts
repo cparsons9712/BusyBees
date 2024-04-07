@@ -38,6 +38,7 @@ export class TaskService {
   async getAllUnassignedTask(userId) {
     return await this.taskRepository.find({
       where: { blockId: IsNull(), userId },
+      relations: ['subtasks'],
     });
   }
 
