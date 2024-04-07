@@ -2,6 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { IsUrl, Matches } from 'class-validator';
 import { Block } from './block.entity';
 import { Task } from './task.entity';
+import { Subtask } from './subtask.entity';
 
 @Entity()
 export class User {
@@ -41,4 +42,7 @@ export class User {
 
   @OneToMany(() => Task, (task) => task.user)
   tasks: Task[];
+
+  @OneToMany(() => Subtask, (subtask) => subtask.user)
+  subtasks: Subtask[];
 }

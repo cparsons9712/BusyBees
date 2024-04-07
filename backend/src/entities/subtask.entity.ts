@@ -13,4 +13,15 @@ import { Task } from './task.entity';
 export class Subtask {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column({
+    nullable: false,
+  })
+  userId: number;
+
+  @ManyToOne(() => User, (user) => user.subtasks)
+  @JoinColumn({ name: 'userId' })
+  user: User;
+
+  
 }
