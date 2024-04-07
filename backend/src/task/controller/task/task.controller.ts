@@ -50,16 +50,6 @@ export class TaskController {
     return await this.taskService.createNewTask(createTaskDto, user.id);
   }
 
-  // Mark a Task Completed
-  // @UseGuards(AuthenticatedGuard)
-  // @Put('/complete/:id')
-  // async checkCompleted(
-  //   @GetUser() user,
-  //   @Param('id', ParseIntPipe) id: number,
-  // ) {
-
-  //   return await this.taskService.completeTask(id, user.id);
-  // }
   @UseGuards(AuthenticatedGuard)
   @Put('/complete/:id')
   async completeTask(@GetUser() user, @Param('id', ParseIntPipe) id: number) {

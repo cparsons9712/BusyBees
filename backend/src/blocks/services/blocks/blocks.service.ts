@@ -87,8 +87,8 @@ export class BlocksService {
   }
 
   async editBlock(id: number, blockDto: BlockDto, userId: number) {
-    // First, verify the block being edited exists and belongs to the user
     await checkAvailability(this.blockRepository, blockDto, userId, id);
+
     const block = await this.blockRepository
       .createQueryBuilder('block')
       .where('block.userId = :userId', { userId })
