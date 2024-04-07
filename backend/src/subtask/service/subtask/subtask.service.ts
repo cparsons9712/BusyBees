@@ -42,4 +42,8 @@ export class SubtaskService {
     await this.subtaskRepo.delete(id);
     return { message: 'subtask deleted successfully' };
   }
+
+  async getSubtask(taskId: number, userId: number) {
+    return await this.subtaskRepo.find({ where: { taskId, userId } });
+  }
 }

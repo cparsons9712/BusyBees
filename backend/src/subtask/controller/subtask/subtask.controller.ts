@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   ParseIntPipe,
   Post,
@@ -18,6 +19,15 @@ import { GetUser } from 'src/utils/get-user.decorator';
 @Controller('subtask')
 export class SubtaskController {
   constructor(private readonly subtaskService: SubtaskService) {}
+
+  @UseGuards(AuthenticatedGuard)
+  @Get(':id')
+  async getSubtaskByTaskId(
+    @GetUser() user: User,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    return await this.subtaskService.getSubtask(id, user.id);
+  }
 
   @UseGuards(AuthenticatedGuard)
   @Post('')

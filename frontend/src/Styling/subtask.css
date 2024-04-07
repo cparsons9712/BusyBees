@@ -39,6 +39,8 @@
     font-size: 20px;
 }
 
+
+
 .tdSubtaskList{
     display: flex;
     flex-direction: column;
@@ -63,6 +65,14 @@
 .STButton{
     background-color: black;
     color: gold;
+    padding: 3px;
+    width: 50px;
+    text-align: center;
+}
+
+.disabledButton{
+    background-color: grey;
+    color: rgba(0, 0, 0, 0.654);
     padding: 3px;
     width: 50px;
     text-align: center;

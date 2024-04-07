@@ -7,8 +7,7 @@ import SubtaskList from "../Utility/SubtaskList";
 
 const TaskDetails = ({ task, blockTitle }) => {
   const [statusColor, setStatusColor] = useState();
-  const [showSubtask, setShowSubtask] = useState(false)
-  const [showAddST, setShowAddST] = useState(false);
+
   const { showModal } = useModal();
 
   const timeUnitConversion = {
@@ -25,57 +24,6 @@ const TaskDetails = ({ task, blockTitle }) => {
       setStatusColor("grey");
     }
   }, [task.status]);
-
-  const showAddSubtask = () => {
-    if(showAddST){
-      return(
-        <div className="addStForm">
-          <div className="addStTitleLabel">Title</div>
-          <textarea
-            placeholder="Subtask Title"
-            maxLength="60"
-            className="stTitleInput"
-          />
-          <div className="STButtonBar">
-            <div className="STButton" onClick={()=>setShowAddST(false)}>
-              Cancel
-            </div>
-            <div className="STButton">Save</div>
-          </div>
-        </div>
-      )
-    }
-  }
-
-  const showSubtaskList = () => {
-    if (showSubtask) {
-      return (
-        <div className="tdSubtaskList">
-        {getSubtask()}
-
-        {showAddST ?
-          showAddSubtask()
-            :
-          <div
-            className="addSTButton"
-            onClick={()=>setShowAddST(true)}
-          >
-            +
-          </div>
-        }
-      </div>
-      )
-    }
-  }
-
-
-  const getSubtask = () => {
-    return task?.subtasks?.length ? (
-      task.subtasks.map((st) => <div className="stTitle">{st.title}</div>)
-    ) : (
-      <div className="stTitle">No subtask to display </div>
-    );
-  };
 
   return (
     <div className="ceContainer">
@@ -102,16 +50,7 @@ const TaskDetails = ({ task, blockTitle }) => {
             : "Never"}
         </div>
 
-        <div className="tdSubtaskcont">
-          <div className="tdToggleSubtask" onClick={()=>setShowSubtask(!showSubtask)}>
-            <div></div>
-            <div>Subtask</div>
-            <div>{showSubtask ? '-' : '+'} </div>
-          </div>
-
-          {showSubtaskList()}
-
-        </div>
+        <SubtaskList task={task} />
 
         <div className="taskBtnBar">
           <button className="tdButton">Mark Complete</button>
