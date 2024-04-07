@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Param,
   ParseIntPipe,
   Post,
@@ -35,5 +36,14 @@ export class SubtaskController {
     @Param('id', ParseIntPipe) id: number,
   ) {
     return await this.subtaskService.editSubtask(id, subtaskDto, user.id);
+  }
+
+  @UseGuards(AuthenticatedGuard)
+  @Delete(':id')
+  async deleteSubtask(
+    @GetUser() user: User,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    return await this.subtaskService.deleteSubtask(id, user.id);
   }
 }

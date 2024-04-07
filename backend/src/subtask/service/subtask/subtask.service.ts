@@ -27,11 +27,19 @@ export class SubtaskService {
       throw new NotFoundException(`Subtask with ID ${id} not found.`);
     }
 
-    await this.subtaskRepo.update(
-      { id: subtask.id },
-      { ...subtask, ...subtaskDto },
-    );
+    await this.subtaskRepo.update(id, subtaskDto);
 
     return this.subtaskRepo.findOne({ where: { id } });
+  }
+
+  async deleteSubtask(id: number, userId: number) {
+    const subtask = await this.subtaskRepo.findOne({ where: { id, userId } });
+
+    if (!subtask) {
+      throw new NotFoundException(`Subtask with ID ${id} not found.`);
+    }
+
+    await this.subtaskRepo.delete(id);
+    return { message: 'subtask deleted successfully' };
   }
 }
