@@ -36,13 +36,20 @@
   top: 5px;
   width: 30px; /* Adjust based on your needs */
   height: 26px; /* Adjust based on your needs */
-  background-color: black;
   cursor: pointer;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.closeButton.black{
+  background-color: black;
   color: gold;
+}
+.closeButton.gold{
+  background-color: gold;
+  color: black;
+  border: none;
 }
 
 .closeButton:hover{

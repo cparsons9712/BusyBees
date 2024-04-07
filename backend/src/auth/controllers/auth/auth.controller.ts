@@ -50,7 +50,6 @@ export class AuthController {
 
   @Get('status')
   async getAuthStatus(@Req() req: Request) {
-    console.log('WHYYY');
     if (req.user) return { user: req.user };
     return { msg: 'No signed in user' };
   }
@@ -81,9 +80,8 @@ export class AuthController {
       const payload = { email, t };
 
       const token = this.authService.createToken(payload);
-      console.log('THE TOKEN: ', token);
+
       const url = this.authService.createResetURL(token);
-      console.log('THE URL: ', url);
 
       sendEmail(email, url);
 

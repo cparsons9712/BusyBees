@@ -41,11 +41,9 @@ export const sendEmail = async (email: string, url: string) => {
     subject: 'Forgotten Password Request',
     html: htmlContent,
   };
-  transporter.sendMail(mailOptions, (error, info) => {
+  transporter.sendMail(mailOptions, (error: any) => {
     if (error) {
       console.error('Error sending email: ', error);
-    } else {
-      console.log('Email sent: ', info.response);
     }
   });
 };

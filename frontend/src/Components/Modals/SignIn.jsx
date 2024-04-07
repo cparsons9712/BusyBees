@@ -31,11 +31,11 @@ const handleSubmit = async (e) => {
   }
 
   const switchToSignUp = () => {
-    showModal(<SignUp />)
+    showModal(<SignUp />, 'black')
   }
 
   const openResetPassword = () => {
-    showModal(<SendPWEmail />)
+    showModal(<SendPWEmail />, 'gold')
   }
 
   return (

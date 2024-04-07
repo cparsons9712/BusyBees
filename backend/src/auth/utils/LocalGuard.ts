@@ -25,6 +25,12 @@ export class LocalAuthGuard extends AuthGuard('local') {
 export class AuthenticatedGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<any> {
     const req = context.switchToHttp().getRequest<Request>();
+
+    // Log relevant parts of the request for debugging
+    // Note: Be careful with logging sensitive information in production
+
+    // You can also log specific headers that are relevant to your authentication mechanism, e.g., Authorization header
+
     if (req.isAuthenticated()) {
       return true;
     } else {

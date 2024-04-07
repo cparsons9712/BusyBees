@@ -4,10 +4,12 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
 import { Validate } from 'class-validator';
 import IsAfter from 'src/blocks/dto/create-block.dto/IsAfter';
+import { Task } from './task.entity';
 
 @Entity()
 export class Block {
@@ -63,4 +65,7 @@ export class Block {
 
   @Column({ default: true })
   isSaturday: boolean;
+
+  @OneToMany(() => Task, (task) => task.block)
+  tasks: Task[];
 }

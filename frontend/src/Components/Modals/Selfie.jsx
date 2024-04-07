@@ -18,11 +18,11 @@ export default function Selfie() {
 
 
   const openResetPassword = () => {
-    showModal(<SendPWEmail />);
+    showModal(<SendPWEmail />, 'gold');
   };
 
   const openEditProfile = () => {
-    showModal(<EditProfile />);
+    showModal(<EditProfile />, 'gold');
   };
 
   return (

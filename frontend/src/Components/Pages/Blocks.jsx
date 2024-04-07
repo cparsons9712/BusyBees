@@ -34,11 +34,11 @@ function Blocks() {
 
   const showBlockDetails = (event, currBlock) => {
     event.stopPropagation();
-    showModal(<BlockDetails currBlock={currBlock} />);
+    showModal(<BlockDetails currBlock={currBlock} />, 'gold');
   };
 
   const openNewBlockForm = () => {
-    showModal(<CreateEditBlock />);
+    showModal(<CreateEditBlock />, 'gold');
   };
 
   if (isLoading) return <div>Loading...</div>;

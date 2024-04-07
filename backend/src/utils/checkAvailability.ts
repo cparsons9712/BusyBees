@@ -17,7 +17,7 @@ export async function checkAvailability(
       startTime: createBlockDto.startTime,
       endTime: createBlockDto.endTime,
     });
-  console.log(id);
+
   // Conditionally exclude a block by ID if blockId is provided
   if (id !== undefined) {
     query = query.andWhere('block.id != :id', { id });

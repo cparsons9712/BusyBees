@@ -31,7 +31,7 @@ const SignUp = () => {
   });
 
   const switchToLogin = () => {
-    showModal(<SignIn />)
+    showModal(<SignIn />, 'black')
   }
 
 

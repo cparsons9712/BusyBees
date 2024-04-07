@@ -10,13 +10,11 @@ export default function SendPWEmail() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
 
     try {
       const response = await axios
         .post("/change-request", { email }, { withCredentials: true })
         .then((res) => {
-          console.log(res);
           setEmail("");
           hideModal();
         });
