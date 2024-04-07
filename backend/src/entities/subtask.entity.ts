@@ -30,4 +30,14 @@ export class Subtask {
   @ManyToOne(() => Task, (task) => task.subtasks)
   @JoinColumn({ name: 'taskId' })
   task: Task;
+
+  @Column({
+    nullable: false,
+  })
+  title: string;
+
+  @Column({
+    nullable: false,
+  })
+  status: boolean;
 }
