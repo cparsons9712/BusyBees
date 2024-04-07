@@ -3,10 +3,11 @@ import CreateEditTask from "./Create-Edit-Task";
 import ConfirmDelete from "./ConfirmDelete";
 import { useState, useEffect } from "react";
 import "../../Styling/subtask.css";
+import SubtaskList from "../Utility/SubtaskList";
 
 const TaskDetails = ({ task, blockTitle }) => {
   const [statusColor, setStatusColor] = useState();
-  const [showSubtask, setShowSubtask] = useState(true)
+  const [showSubtask, setShowSubtask] = useState(false)
   const [showAddST, setShowAddST] = useState(false);
   const { showModal } = useModal();
 
@@ -103,7 +104,9 @@ const TaskDetails = ({ task, blockTitle }) => {
 
         <div className="tdSubtaskcont">
           <div className="tdToggleSubtask" onClick={()=>setShowSubtask(!showSubtask)}>
-            Subtask
+            <div></div>
+            <div>Subtask</div>
+            <div>{showSubtask ? '-' : '+'} </div>
           </div>
 
           {showSubtaskList()}
