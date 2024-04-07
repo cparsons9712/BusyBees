@@ -49,7 +49,7 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const payload = { title, blockId : +blockId , repeatFrequency, timeUnit };
+    const payload = { title, blockId : +blockId , repeatFrequency: +repeatFrequency, timeUnit: +timeUnit };
     if (typeForm === "Create") {
       createMutate({ payload });
     } else {

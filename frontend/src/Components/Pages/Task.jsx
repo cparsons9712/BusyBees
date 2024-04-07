@@ -7,15 +7,21 @@ import { buildWeekdayBar } from "../Utility/weekDayBar";
 import { useModal } from "../../Context/Modal";
 import CreateEditTask from "../Modals/Create-Edit-Task";
 import TaskDetails from "../Modals/Task-Details";
+import { useState, useEffect } from "react";
 import '../../Styling/task.css'
 
 export default function Task() {
     const {unassignedTask, isLoading: uaTaskIsLoading, isError: uaTaskIsError, error: uaTaskError} = useGetUnassignedTask();
     const {allBlocks, isError: abIsError, isLoading: abIsLoading, error: abError} = useAllBlocks();
-    console.log(allBlocks)
+
     const {showModal} = useModal();
 
     if(uaTaskIsLoading || abIsLoading) return <Loading />
+
+    const getClass = (task) => {
+        if (task.status) return "taskTitle greyOut"
+        return "taskTitle gold"
+    }
 
     return (
         <div className="taskPageBackground">
@@ -39,7 +45,7 @@ export default function Task() {
                     </div>
                     <div className="taskforBlockContainer">
                         {unassignedTask?.map((task)=>{ return (
-                            <div key={`TASK${task.id}`} className="taskTitle" onClick={()=>
+                            <div key={`TASK${task.id}`} className={getClass(task)} onClick={()=>
                                 showModal(<TaskDetails task={task} />, 'gold')}>
                                     {task.title }
                             </div>)
@@ -77,7 +83,7 @@ export default function Task() {
                             <div className="taskforBlockContainer">
                             {block.tasks && block.tasks.length > 0 ? (
                                 block.tasks.map((task) => (
-                                    <div key={`TASK${task.id}`} className="taskTitle" onClick={()=> showModal(<TaskDetails task={task} blockTitle={block.title}/>, 'gold')}>{task.title}</div>
+                                    <div key={`TASK${task.id}`} className={getClass(task)} onClick={()=> showModal(<TaskDetails task={task} blockTitle={block.title}/>, 'gold')}>{task.title}</div>
                                 ))
                             ) : (
                                 <div>No assigned task</div>
