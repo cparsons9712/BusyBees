@@ -54,6 +54,7 @@ export class SubtaskController {
     @GetUser() user: User,
     @Param('id', ParseIntPipe) id: number,
   ) {
+    console.log('in controller')
     return await this.subtaskService.deleteSubtask(id, user.id);
   }
 }

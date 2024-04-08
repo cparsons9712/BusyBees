@@ -55,6 +55,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: relative;
 }
 
 .STButtonBar{
@@ -121,4 +122,36 @@
     width:15px;
     background-color: rgba(239, 233, 233, 0.47);
     margin-top: 2px;
+}
+
+.stOptionsMenu{
+    cursor: pointer;
+    width: 20px;
+
+}
+
+.stMenu{
+    height: 70px;
+    width: 120px;
+    background-color: black;
+    color:gold;
+    position: absolute;
+    right: -115px;
+    top: 15px;
+    z-index: 1000;
+    border: 2px ridge gold;
+
+}
+
+.stMenu.active{
+    display: block;
+}
+
+.stMenuOption{
+    border-bottom: 1px solid rgba(255, 217, 0, 0.297);
+    cursor: pointer;
+
+}
+.stMenuOption:hover{
+    font-weight: 900;
 }

@@ -62,6 +62,8 @@ export const useChangeSubtaskStatus = () => {
         return response.data;
     }, {
         onSuccess: () => {
+            queryClient.invalidateQueries(["unassignedTask"]);
+            queryClient.invalidateQueries(["activeBlocks"]);
             queryClient.invalidateQueries(['Subtask']);
         },
     });
@@ -69,3 +71,20 @@ export const useChangeSubtaskStatus = () => {
     // Directly return the mutate function along with other props if needed
     return { mutate, ...otherMutationProps };
 };
+
+export const useDeleteSubtask = () => {
+    const queryClient = useQueryClient();
+    const fetchDeleteSubtask = async ({id}) => {
+        
+      const response = await axios.delete(`/${id}`, { withCredentials: true });
+      return response.data;
+    };
+
+    const mutation = useMutation(fetchDeleteSubtask, {
+        onSuccess: () => {
+            queryClient.invalidateQueries(['Subtask'])
+        }
+    })
+
+    return mutation;
+  };

@@ -2,14 +2,17 @@ import { useState } from "react";
 import { useCreateSubtask } from "../../Hooks/useSubtaskQueries";
 import { useGetSubtask } from "../../Hooks/useSubtaskQueries";
 import { useChangeSubtaskStatus } from "../../Hooks/useSubtaskQueries";
+import { useDeleteSubtask } from "../../Hooks/useSubtaskQueries";
 
 const SubtaskList = ({ task }) => {
   const [showSubtask, setShowSubtask] = useState(false);
   const [showAddST, setShowAddST] = useState(false);
   const [title, setTitle] = useState("");
+  const [openMenuId, setOpenMenuId] = useState(null);
   const { mutate } = useCreateSubtask();
   const {subtask} = useGetSubtask(task.id)
   const {mutate: checkOffST} = useChangeSubtaskStatus()
+  const {mutate: deleteSubtask} = useDeleteSubtask()
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -58,22 +61,29 @@ const SubtaskList = ({ task }) => {
   };
 
   const getSubtask = () => {
-
     return subtask?.length ? (
-      subtask.map((st) =>
-        <div className="stTitle">
-          {st.status ?
-            <div className="subtaskDone" onClick={()=>{checkOffST(st)}}> X</div>
-              :
-            <div className="subtaskUndone" onClick={()=>{checkOffST(st)}}> </div>
-          }
+      subtask.map((st) => (
+        <div className="stTitle" key={st.id}>
+          {st.status ? (
+            <div className="subtaskDone" onClick={() => checkOffST(st)}> X</div>
+          ) : (
+            <div className="subtaskUndone" onClick={() => checkOffST(st)}> </div>
+          )}
 
           <div>{st.title}</div>
 
-          <div className="stOptionsMenu"></div>
-        </div>)
+          <div className="stOptionsMenu" onClick={() => toggleMenu(st.id)}>⋮</div>
+          {openMenuId === st.id && (
+            <div className="stMenu">
+              <div className="stMenuOption" >Edit</div>
+              <div className="stMenuOption" onClick={()=>deleteSubtask({id: +st.id})}>Delete</div>
+              <div className="stMenuOption">Check Off</div>
+            </div>
+          )}
+        </div>
+      ))
     ) : (
-      <div className="stTitle">No subtask to display </div>
+      <div className="stTitle">No subtask to display</div>
     );
   };
 
@@ -92,6 +102,16 @@ const SubtaskList = ({ task }) => {
           )}
         </div>
       );
+    }
+  };
+
+  const toggleMenu = (id) => {
+    if (openMenuId === id) {
+      // If the menu is already open, close it
+      setOpenMenuId(null);
+    } else {
+      // Open the menu for the clicked subtask
+      setOpenMenuId(id);
     }
   };
 
