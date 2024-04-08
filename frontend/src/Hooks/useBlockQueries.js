@@ -8,6 +8,7 @@ export const useActiveBlocks = () => {
     return response.data;
   };
 
+
   // Using a more descriptive query key and returning all relevant data and states.
   const {
     data: currBlock,
@@ -77,20 +78,15 @@ export const useEditBlock = () => {
       return response.data;
     } catch (error) {
       if (error.response) {
-        // Throw an error that can be caught by React Query with more details
         throw new Error(
           error.response.data.message ||
             "An error occurred while updating the block."
         );
       } else if (error.request) {
-        // The request was made but no response was received
-
         throw new Error(
           "No response was received when attempting to update the block."
         );
       } else {
-        // Something happened in setting up the request that triggered an Error
-
         throw new Error(
           "An error occurred while setting up the request to update the block."
         );
@@ -160,19 +156,15 @@ export const useDeleteBlock = () => {
       return response.data;
     } catch (error) {
       if (error.response) {
-        // Throw an error that can be caught by React Query with more details
         throw new Error(
           error.response.data.message ||
             "An error occurred while deleting the block."
         );
       } else if (error.request) {
-        // The request was made but no response was received
-
         throw new Error(
           "No response was received when attempting to delete the block."
         );
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.log("Error", error.message);
         throw new Error(
           "An error occurred while setting up the request to delete the block."

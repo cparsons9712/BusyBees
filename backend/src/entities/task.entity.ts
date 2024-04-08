@@ -4,9 +4,11 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Block } from './block.entity';
 import { User } from './user.entity';
+import { Subtask } from './subtask.entity';
 
 @Entity()
 export class Task {
@@ -60,4 +62,7 @@ export class Task {
     nullable: true,
   })
   nextActiveOn: Date;
+
+  @OneToMany(() => Subtask, (subtask) => subtask.task)
+  subtasks: Subtask[];
 }
