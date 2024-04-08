@@ -52,6 +52,9 @@
     margin: 5px;
     width: 90%;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .STButtonBar{
@@ -99,4 +102,23 @@
 
 .addStForm{
     margin-top: 10px;
+}
+
+.subtaskDone{
+    margin-top: 2px;
+    height: 15px;
+    width:15px;
+    color: black;
+    background-color: gold;
+    border: 2px solid black;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.subtaskUndone{
+    border: 2px solid black;
+    height: 15px;
+    width:15px;
+    background-color: rgba(239, 233, 233, 0.47);
+    margin-top: 2px;
 }
