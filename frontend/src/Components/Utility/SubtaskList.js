@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useCreateSubtask } from "../../Hooks/useSubtaskQueries";
 import { useGetSubtask } from "../../Hooks/useSubtaskQueries";
 import { useChangeSubtaskStatus } from "../../Hooks/useSubtaskQueries";
@@ -11,6 +11,7 @@ const SubtaskList = ({ task }) => {
   const [title, setTitle] = useState("");
   const [editST, setEditST] = useState(null)
   const [openMenuId, setOpenMenuId] = useState(null);
+  const menuRefs = useRef({});
   const { mutate } = useCreateSubtask();
   const {subtask} = useGetSubtask(task.id)
   const {mutate: checkOffST} = useChangeSubtaskStatus()
@@ -93,10 +94,16 @@ const SubtaskList = ({ task }) => {
 
           <div className="stOptionsMenu" onClick={() => toggleMenu(st.id)}>⋮</div>
           {openMenuId === st.id && (
-            <div className="stMenu">
-              <div className="stMenuOption" onClick={()=>{onEdit(st)}}>Edit</div>
-              <div className="stMenuOption" onClick={()=>deleteSubtask({id: +st.id})}>Delete</div>
-              <div className="stMenuOption" onClick={() => checkOffST(st)}>Check Off</div>
+            <div ref={menuRefs.current[st.id]} className="stMenu">
+              <div className="stMenuOption" onClick={()=>{onEdit(st)}}>
+                Edit
+              </div>
+              <div className="stMenuOption" onClick={()=>deleteSubtask({id: +st.id})}>
+                Delete
+              </div>
+              <div className="stMenuOption" onClick={() => checkOffST(st)}>
+                Check Off
+              </div>
             </div>
           )}
         </div>
@@ -126,13 +133,31 @@ const SubtaskList = ({ task }) => {
 
   const toggleMenu = (id) => {
     if (openMenuId === id) {
-      // If the menu is already open, close it
       setOpenMenuId(null);
     } else {
-      // Open the menu for the clicked subtask
       setOpenMenuId(id);
+      // Ensure the ref object for this menu is created
+      if (!menuRefs.current[id]) {
+        menuRefs.current[id] = React.createRef();
+      }
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (openMenuId !== null) {
+        const currentRef = menuRefs.current[openMenuId];
+        if (currentRef && !currentRef.current.contains(event.target)) {
+          setOpenMenuId(null);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [openMenuId]);
 
   return (
     <div className="tdSubtaskcont">
