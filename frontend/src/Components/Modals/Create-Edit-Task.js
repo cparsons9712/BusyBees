@@ -52,8 +52,8 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
     const payload = {
       title,
       blockId: +blockId,
-      repeatFrequency: +repeatFrequency,
-      timeUnit: +timeUnit,
+      repeatFrequency: +repeatFrequency || null,
+      timeUnit: +timeUnit || null,
     };
     if (typeForm === "Create") {
       createMutate({ payload });
