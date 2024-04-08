@@ -120,6 +120,8 @@
   border: 3px solid black;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
 }
 .taskTitle:hover {
   font-weight: 900;
@@ -327,4 +329,9 @@ taskBody {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.blackHex{
+  background-color: black;
+  color:gold;
 }

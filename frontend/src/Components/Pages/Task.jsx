@@ -9,6 +9,7 @@ import CreateEditTask from "../Modals/Create-Edit-Task";
 import TaskDetails from "../Modals/Task-Details";
 import { useState, useEffect } from "react";
 import "../../Styling/task.css";
+import DashTaskHex from "../Utility/DashTaskHex";
 
 export default function Task() {
   const {
@@ -53,11 +54,16 @@ export default function Task() {
           <div className="taskforBlockContainer">
             {unassignedTask?.map((task) => {
               return (
+
+
+
                 <div
                   key={`TASK${task.id}`}
                   className={getClass(task)}
                   onClick={() => showModal(<TaskDetails task={task} />, "gold")}
                 >
+                  {task.subtasks?.length ? <DashTaskHex task={task} colorClass="blackHex"/> : ''}
+
                   {task.title}
                 </div>
               );
@@ -102,6 +108,7 @@ export default function Task() {
                         )
                       }
                     >
+                      {task.subtasks?.length ? <DashTaskHex task={task} colorClass="blackHex"/> : ''}
                       {task.title}
                     </div>
                   ))
