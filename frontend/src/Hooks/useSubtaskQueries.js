@@ -16,14 +16,6 @@ export const useCreateSubtask = () => {
           error.response.data.message ||
             "An error occurred while creating the task."
         );
-      } else if (error.request) {
-        throw new Error(
-          "No response was received when attempting to create the task."
-        );
-      } else {
-        throw new Error(
-          "An error occurred while setting up the request to create the task."
-        );
       }
     }
   };
@@ -75,7 +67,7 @@ export const useChangeSubtaskStatus = () => {
 export const useDeleteSubtask = () => {
     const queryClient = useQueryClient();
     const fetchDeleteSubtask = async ({id}) => {
-        
+
       const response = await axios.delete(`/${id}`, { withCredentials: true });
       return response.data;
     };
@@ -87,4 +79,26 @@ export const useDeleteSubtask = () => {
     })
 
     return mutation;
-  };
+};
+
+export const useChangeSubtaskTitle = () =>{
+    const queryClient = useQueryClient();
+
+    const { mutate} = useMutation(async ({id, payload}) => {
+        
+
+        const response = await axios.put(`/${id}`, payload, {
+            withCredentials: true,
+        });
+        return response.data;
+    }, {
+        onSuccess: () => {
+            queryClient.invalidateQueries(["unassignedTask"]);
+            queryClient.invalidateQueries(["activeBlocks"]);
+            queryClient.invalidateQueries(['Subtask']);
+        },
+    });
+
+    // Directly return the mutate function along with other props if needed
+    return { mutate };
+}

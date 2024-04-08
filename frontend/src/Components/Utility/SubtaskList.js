@@ -3,29 +3,46 @@ import { useCreateSubtask } from "../../Hooks/useSubtaskQueries";
 import { useGetSubtask } from "../../Hooks/useSubtaskQueries";
 import { useChangeSubtaskStatus } from "../../Hooks/useSubtaskQueries";
 import { useDeleteSubtask } from "../../Hooks/useSubtaskQueries";
+import { useChangeSubtaskTitle } from "../../Hooks/useSubtaskQueries";
 
 const SubtaskList = ({ task }) => {
   const [showSubtask, setShowSubtask] = useState(false);
   const [showAddST, setShowAddST] = useState(false);
   const [title, setTitle] = useState("");
+  const [editST, setEditST] = useState(null)
   const [openMenuId, setOpenMenuId] = useState(null);
   const { mutate } = useCreateSubtask();
   const {subtask} = useGetSubtask(task.id)
   const {mutate: checkOffST} = useChangeSubtaskStatus()
   const {mutate: deleteSubtask} = useDeleteSubtask()
+  const {mutate: changeTitle} = useChangeSubtaskTitle()
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const payload = { title, taskId: +task.id };
 
+    if(editST){
+      const payload ={title, status: editST.status}
+      changeTitle({id: editST.id, payload} )
+      setTitle('')
+      setShowAddST(false);
+    }else{
+    const payload = { title, taskId: +task.id };
     mutate({ payload });
     setTitle('')
     setShowAddST(false);
+    }
+
   };
   const onCancel = () => {
     setTitle("");
     setShowAddST(false);
   };
+
+  const onEdit = (st) => {
+    setTitle(st.title)
+    setEditST(st)
+    setShowAddST(true)
+  }
 
   const showAddSubtask = () => {
     if (showAddST) {
@@ -70,14 +87,16 @@ const SubtaskList = ({ task }) => {
             <div className="subtaskUndone" onClick={() => checkOffST(st)}> </div>
           )}
 
+
+
           <div>{st.title}</div>
 
           <div className="stOptionsMenu" onClick={() => toggleMenu(st.id)}>⋮</div>
           {openMenuId === st.id && (
             <div className="stMenu">
-              <div className="stMenuOption" >Edit</div>
+              <div className="stMenuOption" onClick={()=>{onEdit(st)}}>Edit</div>
               <div className="stMenuOption" onClick={()=>deleteSubtask({id: +st.id})}>Delete</div>
-              <div className="stMenuOption">Check Off</div>
+              <div className="stMenuOption" onClick={() => checkOffST(st)}>Check Off</div>
             </div>
           )}
         </div>
