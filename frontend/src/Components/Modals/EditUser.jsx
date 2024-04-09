@@ -14,27 +14,32 @@ const EditUser = () => {
   const [email, setEmail] = useState(user.email);
   const [name, setName] = useState(user.name);
   const [profilePicUrl, setProfilePicUrl] = useState(user.profilePicUrl);
-  const [emailErr, setEmailErr] = useState()
-  const [picErr, setPicErr] = useState()
+  const [emailErr, setEmailErr] = useState();
+  const [picErr, setPicErr] = useState();
 
-  const [validData, setValidData] = useState(false)
+  const [validData, setValidData] = useState(false);
 
   const defaultImage = "https://i.imgur.com/XhNphUJ.png";
 
   useEffect(() => {
-    const nameValid = name.length <= 20; // Assuming you want to include names that are exactly 20 characters
-    const emailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
-    if(!emailValid) setEmailErr('Please enter a valid email')
+    let nameValid = name?.length <= 20; // Assuming you want to include names that are exactly 20 characters
+    let emailValid;
+    if (email)
+      emailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+        email
+      );
 
-    const picEnding = profilePicUrl.match(/\.(jpeg|jpg|gif|png)$/)
-    const picValid = !profilePicUrl || (profilePicUrl && picEnding)
-    if(!picValid) setPicErr('Please enter a url ending in jpeg, jpg, gif, or png')
+    if (!emailValid) setEmailErr("Please enter a valid email");
 
-    setValidData(nameValid && emailValid  && picValid) ;
+    let picEnding;
+    if (profilePicUrl)picEnding = profilePicUrl?.match(/\.(jpeg|jpg|gif|png)$/);
+    
+    const picValid = !profilePicUrl || (profilePicUrl && picEnding);
+    if (!picValid)
+      setPicErr("Please enter a url ending in jpeg, jpg, gif, or png");
+
+    setValidData(nameValid && emailValid && picValid);
   }, [name, email, profilePicUrl]);
-
-
-
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -121,7 +126,11 @@ const EditUser = () => {
             {picErr && <div className="error">{picErr} </div>}
           </div>
 
-          <button type="submit" className="blackRectangleButton" disabled={!validData}>
+          <button
+            type="submit"
+            className="blackRectangleButton"
+            disabled={!validData}
+          >
             Save Profile
           </button>
         </form>
@@ -135,7 +144,6 @@ const EditUser = () => {
         <button
           className="yellowRectangleButton"
           onClick={() => showModal(<Selfie />, "black")}
-
         >
           Cancel
         </button>
