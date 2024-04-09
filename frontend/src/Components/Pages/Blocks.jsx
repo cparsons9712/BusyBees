@@ -5,6 +5,7 @@ import "../../Styling/blocks.css";
 import { useModal } from "../../Context/Modal";
 import BlockDetails from "../Modals/BlockDetails";
 import CreateEditBlock from "../Modals/Create-Edit-Block";
+import hexagonBackground from '../../Media/hexagonBackground.png'
 
 function Blocks() {
   const days = [
@@ -105,7 +106,7 @@ function Blocks() {
   };
 
   return (
-    <div className="blockPageBackground">
+    <div className="blockPageBackground" style={{ backgroundImage: `url(${hexagonBackground})` }}>
       <div className="blockPageContainer" onClick={handleTimeTableClick}>
         <div className="blockHeader">
           <div className="blockTitle">

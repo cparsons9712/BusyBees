@@ -5,6 +5,7 @@ import axios from "../../APIs/auth";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { passwordSchema } from "../../Validations/newPasswordValidation";
+import hexagonBackground from '../../Media/hexagonBackground.png'
 
 export default function ResetPassword() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function ResetPassword() {
   });
 
   return (
-    <div className="newPasswordBackground">
+    <div className="newPasswordBackground" style={{ backgroundImage: `url(${hexagonBackground})` }} >
       <form className="NewPasswordForm" onSubmit={formik.handleSubmit}>
         <div className="newPWTitle">
           <h2>Reset Password</h2>

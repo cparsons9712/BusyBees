@@ -55,6 +55,14 @@
   margin: 10px;
 }
 
+.error{
+  color: red;
+  margin: 5px;
+  position: absolute;
+  top: 25px;
+  left: 10px;
+}
+
 @media (max-width: 500px) {
   .editProfileCont {
     flex-direction: column; /* Stack children vertically */

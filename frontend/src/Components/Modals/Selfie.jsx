@@ -1,10 +1,8 @@
 import ComingSoonPage from "../Pages/ComingSoon";
 import { AuthData } from "../../Auth/AuthWrapper";
-import { useEffect} from "react";
 import "../../Styling/Selfie.css";
 import { useModal } from "../../Context/Modal";
 import SendPWEmail from "./ForgotPW";
-import EditProfile from "./EditProfile";
 import DeleteAccount from "./DeleteUser";
 import EditUser from "./EditUser";
 import { useGetUser } from "../../Hooks/useUserQueries";
@@ -17,7 +15,7 @@ export default function Selfie() {
   const {user, isLoading} = useGetUser()
 
   if(isLoading) return <div>Loading ...</div>
-  
+
   const openResetPassword = () => {
     showModal(<SendPWEmail />, 'gold');
   };

@@ -105,44 +105,56 @@ Here's why Busy Bees just works better:
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Getting Started with Docker
+Running this application with Docker simplifies the setup process and manages the services for you. Follow these steps to get up and running quickly.
 
-To get a local copy up and running follow these simple example steps.
-
-
-
-### Installation
-
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/cparsons9712/busyBees.git
-   ```
-2. Create a .env file and copy the keys from .env.copy. Make sure the .env file is in the root of backend. Enter the information based your local postgres information
+### Prerequisites
+- Docker Desktop
+  - For Windows and Mac: Download and install Docker Desktop from [Docker Hub](https://docs.docker.com/docker-hub/quickstart/)
+  - For Linux: Install Docker Engine and Docker Compose following the instructions [here](https://docs.docker.com/engine/install/ubuntu/).
 
 
-  > NOTE: <br>
-    Error: connect ECONNREFUSED 127.0.0.1:5432
-    <br>
-    If you get this error, check the credentials in the .env file match your local postgres credentials and that postgres is running in the same virtual machine as your backend server. (if using wsl/ubuntu on windows the postgres server should also run from wsl/ubuntu) Check postgres status with <br>
-      ```
-        sudo service postgresql status
-      ```
+### Installation and Running the Application
+1. Clone the Repository
 
-1. Open two terminals
-2. In one terminal navigate to frontend folder, install npm & start server. *Frontend runs on port 3000
-   ```sh
-   cd frontend
-   npm install
-   npm start
-   ```
-3. In second terminal navigate to backend, install npm & start server in development mode. *Backend runs on port 8000. Enter your postgres password when prompted. If you haven't set a specific password 'postgres' will probably work
-   ```sh
-   cd backend
-   npm install
-   npm run start:dev
-   ```
+    ```sh
+    git clone https://github.com/cparsons9712/busyBees.git
+    cd busyBees
+    ```
+2. Environment Configuration
 
+    Create a .env file in the root of the backend directory. You can copy the template from .env.copy provided in the repository.
+
+    ```sh
+    cp backend/.env.copy backend/.env
+    ```
+    Update the .env file with your environment variables as needed. For Docker, ensure DATABASE_HOST is set to the name of your database service defined in docker-compose.yml (typically db).
+
+3. Build and Run with Docker Compose
+
+    From the root of the project, run:
+
+    ```sh
+    docker-compose up --build
+    ```
+
+    This command builds the Docker images and starts the containers defined in your docker-compose.yml, including the frontend, backend, and database services.
+
+### Accessing the Application
+The frontend will be accessible at http://localhost (or the port you've configured if not the default HTTP port 80).
+The backend API will be accessible at http://localhost:8000.
+
+### Stopping the Application
+To stop the application and remove the containers, you can use the following command from the root of the project:
+
+```sh
+docker-compose down
+```
+
+### Notes
+- The first run might take longer due to the build process and initial database setup. Subsequent starts will be faster.
+- Make sure Docker Desktop or Docker Engine is running before executing the commands.
+- If you make changes to the Dockerfile or the application code, you may need to rebuild the images with docker-compose up --build.
 
 
 
@@ -165,10 +177,11 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Roadmap
 
 - [x] Auth
-- [ ] Account Maitenance
-- [ ] Time Block
-- [ ] Task
-- [ ] SubTask
+- [x] Account Maitenance
+- [x] Time Blocks
+- [x] Task
+- [x] Checklist
+- [ ] Brain Dump
 
 
 See the [open issues](https://github.com/cparsons9712/busyBees/issues) for a full list of proposed features (and known issues).

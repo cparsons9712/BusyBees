@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/usr/src/app
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=1617
+      - DATABASE_NAME=postgres
+      - SECRET_KEY=mF6VkK1UA8hpv5Gd3hqbTi9NmvMqZgxIRtKpSlEJtyuOxBcFXMsYDyQxtBnQhypSliujaVK_beTI9xpYNBroDg
+      - APP_EMAIL=christine.dev.projects@gmail.com
+      - GMAIL_APP_PW=vnmq dsqa hjrn mela
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1617
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

@@ -4,26 +4,42 @@ import { useEditUserProfile } from "../../Hooks/useUserQueries";
 import { useModal } from "../../Context/Modal";
 import Selfie from "./Selfie";
 import { useGetUser } from "../../Hooks/useUserQueries";
+import "../../Styling/editProfile.css";
 
 const EditUser = () => {
   const { logout } = AuthData();
-  const {user} = useGetUser()
+  const { user } = useGetUser();
   const { mutate } = useEditUserProfile();
   const { showModal, hideModal } = useModal();
   const [email, setEmail] = useState(user.email);
   const [name, setName] = useState(user.name);
   const [profilePicUrl, setProfilePicUrl] = useState(user.profilePicUrl);
+  const [emailErr, setEmailErr] = useState()
+  const [picErr, setPicErr] = useState()
+
+  const [validData, setValidData] = useState(false)
 
   const defaultImage = "https://i.imgur.com/XhNphUJ.png";
+
+  useEffect(() => {
+    const nameValid = name.length <= 20; // Assuming you want to include names that are exactly 20 characters
+    const emailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+    if(!emailValid) setEmailErr('Please enter a valid email')
+
+    const picEnding = profilePicUrl.match(/\.(jpeg|jpg|gif|png)$/)
+    const picValid = !profilePicUrl || (profilePicUrl && picEnding)
+    if(!picValid) setPicErr('Please enter a url ending in jpeg, jpg, gif, or png')
+
+    setValidData(nameValid && emailValid  && picValid) ;
+  }, [name, email, profilePicUrl]);
+
+
 
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const emailChanged = user.email !== email;
-    const nameOrPicChanged =
-      user.name !== name || user.profilePicUrl !== profilePicUrl;
-
     try {
       const payload = {
         name,
@@ -35,11 +51,11 @@ const EditUser = () => {
       if (emailChanged) {
         // If the email has changed, log out the user
         alert(
-            "NOTICE: Editing email changes your login credentials. You will be logged out and prompted to log in again. Please use the new email to log in."
-          );
+          "NOTICE: Editing email changes your login credentials. You will be logged out and prompted to log in again. Please use the new email to log in."
+        );
         hideModal();
         logout();
-      } else if (nameOrPicChanged) {
+      } else {
         // If only the name or profile pic has changed, show the selfie modal
         showModal(<Selfie />, "black");
       }
@@ -63,6 +79,7 @@ const EditUser = () => {
               id="name"
               type="string"
               required
+              maxLength={20}
               onChange={(e) => setName(e.target.value)}
               value={name}
             />
@@ -84,6 +101,7 @@ const EditUser = () => {
             <label htmlFor="email" className="form-label">
               Email
             </label>
+            {emailErr && <div className="error">{emailErr}</div>}
           </div>
 
           <div className="form-group">
@@ -100,8 +118,10 @@ const EditUser = () => {
             <label htmlFor="profilePicUrl" className="form-label">
               Profile Image URL
             </label>
+            {picErr && <div className="error">{picErr} </div>}
           </div>
-          <button type="submit" className="blackRectangleButton">
+
+          <button type="submit" className="blackRectangleButton" disabled={!validData}>
             Save Profile
           </button>
         </form>
@@ -115,6 +135,7 @@ const EditUser = () => {
         <button
           className="yellowRectangleButton"
           onClick={() => showModal(<Selfie />, "black")}
+
         >
           Cancel
         </button>

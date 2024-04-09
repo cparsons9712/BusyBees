@@ -81,7 +81,7 @@
 }
 
 .blockPageBackground {
-  background-image: url("/home/cparsons/busyBees/frontend/public/hexagonBackground.png");
+
   background-color: rgba(238, 232, 170, 0.706);
   padding: 30px;
   height: 79vh;

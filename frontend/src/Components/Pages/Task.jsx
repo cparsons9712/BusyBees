@@ -10,6 +10,8 @@ import TaskDetails from "../Modals/Task-Details";
 import { useState, useEffect } from "react";
 import "../../Styling/task.css";
 import DashTaskHex from "../Utility/DashTaskHex";
+import hexagonBackground from '../../Media/hexagonBackground.png'
+
 
 export default function Task() {
   const {
@@ -36,7 +38,7 @@ export default function Task() {
 
   return (
     <div className="taskPageBackground">
-      <div className="taskPageCont">
+      <div className="taskPageCont" style={{ backgroundImage: `url(${hexagonBackground})` }} >
         <div className="taskPageTitle cursive">Task</div>
 
         <div className="taskBlockRow">

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSpring, animated, useTransition } from "@react-spring/web";
 import { useModal } from "../../Context/Modal";
 import "../../Styling/modal.css";
+import hexagonBackground from '../../Media/hexagonBackground.png'
 
 const Modal = () => {
 const { isVisible, hideModal, modalContent, closeButtonClass  } = useModal();
@@ -36,7 +37,7 @@ const { isVisible, hideModal, modalContent, closeButtonClass  } = useModal();
     (styles, isVisible) =>
     isVisible && (
         <animated.div style={styles} className="modalBackground">
-          <animated.div style={springs} className="modalContainer">
+          <animated.div style={{ ...springs, backgroundImage: `url(${hexagonBackground})` }} className="modalContainer">
             <div className="modalContent">
               <button onClick={hideModal} type="button" className={`closeButton ${closeButtonClass}`}>
                 X
