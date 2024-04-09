@@ -109,7 +109,7 @@ Here's why Busy Bees just works better:
 Running this application with Docker simplifies the setup process and manages the services for you. Follow these steps to get up and running quickly.
 
 ### Prerequisites
-- Docker Desktop
+- Docker Desktop (MUST BE OPEN AND RUNNING)
   - For Windows and Mac: Download and install Docker Desktop from [Docker Hub](https://docs.docker.com/docker-hub/quickstart/)
   - For Linux: Install Docker Engine and Docker Compose following the instructions [here](https://docs.docker.com/engine/install/ubuntu/).
 
