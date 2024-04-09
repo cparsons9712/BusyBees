@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { userSchema } from "../../Validations/UserValidation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../../APIs/users";
 import { useModal } from "../../Context/Modal";
 import Selfie from "./Selfie";
@@ -40,6 +40,8 @@ export default function EditProfile() {
       }
     },
   });
+
+
 
   return (
     <div className="editProfileCont">

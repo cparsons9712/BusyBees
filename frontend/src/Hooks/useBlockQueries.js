@@ -30,7 +30,6 @@ export const useAllBlocks = () => {
     return response.data;
   };
 
-  // Using a more descriptive query key and returning all relevant data and states.
   const {
     data: allBlocks,
     isError,
@@ -41,7 +40,6 @@ export const useAllBlocks = () => {
     queryFn: fetchAllBlocks,
   });
 
-  // Return these values so your components can use them.
   return { allBlocks, isError, isLoading, error };
 };
 

@@ -6,23 +6,24 @@ import { useModal } from "../../Context/Modal";
 import SendPWEmail from "./ForgotPW";
 import EditProfile from "./EditProfile";
 import DeleteAccount from "./DeleteUser";
+import EditUser from "./EditUser";
+import { useGetUser } from "../../Hooks/useUserQueries";
 
 
 export default function Selfie() {
-  const { user, logout, checkAuthStatus  } = AuthData();
+  const {logout  } = AuthData();
   const { showModal } = useModal();
 
-  useEffect(()=>{
-    checkAuthStatus()
-  },[])
+  const {user, isLoading} = useGetUser()
 
-
+  if(isLoading) return <div>Loading ...</div>
+  
   const openResetPassword = () => {
     showModal(<SendPWEmail />, 'gold');
   };
 
   const openEditProfile = () => {
-    showModal(<EditProfile />, 'gold');
+    showModal(<EditUser />, 'gold');
   };
 
   return (

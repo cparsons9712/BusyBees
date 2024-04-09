@@ -1,4 +1,10 @@
-import { IsEmail, IsNotEmpty, IsUrl, Matches } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsUrl,
+  Matches,
+} from 'class-validator';
 
 export class UpdateUserDto {
   @IsEmail({}, { message: 'Invalid email address' })
@@ -8,9 +14,10 @@ export class UpdateUserDto {
   name: string;
 
   @IsUrl()
+  @IsOptional()
   @Matches(/.(jpg|jpeg|png|gif)$/i, {
     message:
       'URL must be a valid image URL ending with .jpg, .jpeg, .png, or .gif',
   })
-  profilePicUrl: string;
+  profilePicUrl?: string;
 }

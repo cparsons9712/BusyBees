@@ -46,15 +46,15 @@ export class UsersController {
     }
   }
 
-
+  @UseGuards(AuthenticatedGuard)
   @Get('')
   getAllUsers() {
     const userArray = this.UserService.getAll();
     return userArray;
   }
 
-  // @UseGuards(AuthenticatedGuard)
-  // @UseInterceptors(ClassSerializerInterceptor)
+  @UseGuards(AuthenticatedGuard)
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get(':email')
   async getUserByEmail(@Param('email') email: string) {
     const user = await this.UserService.findOne(email);
@@ -85,6 +85,7 @@ export class UsersController {
     }
   }
 
+  @UseGuards(AuthenticatedGuard)
   @Delete(':id')
   async deleteUser(@Param('id', ParseIntPipe) id: number) {
     const user = await this.UserService.findOneById(id);
