@@ -41,6 +41,7 @@ export class BlocksService {
   async getCurrentActiveBlock(userId: number) {
     const currentTime = moment().format('HH:mm');
     const currentDay = moment().day();
+    console.log('CURRENT TIME IN API: ', currentTime);
 
     const dayString = getActiveDayColumnName(currentDay);
 

@@ -7,6 +7,7 @@ services:
     ports:
       - "8000:8000"
     environment:
+      - TZ=America/New_York
       - NODE_ENV
       - DATABASE_HOST
       - DATABASE_PORT
@@ -22,12 +23,15 @@ services:
       - "80:80"
     depends_on:
       - backend
+    environment:
+      - TZ=America/New_York
   db:
     image: my-custom-postgres:latest
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      - TZ=America/New_York
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - pgdata:/var/lib/postgresql/data
 
