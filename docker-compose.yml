@@ -23,7 +23,7 @@ services:
     depends_on:
       - backend
   db:
-    image: postgres
+    image: my-custom-postgres:latest
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
