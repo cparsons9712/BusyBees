@@ -1,3 +1,4 @@
+# Check node version with which node and use it here
 FROM node:18
 
 WORKDIR /usr/src/app
