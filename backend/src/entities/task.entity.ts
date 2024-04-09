@@ -20,7 +20,7 @@ export class Task {
   })
   userId: number;
 
-  @ManyToOne(() => User, (user) => user.tasks)
+  @ManyToOne(() => User, (user) => user.tasks, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'userId' }) // This matches the column name you defined
   user: User;
 
@@ -63,6 +63,6 @@ export class Task {
   })
   nextActiveOn: Date;
 
-  @OneToMany(() => Subtask, (subtask) => subtask.task)
+  @OneToMany(() => Subtask, (subtask) => subtask.task, { onDelete: 'CASCADE' })
   subtasks: Subtask[];
 }

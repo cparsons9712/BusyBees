@@ -37,12 +37,12 @@ export class User {
   })
   profilePicUrl: string;
 
-  @OneToMany(() => Block, (block) => block.user)
+  @OneToMany(() => Block, (block) => block.user, { onDelete: 'CASCADE' })
   blocks: Block[];
 
-  @OneToMany(() => Task, (task) => task.user)
+  @OneToMany(() => Task, (task) => task.user, { onDelete: 'CASCADE' })
   tasks: Task[];
 
-  @OneToMany(() => Subtask, (subtask) => subtask.user)
+  @OneToMany(() => Subtask, (subtask) => subtask.user, { onDelete: 'CASCADE' })
   subtasks: Subtask[];
 }
