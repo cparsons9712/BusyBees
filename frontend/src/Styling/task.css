@@ -388,4 +388,7 @@ taskBody {
     font-size: 18px;
     font-weight: 700;
   }
+  .taskPageBackground{
+    height: calc(100vh - 190px);
+  }
 }
