@@ -10,7 +10,10 @@ const DashTaskHex = ({ task, colorClass }) => {
     useEffect(() => {
         if(task?.subtasks?.length){
             setTotal(task.subtasks.length);
-            const completedCount = task.subtasks.reduce((acc, curr) => acc + (curr.completed ? 1 : 0), 0);
+            let completedCount = 0
+            for(let st of task.subtasks){
+                if(st.status) completedCount++;
+            }
             setCompleted(completedCount);
         }
     }, [task]);

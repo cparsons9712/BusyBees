@@ -11,6 +11,7 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
   const [blockId, setBlockId] = useState(initialBlockId || null);
   const [repeatFrequency, setRepeatFrequency] = useState();
   const [timeUnit, setTimeUnit] = useState();
+  const [error, setError] = useState([]);
   const { allBlocks } = useAllBlocks();
   const { hideModal } = useModal();
   const {
@@ -23,13 +24,30 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
     isError: createIsError,
     error: createError,
   } = useCreateTask();
-  const [error, setError] = useState([]);
 
   useEffect(() => {
-    if (createIsError && createError) {
-      setError((prevErrors) => [...prevErrors, createError]);
+    const newErrors = [];
+    if (repeatFrequency > 0 && !timeUnit) {
+      newErrors.push(
+        "There must be a selected time unit for repeat frequency."
+      );
     }
-  }, [createIsError, createError]);
+    if (timeUnit && (!repeatFrequency || repeatFrequency < 1)) {
+      newErrors.push(
+        "There must be a number selected for repeat frequency if time unit is selected."
+      );
+    }
+    // Handle create and edit task errors
+    if (createIsError && createError) {
+      newErrors.push(createError.message); // Assuming createError is an Error object
+    }
+    if (editIsError && editError) {
+      newErrors.push(editError.message); // Assuming editError is an Error object
+    }
+
+    // Now, you're safe to update the error state
+    setError(newErrors)
+  }, [timeUnit, repeatFrequency, createIsError, createError, editIsError, editError]);
 
   useEffect(() => {
     if (taskDetails) {
@@ -49,11 +67,12 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if (error.length) return;
     const payload = {
       title,
       blockId: +blockId,
-      repeatFrequency: +repeatFrequency,
-      timeUnit: +timeUnit,
+      repeatFrequency: +repeatFrequency || null,
+      timeUnit: +timeUnit || null,
     };
     if (typeForm === "Create") {
       createMutate({ payload });
@@ -72,7 +91,7 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
         {error.length > 0 && (
           <ul>
             {error.map((err, index) => (
-              <li key={index}>{err.message}</li>
+              <li key={index}>{err}</li> // Now err is guaranteed to be a string
             ))}
           </ul>
         )}
@@ -85,6 +104,7 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
             type="text"
             required
             value={title}
+            maxLength={30}
             onChange={(e) => {
               setTitle(e.target.value);
             }}
@@ -125,6 +145,7 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
               onChange={(e) => {
                 setRepeatFrequency(e.target.value);
               }}
+              min={0}
             />
           </div>
 

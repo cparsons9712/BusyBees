@@ -21,7 +21,7 @@ export class Block {
   })
   userId: number;
 
-  @ManyToOne(() => User, (user) => user.blocks)
+  @ManyToOne(() => User, (user) => user.blocks, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'userId' }) // This matches the column name you defined
   user: User;
 
@@ -66,6 +66,6 @@ export class Block {
   @Column({ default: true })
   isSaturday: boolean;
 
-  @OneToMany(() => Task, (task) => task.block)
+  @OneToMany(() => Task, (task) => task.block, { onDelete: 'CASCADE' })
   tasks: Task[];
 }

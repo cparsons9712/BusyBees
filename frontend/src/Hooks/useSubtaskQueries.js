@@ -67,7 +67,6 @@ export const useChangeSubtaskStatus = () => {
 export const useDeleteSubtask = () => {
     const queryClient = useQueryClient();
     const fetchDeleteSubtask = async ({id}) => {
-
       const response = await axios.delete(`/${id}`, { withCredentials: true });
       return response.data;
     };
@@ -85,7 +84,7 @@ export const useChangeSubtaskTitle = () =>{
     const queryClient = useQueryClient();
 
     const { mutate} = useMutation(async ({id, payload}) => {
-        
+
 
         const response = await axios.put(`/${id}`, payload, {
             withCredentials: true,

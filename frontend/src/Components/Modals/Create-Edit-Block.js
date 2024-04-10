@@ -18,6 +18,7 @@ const CreateEditBlock = ({ blockDetails }) => {
   const [isSaturday, setIsSaturday] = useState(true);
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
+  const[invalidData, setInvalidData] = useState(true)
   const { mutate: editMutate, isError: editIsError, error: editError } = useEditBlock();
   const {mutate: createMutate, isError: createIsError, error: createError} = useCreateBlock()
   const {hideModal} = useModal();
@@ -69,6 +70,11 @@ const CreateEditBlock = ({ blockDetails }) => {
       console.error(err);
     }
   };
+  useEffect(()=>{
+    const days = [isSunday, isMonday, isTuesday, isWednesday, isThursday, isFriday, isSaturday]
+    const someDayIsActive = days.some(day => day === true);
+    setInvalidData(!someDayIsActive);
+  },[isSunday, isMonday, isTuesday, isWednesday, isThursday, isFriday, isSaturday])
 
   return (
     <div className='blockChangeCont'>
@@ -78,8 +84,8 @@ const CreateEditBlock = ({ blockDetails }) => {
 
 
 
-      {editIsError && <p className="errorMessageBlock">{editError.message}</p>}
-      {createIsError && <p className="errorMessageBlock">{createError.message}</p>}
+      {editIsError && <p className="errorMessage">{editError.message}</p>}
+      {createIsError && <p className="errorMessage">{createError.message}</p>}
       <form onSubmit={onSubmit}>
         <div className="form-group blockFormGroup">
           <input
@@ -99,7 +105,7 @@ const CreateEditBlock = ({ blockDetails }) => {
         </div>
 
         <div className="repeatLabel">Repeat</div>
-
+            {invalidData && <div className="errorMessage">Please select at least one active day</div>}
         <div className="dayCheckboxBar">
 
           <div className="checkBoxGroup">
@@ -208,7 +214,7 @@ const CreateEditBlock = ({ blockDetails }) => {
 
         <div className="bdButtonBar">
           <button className="bdButton" onClick={hideModal}>Cancel</button>
-          <button className="bdButton" type="submit">Submit</button>
+          <button className="bdButton" type="submit" disabled={invalidData}>Submit</button>
         </div>
       </form>
     </div>

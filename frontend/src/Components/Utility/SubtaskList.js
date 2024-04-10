@@ -9,30 +9,29 @@ const SubtaskList = ({ task }) => {
   const [showSubtask, setShowSubtask] = useState(false);
   const [showAddST, setShowAddST] = useState(false);
   const [title, setTitle] = useState("");
-  const [editST, setEditST] = useState(null)
+  const [editST, setEditST] = useState(null);
   const [openMenuId, setOpenMenuId] = useState(null);
   const menuRefs = useRef({});
   const { mutate } = useCreateSubtask();
-  const {subtask} = useGetSubtask(task.id)
-  const {mutate: checkOffST} = useChangeSubtaskStatus()
-  const {mutate: deleteSubtask} = useDeleteSubtask()
-  const {mutate: changeTitle} = useChangeSubtaskTitle()
+  const { subtask } = useGetSubtask(task.id);
+  const { mutate: checkOffST } = useChangeSubtaskStatus();
+  const { mutate: deleteSubtask } = useDeleteSubtask();
+  const { mutate: changeTitle } = useChangeSubtaskTitle();
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if(editST){
-      const payload ={title, status: editST.status}
-      changeTitle({id: editST.id, payload} )
-      setTitle('')
+    if (editST) {
+      const payload = { title, status: editST.status };
+      changeTitle({ id: editST.id, payload });
+      setTitle("");
       setShowAddST(false);
-    }else{
-    const payload = { title, taskId: +task.id };
-    mutate({ payload });
-    setTitle('')
-    setShowAddST(false);
+    } else {
+      const payload = { title, taskId: +task.id };
+      mutate({ payload });
+      setTitle("");
+      setShowAddST(false);
     }
-
   };
   const onCancel = () => {
     setTitle("");
@@ -40,10 +39,10 @@ const SubtaskList = ({ task }) => {
   };
 
   const onEdit = (st) => {
-    setTitle(st.title)
-    setEditST(st)
-    setShowAddST(true)
-  }
+    setTitle(st.title);
+    setEditST(st);
+    setShowAddST(true);
+  };
 
   const showAddSubtask = () => {
     if (showAddST) {
@@ -83,22 +82,35 @@ const SubtaskList = ({ task }) => {
       subtask.map((st) => (
         <div className="stTitle" key={st.id}>
           {st.status ? (
-            <div className="subtaskDone" onClick={() => checkOffST(st)}> X</div>
+            <div className="subtaskDone" onClick={() => checkOffST(st)}>
+              {" "}
+              X
+            </div>
           ) : (
-            <div className="subtaskUndone" onClick={() => checkOffST(st)}> </div>
+            <div className="subtaskUndone" onClick={() => checkOffST(st)}>
+              {" "}
+            </div>
           )}
-
-
 
           <div>{st.title}</div>
 
-          <div className="stOptionsMenu" onClick={() => toggleMenu(st.id)}>⋮</div>
+          <div className="stOptionsMenu" onClick={() => toggleMenu(st.id)}>
+            ⋮
+          </div>
           {openMenuId === st.id && (
             <div ref={menuRefs.current[st.id]} className="stMenu">
-              <div className="stMenuOption" onClick={()=>{onEdit(st)}}>
+              <div
+                className="stMenuOption"
+                onClick={() => {
+                  onEdit(st);
+                }}
+              >
                 Edit
               </div>
-              <div className="stMenuOption" onClick={()=>deleteSubtask({id: +st.id})}>
+              <div
+                className="stMenuOption"
+                onClick={() => deleteSubtask({ id: +st.id })}
+              >
                 Delete
               </div>
               <div className="stMenuOption" onClick={() => checkOffST(st)}>
@@ -147,15 +159,15 @@ const SubtaskList = ({ task }) => {
     const handleClickOutside = (event) => {
       if (openMenuId !== null) {
         const currentRef = menuRefs.current[openMenuId];
-        if (currentRef && !currentRef.current.contains(event.target)) {
+        if (currentRef && !currentRef.current?.contains(event.target)) {
           setOpenMenuId(null);
         }
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [openMenuId]);
 

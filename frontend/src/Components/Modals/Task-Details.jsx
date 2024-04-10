@@ -4,9 +4,11 @@ import ConfirmDelete from "./ConfirmDelete";
 import { useState, useEffect } from "react";
 import "../../Styling/subtask.css";
 import SubtaskList from "../Utility/SubtaskList";
+import { useCompleteTask } from "../../Hooks/useTaskQueries";
 
 const TaskDetails = ({ task, blockTitle }) => {
   const [statusColor, setStatusColor] = useState();
+  const {mutate} = useCompleteTask()
 
   const { showModal } = useModal();
 
@@ -28,7 +30,7 @@ const TaskDetails = ({ task, blockTitle }) => {
   return (
     <div className="ceContainer">
       <div className="tdHeader">
-        <div className={`tdStatusHexagon ${statusColor}`}>
+        <div className={`tdStatusHexagon ${statusColor}`} onClick={()=>mutate({id: task.id})}>
           <div className="tdstatusText">{task.status ? "Done" : "To-Do"}</div>
         </div>
 
@@ -53,7 +55,9 @@ const TaskDetails = ({ task, blockTitle }) => {
         <SubtaskList task={task} />
 
         <div className="taskBtnBar">
-          <button className="tdButton">Mark Complete</button>
+          <button className="tdButton" onClick={()=>mutate({id: task.id})}>
+            Mark Complete
+          </button>
           <button
             className="tdButton"
             onClick={() =>

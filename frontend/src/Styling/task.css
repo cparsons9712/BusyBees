@@ -1,5 +1,5 @@
 .taskPageBackground {
-  background-image: url("/home/cparsons/busyBees/frontend/public/hexagonBackground.png");
+  
   padding: 40px;
   height: 77vh;
   display: flex;
@@ -331,7 +331,7 @@ taskBody {
   justify-content: space-between;
 }
 
-.blackHex{
+.blackHex {
   background-color: black;
-  color:gold;
+  color: gold;
 }

@@ -18,7 +18,7 @@ export class Subtask {
   })
   userId: number;
 
-  @ManyToOne(() => User, (user) => user.subtasks)
+  @ManyToOne(() => User, (user) => user.subtasks, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'userId' })
   user: User;
 
@@ -27,7 +27,7 @@ export class Subtask {
   })
   taskId: number;
 
-  @ManyToOne(() => Task, (task) => task.subtasks)
+  @ManyToOne(() => Task, (task) => task.subtasks, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'taskId' })
   task: Task;
 

@@ -1,5 +1,7 @@
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+
 <a name="readme-top"></a>
+
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -7,10 +9,6 @@
 *** Don't forget to give the project a star!
 *** Thanks again! Now go create something AMAZING! :D
 -->
-
-
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -36,8 +34,6 @@
     <a href="https://github.com/cparsons9712/busyBees/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -65,9 +61,8 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
@@ -79,78 +74,90 @@ And then I started time blocking. I set out and made a general schedule and for 
 I tried many productivity apps but none of them quite fit the bill. Theres no apps that cater to the time blocking method. So I decided to make my own and Busy Bees was born!
 
 Here's why Busy Bees just works better:
-* You stay focused on the task at hand and dont get sidetrekked with side quest.
-* When its time to relax you can do so without guilt because you are doing exactly what your supposed to be doing.
-* It helps with anxiety and overwhelm, only showing you a small sliver of task at a time, and only those related to the current time block.
 
-
+- You stay focused on the task at hand and dont get sidetrekked with side quest.
+- When its time to relax you can do so without guilt because you are doing exactly what your supposed to be doing.
+- It helps with anxiety and overwhelm, only showing you a small sliver of task at a time, and only those related to the current time block.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
+- ![Nestjs](https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white)
 
-* ![Nestjs](https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white)
-
-* [![React][React.js]][React-url]
-* ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
-* ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-* ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
-
+- [![React][React.js]][React-url]
+- ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
+- ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+- ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
-## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+## Getting Started with Docker
 
+Running this application with Docker simplifies the setup process and manages the services for you. Follow these steps to get up and running quickly.
 
+### Prerequisites
 
-### Installation
+- Docker Desktop (MUST BE OPEN AND RUNNING)
+  - For Windows and Mac: Download and install Docker Desktop from [Docker Hub](https://docs.docker.com/docker-hub/quickstart/)
+  - For Linux: Install Docker Engine and Docker Compose following the instructions [here](https://docs.docker.com/engine/install/ubuntu/).
 
+### Installation and Running the Application
 
-1. Clone the repo
+1. Clone the Repository
+
    ```sh
    git clone https://github.com/cparsons9712/busyBees.git
+   cd busyBees
    ```
-2. Create a .env file and copy the keys from .env.copy. Make sure the .env file is in the root of backend. Enter the information based your local postgres information
 
+2. Environment Configuration
 
-  > NOTE: <br>
-    Error: connect ECONNREFUSED 127.0.0.1:5432
-    <br>
-    If you get this error, check the credentials in the .env file match your local postgres credentials and that postgres is running in the same virtual machine as your backend server. (if using wsl/ubuntu on windows the postgres server should also run from wsl/ubuntu) Check postgres status with <br>
-      ```
-        sudo service postgresql status
-      ```
+   - Create a .env file in the root of the backend directory. You can copy the template from .env.copy provided in the repository.
 
-1. Open two terminals
-2. In one terminal navigate to frontend folder, install npm & start server. *Frontend runs on port 3000
+   - Update the .env file with your environment variables as needed. For Docker, ensure DATABASE_HOST is set to the name of your database service defined in docker-compose.yml (typically db).
+
+   - There is also a .env.example in the complete root of the project. Create a .env in the complete root and copy /update the values from the .env.example
+
+   - You only need a gmail email address and password if you will be testing password reset, otherwise you can leave those fields blank
+     > [!TIP]
+     > With docker you wont need to change the username or password for the databases. Docker will create a new instance with a new user and use the predefined values. To run this project you wont need to change anything in the .env.example unless you want to test password reset
+
+3. Build and Run with Docker Compose
+
+   From the root of the project, run:
+
    ```sh
-   cd frontend
-   npm install
-   npm start
-   ```
-3. In second terminal navigate to backend, install npm & start server in development mode. *Backend runs on port 8000. Enter your postgres password when prompted. If you haven't set a specific password 'postgres' will probably work
-   ```sh
-   cd backend
-   npm install
-   npm run start:dev
+   docker-compose up --build
    ```
 
+   This command builds the Docker images and starts the containers defined in your docker-compose.yml, including the frontend, backend, and database services.
 
+### Accessing the Application
 
+The frontend will be accessible at http://localhost:3000 (or the port you've configured if not the default HTTP port 80).
+The backend API will be accessible at http://localhost:8000.
+
+### Stopping the Application
+
+To stop the application and remove the containers, you can use the following command from the root of the project:
+
+```sh
+docker-compose down
+```
+
+### Notes
+
+- The first run might take longer due to the build process and initial database setup. Subsequent starts will be faster.
+- Make sure Docker Desktop or Docker Engine is running before executing the commands.
+- If you make changes to the Dockerfile or the application code, you may need to rebuild the images with docker-compose up --build.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
@@ -159,25 +166,23 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- ROADMAP -->
+
 ## Roadmap
 
 - [x] Auth
-- [ ] Account Maitenance
-- [ ] Time Block
-- [ ] Task
-- [ ] SubTask
-
+- [x] Account Maitenance
+- [x] Time Blocks
+- [x] Task
+- [x] Checklist
+- [ ] Brain Dump
 
 See the [open issues](https://github.com/cparsons9712/busyBees/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -193,18 +198,16 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 Christine Parsons - [[LinkedIn](https://www.linkedin.com/in/christine-parsons-498b046a/)] - clong9712@gmail.com
@@ -213,28 +216,26 @@ Project Link: [Github-busyBees](https://github.com/cparsons9712/busyBees)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
+
 ## Acknowledgments
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+- [Choose an Open Source License](https://choosealicense.com)
+- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+- [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
+- [Malven's Grid Cheatsheet](https://grid.malven.co/)
+- [Img Shields](https://shields.io)
+- [GitHub Pages](https://pages.github.com)
+- [Font Awesome](https://fontawesome.com)
+- [React Icons](https://react-icons.github.io/react-icons/search)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge

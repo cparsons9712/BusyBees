@@ -30,7 +30,6 @@ export const useAllBlocks = () => {
     return response.data;
   };
 
-  // Using a more descriptive query key and returning all relevant data and states.
   const {
     data: allBlocks,
     isError,
@@ -41,7 +40,6 @@ export const useAllBlocks = () => {
     queryFn: fetchAllBlocks,
   });
 
-  // Return these values so your components can use them.
   return { allBlocks, isError, isLoading, error };
 };
 
@@ -165,7 +163,7 @@ export const useDeleteBlock = () => {
           "No response was received when attempting to delete the block."
         );
       } else {
-        console.log("Error", error.message);
+        console.error("Error", error.message);
         throw new Error(
           "An error occurred while setting up the request to delete the block."
         );
