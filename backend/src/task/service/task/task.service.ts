@@ -4,10 +4,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Task } from 'src/entities/task.entity';
+import { Task } from '../../../entities/task.entity';
 import { IsNull, LessThanOrEqual, Repository } from 'typeorm';
-import { CreateTaskDto } from 'src/task/dto/create-task.dto';
-import { buildCompletedTask } from 'src/task/utils/buildCompletedTask';
+import { CreateTaskDto } from '../../dto/create-task.dto';
+import { buildCompletedTask } from '../../utils/buildCompletedTask';
 import * as moment from 'moment';
 
 @Injectable()
