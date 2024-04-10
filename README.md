@@ -122,8 +122,8 @@ Running this application with Docker simplifies the setup process and manages th
    - There is also a .env.example in the complete root of the project. Create a .env in the complete root and copy /update the values from the .env.example
 
    - You only need a gmail email address and password if you will be testing password reset, otherwise you can leave those fields blank
-    > [!TIP]
-    > With docker you wont need to change the username or password for the databases. Docker will create a new instance with a new user and use the predefined values. To run this project you wont need to change anything in the .env.example unless you want to test password reset
+     > [!TIP]
+     > With docker you wont need to change the username or password for the databases. Docker will create a new instance with a new user and use the predefined values. To run this project you wont need to change anything in the .env.example unless you want to test password reset
 
 3. Build and Run with Docker Compose
 
@@ -137,7 +137,7 @@ Running this application with Docker simplifies the setup process and manages th
 
 ### Accessing the Application
 
-The frontend will be accessible at http://localhost (or the port you've configured if not the default HTTP port 80).
+The frontend will be accessible at http://localhost:3000 (or the port you've configured if not the default HTTP port 80).
 The backend API will be accessible at http://localhost:8000.
 
 ### Stopping the Application

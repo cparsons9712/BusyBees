@@ -6,6 +6,7 @@ services:
       - ./backend:/usr/src/app
     ports:
       - "8000:8000"
+    command: npm run start:dev
     environment:
       - TZ=America/New_York
       - NODE_ENV
@@ -18,13 +19,20 @@ services:
       - APP_EMAIL
       - GMAIL_APP_PW
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     ports:
-      - "80:80"
+      - "3000:3000"
     depends_on:
       - backend
     environment:
+      - NODE_ENV=development
       - TZ=America/New_York
+    command: npm start
   db:
     image: my-custom-postgres:latest
     environment:
