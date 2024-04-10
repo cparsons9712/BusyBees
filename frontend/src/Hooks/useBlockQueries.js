@@ -163,7 +163,7 @@ export const useDeleteBlock = () => {
           "No response was received when attempting to delete the block."
         );
       } else {
-        console.log("Error", error.message);
+        console.error("Error", error.message);
         throw new Error(
           "An error occurred while setting up the request to delete the block."
         );

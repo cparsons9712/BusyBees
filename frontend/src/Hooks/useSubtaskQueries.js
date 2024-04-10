@@ -67,11 +67,7 @@ export const useChangeSubtaskStatus = () => {
 export const useDeleteSubtask = () => {
     const queryClient = useQueryClient();
     const fetchDeleteSubtask = async ({id}) => {
-      console.log('IN Delete hook:::')
-      console.log('ID: ' ,id)
-
       const response = await axios.delete(`/${id}`, { withCredentials: true });
-      console.log(response.data)
       return response.data;
     };
 

@@ -9,7 +9,6 @@ import { BadRequestException, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   await connectionSource.initialize(); // Ensure your DataSource is initialized
-  console.log('Database connected successfully');
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({

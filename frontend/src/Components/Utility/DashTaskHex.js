@@ -12,7 +12,6 @@ const DashTaskHex = ({ task, colorClass }) => {
             setTotal(task.subtasks.length);
             let completedCount = 0
             for(let st of task.subtasks){
-                console.log(st.status)
                 if(st.status) completedCount++;
             }
             setCompleted(completedCount);

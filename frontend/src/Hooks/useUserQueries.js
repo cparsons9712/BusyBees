@@ -10,7 +10,6 @@ export const useGetUser = () => {
         const response = await authAxios.get("/status", {
             withCredentials: true
         });
-        console.log('RESPONSE: ',response.data.user)
         return response.data.user;
     }
 
@@ -23,7 +22,6 @@ export const useGetUser = () => {
         queryKey: ["user"],
         queryFn: fetchAuthenticatedUser,
     })
-    console.log('USER: ', user)
 
     return { user, isError, isLoading, error}
 }

@@ -44,7 +44,6 @@ export class TaskService {
 
   // MakeaTask
   async createNewTask(createTaskDto: CreateTaskDto, userId: number) {
-    console.log(createTaskDto);
     if (createTaskDto.blockId === 0) createTaskDto.blockId = null;
     const newTask = await this.taskRepository.create({
       ...createTaskDto,
