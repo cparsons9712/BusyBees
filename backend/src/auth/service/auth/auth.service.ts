@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UsersService } from 'src/users/services/users/users.service';
-import { comparePasswords } from 'src/utils/bcrypt';
+import { UsersService } from '../../../users/services/users/users.service';
+import { comparePasswords } from '../../../utils/bcrypt';
 import * as jwt from 'jwt-simple';
 
 @Injectable()
@@ -10,9 +10,12 @@ export class AuthService {
     private usersService: UsersService,
   ) {}
   k = process.env.SECRET_KEY;
+
   async validateUser(email: string, password: string) {
     const userDB = await this.usersService.findLogIn(email);
-
+    if (!userDB) {
+      return { message: 'Password was incorrect' };
+    }
     if (comparePasswords(password, userDB.password)) {
       return userDB;
     } else {

@@ -10,7 +10,12 @@
 }
 
 .timeColumn {
-  width: 25%;
+  flex: 1; /* Adjust the flex-grow value to control the size ratio between timeColumn and blockColumn */
+  min-width: 150px; /* Your minimum size for text readability */
+}
+.blockColumn {
+  flex: 3; /* This makes blockColumn take up more space than timeColumn */
+  min-width: 250px; /* Adjust as necessary */
 }
 
 .timeBox {
@@ -92,7 +97,7 @@
 }
 .blockPageContainer {
   background-color: white;
-  height: 78vh;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   border: 3px solid black;
@@ -152,6 +157,7 @@ BLOCK DETAILS MODAL
   border-radius: 5px;
   padding: 5px 20px;
   margin-top: 20px;
+  gap: 5px;
 }
 
 .bdTimeBar {
@@ -290,4 +296,49 @@ input[type="checkbox"] {
   color: black;
   background-color: rgba(168, 4, 4, 0.743);
   margin: 15px;
+}
+@media only screen and (max-width: 750px) {
+  .timeTable{
+    display: felx;
+    flex-direction: row;
+  }
+
+  .timeDisplay{
+    width: 100%;
+    font-size: 14px;
+    padding: 3px;
+  }
+  .timeColumn{
+    min-width: 100px;
+    width: 25%;
+  }
+  .timeBox{
+    width: 65%;
+
+  }
+  .blockColumn{
+    width: 65%;
+  }
+  .blockBoxTitle{
+    width: 60%;
+    font-size: 18px;
+    padding: 0px;
+  }
+  .blockBoxTitle:hover{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .blockDetailsHeader{
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .blockChangeCont{
+    width: 300px;
+  }
+  .blockChangeHeader{
+    width: 300px;
+  }
+  .blockPageBackground{
+    height: calc(100vh - 170px);
+  }
 }

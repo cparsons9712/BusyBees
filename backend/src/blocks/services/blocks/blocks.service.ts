@@ -5,11 +5,11 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Block } from 'src/entities/block.entity';
-import { BlockDto } from 'src/blocks/dto/create-block.dto/block.dto';
+import { Block } from '../../../entities/block.entity';
+import { BlockDto } from '../../dto/create-block.dto/block.dto';
 import * as moment from 'moment-timezone';
-import { getActiveDayColumnName } from 'src/utils/getWeekDayFromNum';
-import { checkAvailability } from 'src/utils/checkAvailability';
+import { getActiveDayColumnName } from '../../../utils/getWeekDayFromNum';
+import { checkAvailability } from '../../../utils/checkAvailability';
 
 @Injectable()
 export class BlocksService {

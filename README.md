@@ -123,11 +123,11 @@ Running this application with Docker simplifies the setup process and manages th
 
    - You only need a gmail email address and password if you will be testing password reset, otherwise you can leave those fields blank
      > [!TIP]
-     > With docker you wont need to change the username or password for the databases. Docker will create a new instance with a new user and use the predefined values. To run this project you wont need to change anything in the .env.example unless you want to test password reset
+     > Docker makes a new user for you to use with postgres and makes the postgres server. What that means is that you dont need to change anthing in the .env.example unless you want to test the password reset function.
 
 3. Build and Run with Docker Compose
 
-   From the root of the project, run:
+   Make sure that the docker desktop application is open and running and then from the root of the project run:
 
    ```sh
    docker-compose up --build

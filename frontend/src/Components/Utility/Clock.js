@@ -37,7 +37,7 @@ const Clock = () => {
           <div className="cursive big">{user.name}!</div>
           <div className=" handwriting small">It's {time},</div>
           <div className=" handwriting small">Time to ... </div>
-          <div className="cursive big">{currBlock?.title || "be free!"}</div>
+          <div className="cursive big activeBlock">{currBlock?.title || "be free!"}</div>
         </div>
 
         <div class="hexCenter"></div>

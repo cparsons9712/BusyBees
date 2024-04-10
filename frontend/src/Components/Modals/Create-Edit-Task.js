@@ -153,6 +153,7 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
             <select
               value={timeUnit}
               onChange={(e) => setTimeUnit(e.target.value)}
+              className="csTaskTimeUnit"
             >
               <option value="0"> Never </option>
               <option value="1"> Day(s) </option>

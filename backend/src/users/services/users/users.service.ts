@@ -1,11 +1,11 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
-import { CreateUserDto } from 'src/users/dto/CreateUser.dto';
-import { SerializedUser } from 'src/users/types';
-import { User } from 'src/entities/user.entity';
+import { CreateUserDto } from '../../dto/CreateUser.dto';
+import { SerializedUser } from '../../../users/types';
+import { User } from '../../../entities/user.entity';
 import { Repository } from 'typeorm';
-import { encodePassword } from 'src/utils/bcrypt';
+import { encodePassword } from '../../../utils/bcrypt';
 
 @Injectable()
 export class UsersService {

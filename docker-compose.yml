@@ -32,6 +32,7 @@ services:
     environment:
       - NODE_ENV=development
       - TZ=America/New_York
+      - BROWSER=none
     command: npm start
   db:
     image: my-custom-postgres:latest

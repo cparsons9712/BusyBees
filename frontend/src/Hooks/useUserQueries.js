@@ -4,6 +4,7 @@ import { useModal } from "../Context/Modal";
 import { AuthData } from "../Auth/AuthWrapper";
 import Selfie from "../Components/Modals/Selfie";
 import authAxios from "../APIs/auth"
+import { useNavigate } from "react-router-dom";
 
 export const useGetUser = () => {
     const fetchAuthenticatedUser = async () => {
@@ -62,6 +63,41 @@ export const useEditUserProfile = () => {
         // queryClient.invalidateQueries(["dayBlocks"]);
         // queryClient.invalidateQueries(["unassignedTask"]);
 
+    },
+  });
+
+  return mutation;
+};
+
+export const useLogout = () => {
+  const queryClient = useQueryClient();
+  const goTo = useNavigate(); // Move this line to the top level of the hook
+  const { hideModal } = useModal(); // Assuming you have a hideModal function in your Modal context
+
+  const fetchLogOut = async () => { // Removed the unused parameter { id }
+    try {
+      const response = await authAxios.get("/logout", {
+        withCredentials: true,
+      });
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        throw new Error(
+          error.response.data.message || "An error occurred while logging the user out"
+        );
+      }
+    }
+  };
+
+  const mutation = useMutation(fetchLogOut, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["user"]);
+      queryClient.invalidateQueries(["activeBlocks"]);
+      queryClient.invalidateQueries(["allBlocks"]);
+      queryClient.invalidateQueries(["dayBlocks"]);
+      queryClient.invalidateQueries(["unassignedTask"]);
+      hideModal();
+      goTo('/');
     },
   });
 

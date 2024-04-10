@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Validate } from 'class-validator';
-import IsAfter from 'src/blocks/dto/create-block.dto/IsAfter';
+import IsAfter from '../blocks/dto/create-block.dto/IsAfter';
 import { Task } from './task.entity';
 
 @Entity()

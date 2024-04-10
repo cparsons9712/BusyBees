@@ -51,7 +51,7 @@ const handleSubmit = async (e) => {
         <div className="formRow">
           <div className="form-group">
             <input
-              className="input"
+              className="input signUpInput"
               placeholder="email"
               id="email"
               type="email"
@@ -69,7 +69,7 @@ const handleSubmit = async (e) => {
           <div className="form-group">
             <input
               placeholder="password"
-              className="input"
+              className="input signUpInput"
               id="password"
               type="password"
               required

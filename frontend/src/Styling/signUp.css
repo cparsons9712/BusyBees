@@ -88,8 +88,8 @@ signUpErr{
 
 
   }
-  .form-group{
-    width: 230px !important
+  .signUpInput{
+    width: 250px !important;
   }
 
 
