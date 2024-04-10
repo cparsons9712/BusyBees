@@ -52,7 +52,7 @@ const SignUp = () => {
         <div className="formRow">
           <div className="form-group">
             <input
-              className="input"
+              className="input signUpInput"
               id="name"
               name="name"
               type="text"
@@ -73,7 +73,7 @@ const SignUp = () => {
 
           <div className="form-group">
             <input
-              className="input"
+              className="input signUpInput"
               id="email"
               name="email"
               type="email"
@@ -96,7 +96,7 @@ const SignUp = () => {
         <div className="formRow">
           <div className="form-group">
             <input
-              className="input"
+              className="input signUpInput"
               id="password"
               name="password"
               type="password"
@@ -117,7 +117,7 @@ const SignUp = () => {
 
           <div className="form-group">
             <input
-              className="input"
+              className="input signUpInput"
               id="verifyPassword"
               name="verifyPassword"
               type="password"

@@ -157,6 +157,7 @@ BLOCK DETAILS MODAL
   border-radius: 5px;
   padding: 5px 20px;
   margin-top: 20px;
+  gap: 5px;
 }
 
 .bdTimeBar {
@@ -322,5 +323,19 @@ input[type="checkbox"] {
     width: 60%;
     font-size: 18px;
     padding: 0px;
+  }
+  .blockBoxTitle:hover{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .blockDetailsHeader{
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .blockChangeCont{
+    width: 300px;
+  }
+  .blockChangeHeader{
+    width: 300px;
   }
 }
