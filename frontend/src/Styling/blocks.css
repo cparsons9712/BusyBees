@@ -10,7 +10,12 @@
 }
 
 .timeColumn {
-  width: 25%;
+  flex: 1; /* Adjust the flex-grow value to control the size ratio between timeColumn and blockColumn */
+  min-width: 150px; /* Your minimum size for text readability */
+}
+.blockColumn {
+  flex: 3; /* This makes blockColumn take up more space than timeColumn */
+  min-width: 250px; /* Adjust as necessary */
 }
 
 .timeBox {
@@ -290,4 +295,25 @@ input[type="checkbox"] {
   color: black;
   background-color: rgba(168, 4, 4, 0.743);
   margin: 15px;
+}
+@media only screen and (max-width: 750px) {
+  .timeDisplay{
+    width: 100%;
+    font-size: 14px;
+    padding: 3px;
+  }
+  .timeColumn{
+    min-width: 100px;
+    width: 25%;
+  }
+  .timeBox{
+    width: 65%;
+
+  }
+  .blockColumn{
+    width: 65%;
+  }
+  .blockBoxTitle{
+    width: 65%;
+  }
 }
