@@ -125,6 +125,7 @@ const CreateEditTask = ({ taskDetails, blockId: initialBlockId }) => {
               onChange={(e) => {
                 setRepeatFrequency(e.target.value);
               }}
+              min={0}
             />
           </div>
 
