@@ -4,6 +4,7 @@
     flex-direction: row;
     color: white;
     justify-content: space-between;
+    height: 108px;
 
 }
 
@@ -44,6 +45,6 @@ a:active{
 
 @media (max-width: 600px){
     .headerOption{
-        width: 40px;
+        width: 30px;
     }
 }
