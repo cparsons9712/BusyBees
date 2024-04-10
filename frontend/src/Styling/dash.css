@@ -212,7 +212,7 @@
   .dashTaskCont {
     height: 100%;
     justify-content: space-around;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     flex-direction: column;
     flex-wrap: nowrap;
