@@ -297,6 +297,11 @@ input[type="checkbox"] {
   margin: 15px;
 }
 @media only screen and (max-width: 750px) {
+  .timeTable{
+    display: felx;
+    flex-direction: row;
+  }
+
   .timeDisplay{
     width: 100%;
     font-size: 14px;
@@ -314,6 +319,8 @@ input[type="checkbox"] {
     width: 65%;
   }
   .blockBoxTitle{
-    width: 65%;
+    width: 60%;
+    font-size: 18px;
+    padding: 0px;
   }
 }
