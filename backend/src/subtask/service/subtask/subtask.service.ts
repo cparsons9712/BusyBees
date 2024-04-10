@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Subtask } from 'src/entities/subtask.entity';
-import { SubtaskDto } from 'src/subtask/dto/subtask.dto';
+import { Subtask } from '../../../entities/subtask.entity';
+import { SubtaskDto } from '../../dto/subtask.dto';
 import { Repository } from 'typeorm';
-import { EditSubtaskDto } from 'src/subtask/dto/edit-subtask.dto';
+import { EditSubtaskDto } from '../../dto/edit-subtask.dto';
 
 @Injectable()
 export class SubtaskService {
