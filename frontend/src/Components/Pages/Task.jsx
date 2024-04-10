@@ -37,8 +37,8 @@ export default function Task() {
   };
 
   return (
-    <div className="taskPageBackground">
-      <div className="taskPageCont" style={{ backgroundImage: `url(${hexagonBackground})` }} >
+    <div className="taskPageBackground" style={{ backgroundImage: `url(${hexagonBackground})` }}>
+      <div className="taskPageCont" >
         <div className="taskPageTitle cursive">Task</div>
 
         <div className="taskBlockRow">
