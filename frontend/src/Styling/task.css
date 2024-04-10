@@ -355,4 +355,37 @@ taskBody {
   .csTaskTimeUnit{
     height:31px;
   }
+  .taskBlockRow{
+    flex-direction: column;
+  }
+
+  .taskBlockInfoCont{
+    width:50vw;
+    max-width: 300px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .taskPageCont{
+    padding: 5px;
+    width: 80vw;
+  }
+  .taskforBlockContainer{
+    align-items: center;
+  }
+  .TPaddTaskButton{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: -20px;
+    left:auto;
+    right: auto;
+  }
+  #noBlockButton{
+    bottom: -40px;
+  }
+  .tpBlockTitle{
+    font-size: 18px;
+    font-weight: 700;
+  }
 }
