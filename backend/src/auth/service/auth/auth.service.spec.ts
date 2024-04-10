@@ -9,7 +9,6 @@ jest.mock('../../../users/services/users/users.service', () => ({
   findLogIn: jest.fn(),
 }));
 
-
 jest.mock('../../../utils/bcrypt', () => ({
   comparePasswords: jest.fn(),
 }));
