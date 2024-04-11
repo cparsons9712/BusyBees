@@ -137,7 +137,7 @@ Running this application with Docker simplifies the setup process and manages th
 
 ### Accessing the Application
 
-The frontend will be accessible at http://localhost:3000 (or the port you've configured if not the default HTTP port 80).
+The frontend will be accessible at http://localhost:3000 (or the port you've configured).
 The backend API will be accessible at http://localhost:8000.
 
 ### Stopping the Application
