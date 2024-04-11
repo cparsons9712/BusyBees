@@ -8,8 +8,6 @@
 sudo hwclock -s
 
 # Start PostgreSQL service
-sudo service postgresql start
-
 
 
 # Start your development server

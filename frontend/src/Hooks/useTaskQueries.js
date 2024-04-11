@@ -19,6 +19,20 @@ export const useGetUnassignedTask = () => {
   return { unassignedTask, isError, isLoading, error };
 };
 
+export const useGetTaskById = ( id ) => {
+  const fetchTaskById = async () => {
+    if (typeof id === 'number' && !isNaN(id)) {
+      const response = await axios.get(`/${id}`, { withCredentials: true });
+      return response.data;
+    }
+    return null;
+  };
+  const { data: task, isError, isLoading, error } = useQuery(["task", id], fetchTaskById, {
+    enabled: typeof id === 'number' && !isNaN(id),
+  });
+  return { task, isError, isLoading, error };
+};
+
 export const useCreateTask = () => {
   const queryClient = useQueryClient();
   const { hideModal } = useModal();

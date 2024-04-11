@@ -64,7 +64,7 @@ export default function Task() {
                   className={getClass(task)}
                   onClick={() => showModal(<TaskDetails task={task} />, "gold")}
                 >
-                  {task.subtasks?.length ? <DashTaskHex task={task} colorClass="blackHex"/> : ''}
+                  {task.subtasks?.length ? <DashTaskHex id={task.id} colorClass="blackHex"/> : ''}
 
                   {task.title}
                 </div>
@@ -110,7 +110,7 @@ export default function Task() {
                         )
                       }
                     >
-                      {task.subtasks?.length ? <DashTaskHex task={task} colorClass="blackHex"/> : ''}
+                      {task.subtasks?.length ? <DashTaskHex id={task.id} colorClass="blackHex"/> : ''}
                       {task.title}
                     </div>
                   ))
