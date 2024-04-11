@@ -27,7 +27,7 @@ export default function SendPWEmail() {
   return (
     <div className="resetPWCont">
       <div className="resetHeader">
-        <div onClick={hideModal} className="closeButton">
+        <div  onClick={hideModal} className="closeButton" id="restPWClose">
           X
         </div>
         <h2 className="resetTitle">Reset Password</h2>

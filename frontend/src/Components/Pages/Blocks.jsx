@@ -142,12 +142,17 @@ function Blocks() {
             ))}
           </div>
 
-          <div className="blockColumn"></div>
+          <div className="blockColumn">
           {blocks && blocks.length > 0 ? (
             buildAgenda()
           ) : (
-            <div className="handwriting"> Nothing to display</div>
+
+              <div className="handwriting noBlocksNotice">
+                  You dont have any blocks yet! Click anywhere to get started
+              </div>
+
           )}
+          </div>
         </div>
       </div>
     </div>
