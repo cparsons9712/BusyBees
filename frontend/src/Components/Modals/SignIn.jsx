@@ -1,4 +1,4 @@
-import  {  useState } from "react";
+import { useState } from "react";
 import "../../Styling/signIn.css";
 
 import { useModal } from "../../Context/Modal";
@@ -6,43 +6,41 @@ import { AuthData } from "../../Auth/AuthWrapper";
 import SignUp from "./SignUp";
 import SendPWEmail from "./ForgotPW";
 
-
 const SignIn = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { login } = AuthData()
-  const {  showModal } = useModal();
+  const { login } = AuthData();
+  const { showModal } = useModal();
   const [loginError, setLoginError] = useState("");
 
-
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await login(email, password);
- // Redirect on success
+      // Redirect on success
     } catch (error) {
       console.error("Login failed:", error);
-      setLoginError("Invalid username or password") // Adjust this line
+      setLoginError("Invalid username or password"); // Adjust this line
     }
   };
 
   const signInDemo = () => {
-    login('demo@email.com', 'Super5ecret!')
-  }
+    login("demo@email.com", "Super5ecret!");
+  };
 
   const switchToSignUp = () => {
-    showModal(<SignUp />, 'black')
-  }
+    showModal(<SignUp />, "black");
+  };
 
   const openResetPassword = () => {
-    showModal(<SendPWEmail />, 'gold')
-  }
+    showModal(<SendPWEmail />, "gold");
+  };
 
   return (
     <div className="signUpContainter">
       <div className="modalHeader signIn">
         <img src="./BeeCenterDeco.png" alt="bee" className="beeCentered"></img>
-        <h1>Nice to meet you!</h1>
+        <h1>Good to See you!</h1>
 
         {loginError && <div className="signInError">{loginError}</div>}
       </div>
@@ -88,15 +86,33 @@ const handleSubmit = async (e) => {
           Submit
         </button>
       </form>
-      <div className="forgotCont" onClick={()=>{openResetPassword()}}><img className="forgotPW" src='questionMark.png' alt="Forgot Password block"/>  Forgot Password?</div>
+      <div
+        className="forgotCont"
+        onClick={() => {
+          openResetPassword();
+        }}
+      >
+        <img
+          className="forgotPW"
+          src="questionMark.png"
+          alt="Forgot Password block"
+        />{" "}
+        Forgot Password?
+      </div>
 
       <footer className="modalFooter">
-
-        <div className="demoLink" onClick={()=>signInDemo()}>Click here for Demo</div>
+        <div className="demoLink" onClick={() => signInDemo()}>
+          Click here for Demo
+        </div>
         <div>
           Not a member?{" "}
-          <span className="footerRedirect" onClick={()=>{switchToSignUp()}}>
-          Sign Up
+          <span
+            className="footerRedirect"
+            onClick={() => {
+              switchToSignUp();
+            }}
+          >
+            Sign Up
           </span>
         </div>
       </footer>

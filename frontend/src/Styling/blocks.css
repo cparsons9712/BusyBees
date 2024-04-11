@@ -14,8 +14,10 @@
   min-width: 150px; /* Your minimum size for text readability */
 }
 .blockColumn {
+  display: flex;
   flex: 3; /* This makes blockColumn take up more space than timeColumn */
   min-width: 250px; /* Adjust as necessary */
+  justify-content: center;
 }
 
 .timeBox {
@@ -36,7 +38,7 @@
   border: 3px ridge rgb(231, 197, 8);
   color: rgb(231, 197, 8);
   padding: 5px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .blockBoxTitle {
@@ -44,7 +46,7 @@
   box-sizing: border-box;
   right: 5px;
   border: 5px solid black;
-  width: 65%;
+  width: 55%;
   margin-right: 20px;
   background-color: rgb(231, 197, 8);
   padding: 5px;
@@ -90,10 +92,13 @@
 }
 
 .blockPageBackground {
-
+  display: flex;
+  justify-content: center;
   background-color: rgba(238, 232, 170, 0.706);
   padding: 30px;
   height: 79vh;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .blockPageContainer {
   background-color: white;
@@ -103,6 +108,7 @@
   border: 3px solid black;
   text-align: center;
   cursor: pointer;
+  max-width: 900px;
 }
 
 .blockHeader {
@@ -117,6 +123,17 @@
 .blockTitle {
   text-align: center;
   width: 100%;
+}
+
+.noBlocksNotice{
+  background-color: black;
+  color: gold;
+  height: 80px;
+  width: 300px;
+  padding: 10px;
+
+  font-size: 25px;
+  border: 5px ridge gold;
 }
 
 /*************************

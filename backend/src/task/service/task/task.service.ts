@@ -26,9 +26,12 @@ export class TaskService {
   // getTaskById
   async getTaskById(id: number, userId: number) {
     try {
-      return await this.taskRepository.findOneOrFail({
-        where: { id, userId },
-      });
+      return await this.taskRepository
+        .createQueryBuilder('task')
+        .leftJoinAndSelect('task.subtasks', 'subtasks')
+        .where('task.id = :id', { id })
+        .andWhere('task.userId = :userId', { userId })
+        .getOneOrFail();
     } catch (error) {
       throw new NotFoundException(`Task with ID ${id} not found.`);
     }

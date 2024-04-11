@@ -9,6 +9,7 @@
 }
 .resetPWCont {
   padding: 0px;
+  width: 300px;
   position: absolute;
   top: 0px;
   align-items: center;
@@ -35,6 +36,10 @@
 #pwSubmitbtn {
   margin-top: 20px;
 }
+#restPWClose{
+  background-color: gold;
+  color: black;
+}
 
 .newPasswordBackground {
   display: flex;
@@ -42,7 +47,7 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
- 
+
   background-size: cover;
 }
 

@@ -3,6 +3,9 @@
   height: 77vh;
   display: flex;
   justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 .taskPageCont {
   background-color: rgba(255, 255, 255, 0.925);
@@ -12,7 +15,7 @@
   border: 3px solid black;
   padding: 30px;
   box-sizing: border-box;
-  max-width: 1500px;
+  max-width: 700px;
   align-self: center;
 }
 
@@ -366,10 +369,7 @@ taskBody {
     margin-left: auto;
     margin-right: auto;
   }
-  .taskPageCont{
-    padding: 5px;
-    width: 80vw;
-  }
+
   .taskforBlockContainer{
     align-items: center;
   }

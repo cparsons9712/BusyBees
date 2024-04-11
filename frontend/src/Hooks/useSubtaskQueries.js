@@ -26,6 +26,7 @@ export const useCreateSubtask = () => {
       queryClient.invalidateQueries(["activeBlocks"]);
       queryClient.invalidateQueries(["allBlocks"]);
       queryClient.invalidateQueries(["Subtask"]);
+      queryClient.invalidateQueries(["task"]);
     },
   });
   return mutation;
@@ -57,6 +58,8 @@ export const useChangeSubtaskStatus = () => {
             queryClient.invalidateQueries(["unassignedTask"]);
             queryClient.invalidateQueries(["activeBlocks"]);
             queryClient.invalidateQueries(['Subtask']);
+            queryClient.invalidateQueries(["task"]);
+
         },
     });
 
@@ -74,6 +77,7 @@ export const useDeleteSubtask = () => {
     const mutation = useMutation(fetchDeleteSubtask, {
         onSuccess: () => {
             queryClient.invalidateQueries(['Subtask'])
+            queryClient.invalidateQueries(["task"]);
         }
     })
 
@@ -95,6 +99,7 @@ export const useChangeSubtaskTitle = () =>{
             queryClient.invalidateQueries(["unassignedTask"]);
             queryClient.invalidateQueries(["activeBlocks"]);
             queryClient.invalidateQueries(['Subtask']);
+            queryClient.invalidateQueries(["task"]);
         },
     });
 

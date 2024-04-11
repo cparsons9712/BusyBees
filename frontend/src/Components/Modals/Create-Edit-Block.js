@@ -94,6 +94,7 @@ const CreateEditBlock = ({ blockDetails }) => {
             id="title"
             type="text"
             required
+            maxLength={30}
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);

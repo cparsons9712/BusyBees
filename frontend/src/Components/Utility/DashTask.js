@@ -22,7 +22,7 @@ const DashTask = () => {
         if (!task.status){
             return (
                 <div className="dashTask" onClick={() => showTaskDetails(task)}>
-                    <DashTaskHex task={task} colorClass="whiteHex"/>
+                    <DashTaskHex id={task.id} colorClass="whiteHex"/>
                     <div>
                         {task.title}
                     </div>
