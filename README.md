@@ -22,9 +22,9 @@
   <p align="center">
     A time blocking task app designed to keep you focused on the task at hand.
     <br />
-    <a href="https://trello.com/b/8FFXyDm2/app">Trello Board</a>
+    <a href=""></a>
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://trello.com/b/8FFXyDm2/app"><strong>Trello Board »</strong></a>
     <br />
     <br />
     <a href="https://github.com/cparsons9712/busyBees">View Demo</a>
