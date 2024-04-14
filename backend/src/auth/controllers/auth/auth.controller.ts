@@ -30,7 +30,7 @@ export class AuthController {
     @Inject('AUTH_SERVICE')
     private readonly authService: AuthService,
   ) {}
-  
+
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Req() req: Request) {
