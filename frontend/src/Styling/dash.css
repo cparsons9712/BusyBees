@@ -41,7 +41,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
 }
 .hexborder {
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
@@ -64,9 +63,7 @@
   height: 100%;
   justify-content: space-between;
   top: 0px;
-
 }
-
 
 .hexLeft {
   width: 0;
@@ -143,28 +140,29 @@
   color: rgb(160, 160, 160);
   height: 50%;
   text-align: center;
-  width: 70%;
+  width: 700px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
   border: 5px ridge gold;
   font-size: 18px;
+
 }
 .dashTaskCont {
   display: flex;
-  flex-direction: column;
-  max-height: 80%;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
   flex-wrap: wrap;
-  width: 90%;
+  width: 100%;
+  height:80%;
+  justify-content: space-around;
+  
+
 }
 
 .dashTask {
-  margin: 10px;
-  padding: 10px;
-  width: 50%;
 
+  width: 200px;
+  margin-left: 20px;;
   display: flex;
   flex-direction: row;
 }
@@ -188,6 +186,7 @@
 @media only screen and (max-width: 750px) {
   .dashCont {
     height: calc(100vh - 108px);
+
   }
   .hexCenter {
     height: 150px;
@@ -220,14 +219,14 @@
   }
   .dashBottom {
     height: calc(100vh - 370px);
+    width: 350px;
   }
   .dashTaskCont {
-    height: 100%;
-    justify-content: space-around;
-    overflow-y: auto;
-    overflow-x: hidden;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    padding-left: 50px;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+
   }
   .dashTask {
     width: 100%;
@@ -237,6 +236,8 @@
     margin: 3px;
     margin-left: 15px;
     padding: 1px;
+    text-align: center;
+
   }
   .checkOffDash {
     height: 20px;
