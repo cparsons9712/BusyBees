@@ -67,17 +67,17 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-I had an unexpected medical issue that caused me to get very behind on basically everything. Things piled up and every time I thought about one thing I needed to do a whole slew of others came to mind. It felt overwhelming and scary. I would get started on one thing and then get distracted by another and start on that only to get distracted... rinse and repeat until I was too tired to finish all the task I had started.
+I had an unexpected medical issue that caused me to get very behind on basically everything. Things piled up and every time I thought about one thing I needed to do a whole slew of others came to mind. It felt overwhelming and scary. I would get started on one thing and then get distracted by another and start on that only to get distracted... rinse and repeat until I was too tired to finish all the tasks I had started.
 <br>
-And then I started time blocking. I set out and made a general schedule and for each section I had my own todo list. Anytime I thought of something unrelated I could tell myself it wasnt time for that. It changed my life.
+And then I started time blocking. I set out and made a general schedule and each section had its own dedicated to-do list. Anytime I thought of something unrelated I could tell myself it wasn't time for that. It changed my life.
 <br>
-I tried many productivity apps but none of them quite fit the bill. Theres no apps that cater to the time blocking method. So I decided to make my own and Busy Bees was born!
+I tried many productivity apps but none of them quite fit the bill. I couldn't find an app that did exactly what I wanted. I decided to make my own and Busy Bees was born!
 
 Here's why Busy Bees just works better:
 
-- You stay focused on the task at hand and dont get sidetrekked with side quest.
-- When its time to relax you can do so without guilt because you are doing exactly what your supposed to be doing.
-- It helps with anxiety and overwhelm, only showing you a small sliver of task at a time, and only those related to the current time block.
+- You stay focused on the task at hand and don't get sidetracked with random tasks.
+- When it's time to relax you can do so without guilt because you are doing exactly what your supposed to be doing.
+- It helps with anxiety and overwhelm, only showing you a small sliver of tasks at a time, and only those related to the current time block.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
