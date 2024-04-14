@@ -13,13 +13,14 @@ export class AuthService {
 
   async validateUser(email: string, password: string) {
     const userDB = await this.usersService.findLogIn(email);
+
     if (!userDB) {
-      return { message: 'Password was incorrect' };
+      return null;
     }
     if (comparePasswords(password, userDB.password)) {
       return userDB;
     } else {
-      return { message: 'Password was incorrect' };
+      return null;
     }
   }
 

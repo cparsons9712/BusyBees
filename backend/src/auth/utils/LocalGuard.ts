@@ -15,7 +15,9 @@ export class LocalAuthGuard extends AuthGuard('local') {
   async canActivate(context: ExecutionContext) {
     // this triggers execution of local stragety
     const result = (await super.canActivate(context)) as boolean;
+
     const request = context.switchToHttp().getRequest();
+
     await super.logIn(request); // adds user info to the session
     return result;
   }

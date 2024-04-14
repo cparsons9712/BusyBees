@@ -59,11 +59,14 @@ export const AuthWrapper = ({ children }) => {
 
   const login = async (email, password) => {
     try {
+      console.log('in Auth Wrapper')
+      console.log('email: ', email, ';  password: ', password)
       const response = await axios.post(
         "/login",
         { email, password },
         { withCredentials: true }
       );
+      console.log(response)
 
       // Assuming the response includes the user's name or other identifier
       setUser({
