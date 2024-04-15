@@ -28,7 +28,7 @@ services:
       - "80:80"
 
   db:
-    image: my-custom-postgres:latest
+    image: postgres:latest
     environment:
       - TZ=America/New_York
       - POSTGRES_DB=${POSTGRES_DB}
