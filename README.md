@@ -133,6 +133,12 @@ Running this application with Docker simplifies the setup process and manages th
    docker-compose up --build
    ```
 
+   In Production:
+
+   ```sh
+   docker-compose -f docker-compose.prod.yml up --build
+   ```
+
    This command builds the Docker images and starts the containers defined in your docker-compose.yml, including the frontend, backend, and database services.
 
 ### Accessing the Application
@@ -161,42 +167,40 @@ docker-compose down
 ## Usage
 
 ### See what you should currently work on in the dashboard
-<img src="image-8.png" alt="Dashboard" width="500"/>
 
+<img src="image-8.png" alt="Dashboard" width="500"/>
 
 ### Change account details in the Selfie Section
 
 <img src="image.png" alt="profile settings section" width="500"/>
 
 ### Set your daily schedule in the Block section
+
 <img src="image-1.png" alt="Block Schedule page" width="500"/>
 
 #### Click any open space in the schedule to open create a block
+
 <img src="image-2.png" alt="Create a block form" width="500"/>
 
 #### Click any block to see details or edit
+
 <img src="image-3.png" alt="Edit a block form" width="500"/>
 
 ### See all of your task in the Task page
+
 <img src="image-4.png" alt="Task Page" width="500"/>
 
-
 #### Add a task by clicking Add task under a block
+
 <img src="image-5.png" alt="Add a task" width="300"/>
 
-
 #### See task details by clicking a task
+
 <img src="image-6.png" alt="Task details" width="500"/>
 
-
 #### See subtask by expanding the subtask button on a task details modal
+
 <img src="image-7.png" alt="See subtask" width="500"/>
-
-
-
-
-
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
