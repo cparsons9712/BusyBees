@@ -34,7 +34,8 @@ export class AuthService {
   };
 
   createResetURL = (token) => {
-    return `http://localhost:3000/password-reset/${token}`;
+    const url = `${process.env.FRONTEND_URL}/password-reset/${token}`;
+    return url;
   };
 
   // const sendResetEmail(email){
