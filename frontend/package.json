@@ -59,7 +59,7 @@
     ]
   },
   "devDependencies": {
-    "@tanstack/eslint-plugin-query": "^5.28.6",
-    "@types/react-lottie": "^1.2.10"
+    "@tanstack/eslint-plugin-query": "^5.28.6"
+
   }
 }
