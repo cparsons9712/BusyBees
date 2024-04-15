@@ -40,7 +40,7 @@ services:
   frontend-prod:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     ports:
       - "80:80"
 
