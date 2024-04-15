@@ -6,6 +6,8 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
+RUN echo "networksetup = 'host'" >> .npmrc
+
 # Install dependencies
 # Using a mirror or a different registry if npm has issues can be specified here
 RUN npm install --verbose --registry=https://registry.npmjs.org/
