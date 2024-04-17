@@ -12,7 +12,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost', 'http://45.55.69.35'],
+    origin: [
+      'http://localhost:3000',
+      'http://localhost',
+      'http://45.55.69.35',
+      'http://beeproductive.net',
+    ],
     credentials: true,
   });
 

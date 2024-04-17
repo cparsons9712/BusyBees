@@ -1,23 +1,17 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-
 <a name="readme-top"></a>
 
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
-<!-- PROJECT LOGO -->
+
+
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="frontend/public/busyBeeLogo.webp" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Busy Bees</h3>
+  <h3 align="center">
+    Bee Productive
+  </h3>
 
   <p align="center">
     A time blocking task app designed to keep you focused on the task at hand.
@@ -71,9 +65,9 @@ I had an unexpected medical issue that caused me to get very behind on basically
 <br>
 And then I started time blocking. I set out and made a general schedule and each section had its own dedicated to-do list. Anytime I thought of something unrelated I could tell myself it wasn't time for that. It changed my life.
 <br>
-I tried many productivity apps but none of them quite fit the bill. I couldn't find an app that did exactly what I wanted. I decided to make my own and Busy Bees was born!
+I tried many productivity apps but none of them quite fit the bill. I couldn't find an app that did exactly what I wanted. I decided to make my own and Bee Productive was born!
 
-Here's why Busy Bees just works better:
+Here's why Bee Productive just works better:
 
 - You stay focused on the task at hand and don't get sidetracked with random tasks.
 - When it's time to relax you can do so without guilt because you are doing exactly what your supposed to be doing.
@@ -83,12 +77,12 @@ Here's why Busy Bees just works better:
 
 ### Built With
 
-- ![Nestjs](https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white)
+  ![Nestjs](https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white)
 
-- [![React][React.js]][React-url]
-- ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
-- ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-- ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+  [![React][React.js]][React-url]
+
+  ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
