@@ -65,7 +65,7 @@ export const AuthWrapper = ({ children }) => {
         { withCredentials: true }
       );
 
-      // Assuming the response includes the user's name or other identifier
+      
       setUser({
         name: response.data.name,
         email: response.data.email,
