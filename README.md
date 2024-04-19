@@ -1,8 +1,5 @@
 <a name="readme-top"></a>
 
-
-
-
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
@@ -77,12 +74,11 @@ Here's why Bee Productive just works better:
 
 ### Built With
 
-  ![Nestjs](https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white)
+![Nestjs](https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white)
 
-  [![React][React.js]][React-url]
+[![React][React.js]][React-url]
 
-  ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -130,7 +126,7 @@ Running this application with Docker simplifies the setup process and manages th
    In Production:
 
    ```sh
-   docker-compose -f docker-compose.prod.yml up --build
+   docker-compose -f docker-compose.prod.yml up --build -d
    ```
 
    This command builds the Docker images and starts the containers defined in your docker-compose.yml, including the frontend, backend, and database services.
@@ -146,6 +142,12 @@ To stop the application and remove the containers, you can use the following com
 
 ```sh
 docker-compose down
+```
+
+In Production:
+
+```sh
+docker-compose -f docker-compose.prod.yml down
 ```
 
 ### Notes

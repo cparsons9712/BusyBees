@@ -35,7 +35,7 @@ async function bootstrap() {
         path: '/',
         httpOnly: true,
         secure: false, // Set to true if using HTTPS
-        maxAge: 24 * 60 * 60 * 1000
+        maxAge: 24 * 60 * 60 * 1000,
       }, //session should persist for 2 hours
       store: new TypeormStore().connect(sessionRepository),
     }),

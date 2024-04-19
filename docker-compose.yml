@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   backend:
@@ -20,7 +20,7 @@ services:
       - APP_EMAIL
       - GMAIL_APP_PW
 
-  frontend-dev:
+  frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
@@ -36,17 +36,6 @@ services:
       - TZ=America/New_York
       - BROWSER=none
     command: npm start
-    profiles:
-      - development
-
-  frontend-prod:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    profiles:
-      - production
 
   db:
     image: my-custom-postgres:latest
