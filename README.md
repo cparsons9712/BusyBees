@@ -1,23 +1,14 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-
 <a name="readme-top"></a>
 
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="frontend/public/busyBeeLogo.webp" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Busy Bees</h3>
+  <h3 align="center">
+    Bee Productive
+  </h3>
 
   <p align="center">
     A time blocking task app designed to keep you focused on the task at hand.
@@ -67,28 +58,27 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-I had an unexpected medical issue that caused me to get very behind on basically everything. Things piled up and every time I thought about one thing I needed to do a whole slew of others came to mind. It felt overwhelming and scary. I would get started on one thing and then get distracted by another and start on that only to get distracted... rinse and repeat until I was too tired to finish all the task I had started.
+I had an unexpected medical issue that caused me to get very behind on basically everything. Things piled up and every time I thought about one thing I needed to do a whole slew of others came to mind. It felt overwhelming and scary. I would get started on one thing and then get distracted by another and start on that only to get distracted... rinse and repeat until I was too tired to finish all the tasks I had started.
 <br>
-And then I started time blocking. I set out and made a general schedule and for each section I had my own todo list. Anytime I thought of something unrelated I could tell myself it wasnt time for that. It changed my life.
+And then I started time blocking. I set out and made a general schedule and each section had its own dedicated to-do list. Anytime I thought of something unrelated I could tell myself it wasn't time for that. It changed my life.
 <br>
-I tried many productivity apps but none of them quite fit the bill. Theres no apps that cater to the time blocking method. So I decided to make my own and Busy Bees was born!
+I tried many productivity apps but none of them quite fit the bill. I couldn't find an app that did exactly what I wanted. I decided to make my own and Bee Productive was born!
 
-Here's why Busy Bees just works better:
+Here's why Bee Productive just works better:
 
-- You stay focused on the task at hand and dont get sidetrekked with side quest.
-- When its time to relax you can do so without guilt because you are doing exactly what your supposed to be doing.
-- It helps with anxiety and overwhelm, only showing you a small sliver of task at a time, and only those related to the current time block.
+- You stay focused on the task at hand and don't get sidetracked with random tasks.
+- When it's time to relax you can do so without guilt because you are doing exactly what your supposed to be doing.
+- It helps with anxiety and overwhelm, only showing you a small sliver of tasks at a time, and only those related to the current time block.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
-- ![Nestjs](https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white)
+![Nestjs](https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white)
 
-- [![React][React.js]][React-url]
-- ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
-- ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-- ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+[![React][React.js]][React-url]
+
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,6 +123,12 @@ Running this application with Docker simplifies the setup process and manages th
    docker-compose up --build
    ```
 
+   In Production:
+
+   ```sh
+   docker-compose -f docker-compose.prod.yml up --build -d
+   ```
+
    This command builds the Docker images and starts the containers defined in your docker-compose.yml, including the frontend, backend, and database services.
 
 ### Accessing the Application
@@ -148,6 +144,12 @@ To stop the application and remove the containers, you can use the following com
 docker-compose down
 ```
 
+In Production:
+
+```sh
+docker-compose -f docker-compose.prod.yml down
+```
+
 ### Notes
 
 - The first run might take longer due to the build process and initial database setup. Subsequent starts will be faster.
@@ -160,9 +162,41 @@ docker-compose down
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+### See what you should currently work on in the dashboard
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+<img src="image-8.png" alt="Dashboard" width="500"/>
+
+### Change account details in the Selfie Section
+
+<img src="image.png" alt="profile settings section" width="500"/>
+
+### Set your daily schedule in the Block section
+
+<img src="image-1.png" alt="Block Schedule page" width="500"/>
+
+#### Click any open space in the schedule to open create a block
+
+<img src="image-2.png" alt="Create a block form" width="500"/>
+
+#### Click any block to see details or edit
+
+<img src="image-3.png" alt="Edit a block form" width="500"/>
+
+### See all of your task in the Task page
+
+<img src="image-4.png" alt="Task Page" width="500"/>
+
+#### Add a task by clicking Add task under a block
+
+<img src="image-5.png" alt="Add a task" width="300"/>
+
+#### See task details by clicking a task
+
+<img src="image-6.png" alt="Task details" width="500"/>
+
+#### See subtask by expanding the subtask button on a task details modal
+
+<img src="image-7.png" alt="See subtask" width="500"/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

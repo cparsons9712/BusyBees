@@ -1,4 +1,4 @@
-import Lottie from 'react-lottie';
+// import Lottie from 'react-lottie';
 import animationData from '../../Media/BeesFlying.json'
 import { useEffect } from 'react';
 
@@ -24,8 +24,8 @@ export default function Loading() {
 
     return (
         <div className="loading" >
-    
-        <Lottie options={defaultOptions} height={400} width={400} />
+
+        {/* <Lottie options={defaultOptions} height={400} width={400} /> */}
       </div>
     );
   }

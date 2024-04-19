@@ -1,6 +1,6 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:8000/api/blocks";
 
+const BASE_URL =`${process.env.REACT_APP_API_URL}/blocks`
 export default axios.create({
   baseURL: BASE_URL,
   headers: {
