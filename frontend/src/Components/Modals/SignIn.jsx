@@ -1,32 +1,49 @@
 import { useState } from "react";
 import "../../Styling/signIn.css";
-
 import { useModal } from "../../Context/Modal";
-import { AuthData } from "../../Auth/AuthWrapper";
 import SignUp from "./SignUp";
 import SendPWEmail from "./ForgotPW";
+import { useLogIn } from "../../Hooks/useUserQueries";
+import { useNavigate } from "react-router";
 
 const SignIn = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { login } = AuthData();
+  const { mutate } = useLogIn();
   const { showModal } = useModal();
   const [loginError, setLoginError] = useState("");
+  const goTo = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-    
-      await login(email, password);
-      // Redirect on success
-    } catch (error) {
-      console.error("Login failed:", error);
-      setLoginError("Invalid username or password"); // Adjust this line
-    }
+    mutate(
+      { email, password },
+      {
+        onSuccess: () => {
+          console.log("Login successful!");
+          goTo("/dash");
+        },
+        onError: (error) => {
+          console.error("Login failed:", error);
+          setLoginError("Invalid username or password"); // More specific error handling can be added here
+        },
+      }
+    );
   };
 
   const signInDemo = () => {
-    login("demo@email.com", "Super5ecret!");
+    mutate(
+      { email: "demo@email.com", password: "Super5ecret!" },
+      {
+        onSuccess: () => {
+          console.log("Login successful!");
+        },
+        onError: (error) => {
+          console.error("Login failed:", error);
+          setLoginError("Invalid username or password"); // More specific error handling can be added here
+        },
+      }
+    );
   };
 
   const switchToSignUp = () => {

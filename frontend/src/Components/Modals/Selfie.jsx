@@ -1,15 +1,14 @@
 import ComingSoonPage from "../Pages/ComingSoon";
-import { AuthData } from "../../Auth/AuthWrapper";
 import "../../Styling/Selfie.css";
 import { useModal } from "../../Context/Modal";
 import SendPWEmail from "./ForgotPW";
 import DeleteAccount from "./DeleteUser";
 import EditUser from "./EditUser";
-import { useGetUser } from "../../Hooks/useUserQueries";
+import { useGetUser, useLogout } from "../../Hooks/useUserQueries";
 
 
 export default function Selfie() {
-  const {logout  } = AuthData();
+  const {mutate: logout  } = useLogout();
   const { showModal } = useModal();
 
   const {user, isLoading} = useGetUser()

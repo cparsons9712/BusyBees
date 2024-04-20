@@ -31,7 +31,10 @@ async function bootstrap() {
       resave: false,
       saveUninitialized: false,
       cookie: {
-        domain: '.beeproductive.net',
+        domain:
+          process.env.NODE_ENV === 'production'
+            ? '.beeproductive.net'
+            : undefined,
         path: '/',
         httpOnly: true,
         secure: false, // Set to true if using HTTPS

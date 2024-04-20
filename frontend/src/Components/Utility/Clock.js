@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import * as moment from "moment";
 import { useActiveBlocks } from "../../Hooks/useBlockQueries";
 import { useQueryClient } from "@tanstack/react-query";
-import { AuthData } from "../../Auth/AuthWrapper";
+import { useGetUser } from "../../Hooks/useUserQueries";
+import Loading from "../Pages/Loading";
 
 const Clock = () => {
   const [time, setTime] = useState(moment().format("h:mm:ss A"));
   const { currBlock, isError, isLoading, error } = useActiveBlocks();
   const queryClient = useQueryClient();
-  const { user } = AuthData();
+  const { user, isLoading: userLoading } = useGetUser();
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -29,6 +30,8 @@ const Clock = () => {
     // Cleanup the interval on component unmount
     return () => clearInterval(timerId);
   }, [currBlock, queryClient]);
+
+  if (isLoading || userLoading) return <Loading />;
   return (
     <div className="dashTop">
       <div class="hexContainer">
@@ -37,7 +40,9 @@ const Clock = () => {
           <div className="cursive big">{user.name}!</div>
           <div className=" handwriting small">It's {time},</div>
           <div className=" handwriting small">Time to ... </div>
-          <div className="cursive big activeBlock">{currBlock?.title || "be free!"}</div>
+          <div className="cursive big activeBlock">
+            {currBlock?.title || "be free!"}
+          </div>
         </div>
 
         <div class="hexCenter"></div>

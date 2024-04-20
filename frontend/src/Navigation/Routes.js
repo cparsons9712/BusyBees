@@ -7,7 +7,7 @@ import SignIn from "../Components/Modals/SignIn";
 import SignUp from "../Components/Modals/SignUp";
 import Selfie from "../Components/Modals/Selfie";
 import ResetPassword from "../Components/Pages/ResetPassword";
-import { AuthData } from "../Auth/AuthWrapper";
+import { useGetUser } from "../Hooks/useUserQueries";
 import { Routes, Route } from "react-router-dom";
 import ErrorPage from "../Components/Pages/ErrorPage";
 import { Redirect } from "../Components/Utility/Redirect";
@@ -76,12 +76,12 @@ export const nav = [
 
 const DynamicRouter = () => {
   // This is to dynamically generate routes for pages that need them. It only happens when a user is logged in to make the site more secure. NonUsers cant accidently make it to a route that doesnt exist
-  const { user } = AuthData();
+  const { user } = useGetUser()
 
   return (
     <Routes>
       {nav.map((r, i) => {
-        if ((r.isPrivate && user.isAuthenticated) || !r.isPrivate) {
+        if ((r.isPrivate && user) || !r.isPrivate) {
           return <Route key={i} path={r.path} element={r.element} />;
         }
         return null; // Don't render a route if it shouldn't be displayed
