@@ -164,7 +164,7 @@ docker-compose -f docker-compose.prod.yml down
 
 ### See what you should currently work on in the dashboard
 
-<img src="image-8.png" alt="Dashboard" width="500"/>
+<img src="./Readme-images/image-1.png" alt="Dashboard" width="500"/>
 
 ### Change account details in the Selfie Section
 
