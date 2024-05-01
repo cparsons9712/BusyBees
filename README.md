@@ -168,7 +168,7 @@ docker-compose -f docker-compose.prod.yml down
 
 ### Change account details in the Selfie Section
 
-<img src="image.png" alt="profile settings section" width="500"/>
+<img src="./Readme-images/image-2.png" alt="profile settings section" width="500"/>
 
 ### Set your daily schedule in the Block section
 
