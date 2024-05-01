@@ -131,6 +131,11 @@ Running this application with Docker simplifies the setup process and manages th
 
    This command builds the Docker images and starts the containers defined in your docker-compose.yml, including the frontend, backend, and database services.
 
+   **Log into Server:** <br>
+   ssh -i C:\Users\clong\OneDrive\Documents\privatekey.pem cparsons9712@45.55.69.35
+   <br>
+   **Log Out:** exit
+
 ### Accessing the Application
 
 The frontend will be accessible at http://localhost:3000 (or the port you've configured).
