@@ -169,23 +169,23 @@ docker-compose -f docker-compose.prod.yml down
 
 ### See what you should currently work on in the dashboard
 
-<img src="./Readme-images/image-1.png" alt="Dashboard" width="500"/>
+<img src="./Readme-images/image.png" alt="Dashboard" width="500"/>
 
 ### Change account details in the Selfie Section
 
-<img src="./Readme-images/image-2.png" alt="profile settings section" width="500"/>
+<img src="./Readme-images/image-1.png" alt="profile settings section" width="500"/>
 
 ### Set your daily schedule in the Block section
 
-<img src="image-1.png" alt="Block Schedule page" width="500"/>
+<img src="./Readme-images/image-2.png" alt="Block Schedule page" width="500"/>
 
 #### Click any open space in the schedule to open create a block
 
-<img src="image-2.png" alt="Create a block form" width="500"/>
+<img src="./Readme-images/image-3.png" alt="Create a block form" width="500"/>
 
 #### Click any block to see details or edit
 
-<img src="image-3.png" alt="Edit a block form" width="500"/>
+<img src="./Readme-images/image-4.png" alt="Edit a block form" width="500"/>
 
 ### See all of your task in the Task page
 
