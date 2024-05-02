@@ -24,6 +24,29 @@ export const useActiveBlocks = () => {
   return { currBlock, isError, isLoading, error };
 };
 
+export const useBlockById = (id) => {
+  const fetchBlockbyId = async () => {
+    const response = await axios.get(`/${id}`, { withCredentials: true });
+    return response.data;
+  };
+
+
+  // Using a more descriptive query key and returning all relevant data and states.
+  const {
+    data: block,
+    isError,
+    isLoading,
+    error,
+  } = useQuery(
+    ["block", id],
+    fetchBlockbyId,
+    { enabled: typeof id === 'number' && !isNaN(id)});
+
+  // Return these values so your components can use them.
+  return { block, isError, isLoading, error };
+};
+
+
 export const useAllBlocks = () => {
   const fetchAllBlocks = async () => {
     const response = await axios.get("/", { withCredentials: true });
@@ -96,6 +119,7 @@ export const useEditBlock = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(["activeBlocks"]);
       queryClient.invalidateQueries(["allBlocks"]);
+      queryClient.invalidateQueries(["dayBlocks"]);
       queryClient.invalidateQueries(["dayBlocks"]);
       hideModal();
     },

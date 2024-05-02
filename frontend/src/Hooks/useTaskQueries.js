@@ -27,9 +27,16 @@ export const useGetTaskById = ( id ) => {
     }
     return null;
   };
-  const { data: task, isError, isLoading, error } = useQuery(["task", id], fetchTaskById, {
-    enabled: typeof id === 'number' && !isNaN(id),
-  });
+  const {
+    data: task,
+    isError,
+    isLoading,
+    error
+  } = useQuery(
+    ["task", id],
+    fetchTaskById,
+    {enabled: typeof id === 'number' && !isNaN(id),}
+  );
   return { task, isError, isLoading, error };
 };
 
