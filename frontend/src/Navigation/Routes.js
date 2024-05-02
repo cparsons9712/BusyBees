@@ -11,6 +11,7 @@ import { useGetUser } from "../Hooks/useUserQueries";
 import { Routes, Route } from "react-router-dom";
 import ErrorPage from "../Components/Pages/ErrorPage";
 import { Redirect } from "../Components/Utility/Redirect";
+import BlockDetails from "../Components/Pages/BlockDetails";
 
 // Placing the elements that need routes in an array like this makes it easy to change on the fly
 const logoImage = <img className="headerLogo" src="./logo.png" alt="logo" />;
@@ -72,11 +73,12 @@ export const nav = [
     isModal: true,
     isPrivate: true,
   },
+
 ];
 
 const DynamicRouter = () => {
   // This is to dynamically generate routes for pages that need them. It only happens when a user is logged in to make the site more secure. NonUsers cant accidently make it to a route that doesnt exist
-  const { user } = useGetUser()
+  const { user } = useGetUser();
 
   return (
     <Routes>
@@ -86,6 +88,7 @@ const DynamicRouter = () => {
         }
         return null; // Don't render a route if it shouldn't be displayed
       })}
+      <Route path="/block/:id" element={<BlockDetails />} />
       <Route path="/password-reset/:token" element={<ResetPassword />} />{" "}
       {/* hidden reset password route*/}
       <Route path="*" element={<Redirect />} /> {/* Catch-all route */}
